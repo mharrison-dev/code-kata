@@ -8,6 +8,6 @@ public class BitBoard {
     }
 
     public void addDie(Side side, Row row, long dieValue) {
-        bitTable = 1L << 55;
+        bitTable = dieValue << 55;
     }
 }

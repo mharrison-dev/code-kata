@@ -37,4 +37,18 @@ class BoardTest {
         long actualBitBoard = bitBoard.asLong();
         assertEquals(expectedBitBoard, actualBitBoard);
     }
+
+    @Test
+    public void addDieWithValueOfTwo() {
+        Side playerOneSide = Side.PLAYER_ONE_SIDE;
+        Row topRow = Row.TOP;
+        long dieValue = 2L;
+
+        BitBoard bitBoard = new BitBoard();
+        bitBoard.addDie(playerOneSide, topRow, dieValue);
+
+        long expectedBitBoard = dieValue << 55;
+        long actualBitBoard = bitBoard.asLong();
+        assertEquals(expectedBitBoard, actualBitBoard);
+    }
 }
