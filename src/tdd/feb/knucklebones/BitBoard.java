@@ -1,6 +1,8 @@
 package tdd.feb.knucklebones;
 
 public class BitBoard {
+    private static final byte WORD_LENGTH = 64;
+    private static final byte ROW_LENGTH = 9;
     private long bitTable;
 
     public long asLong() {
@@ -8,6 +10,12 @@ public class BitBoard {
     }
 
     public void addDie(Side side, Row row, long dieValue) {
-        bitTable = dieValue << 55;
+        int offset;
+        if (row.equals(Row.TOP)) {
+            offset = WORD_LENGTH - ROW_LENGTH;
+        } else {
+            offset = WORD_LENGTH - ROW_LENGTH * 3;
+        }
+        bitTable = dieValue << offset;
     }
 }
