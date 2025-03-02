@@ -24,4 +24,14 @@ class FizzBuzzTest {
         String actualString = fizzBuzz.convert(number);
         assertEquals(expectedString, actualString);
     }
+
+    @Test
+    public void printFizzBuzzForMultipleOfThreeAndFive() {
+        int number = 3 * 5;
+        FizzBuzz fizzBuzz = new FizzBuzz();
+
+        String expectedString = "FizzBuzz";
+        String actualString = fizzBuzz.convert(number);
+        assertEquals(expectedString, actualString);
+    }
 }
