@@ -11,6 +11,8 @@ public class FizzBuzz {
             string += "Buzz";
         }
 
-        return string;
+        return (string.isEmpty())
+                ? String.valueOf(number)
+                : string;
     }
 }

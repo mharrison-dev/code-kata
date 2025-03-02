@@ -34,4 +34,14 @@ class FizzBuzzTest {
         String actualString = fizzBuzz.convert(number);
         assertEquals(expectedString, actualString);
     }
+
+    @Test
+    public void printNumberWhenNotMultipleOfThreeAndFive() {
+        int number = 7;
+        FizzBuzz fizzBuzz = new FizzBuzz();
+
+        String expectedString = "7";
+        String actualString = fizzBuzz.convert(number);
+        assertEquals(expectedString, actualString);
+    }
 }
