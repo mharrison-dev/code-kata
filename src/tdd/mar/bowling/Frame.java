@@ -11,6 +11,10 @@ public class Frame {
     }
 
     public void addScoreForRoll(int score) {
+        if (numberOfRolls == 2) {
+            throw new ExceededRollLimitException("Exceeded roll limit of: 2");
+        }
+
         totalScore += score;
         numberOfRolls++;
 

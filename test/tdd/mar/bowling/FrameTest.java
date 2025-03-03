@@ -87,4 +87,21 @@ class FrameTest {
 
         assertFalse(frame.isStrike());
     }
+
+    @Test
+    public void throwExceptionWhenRollLimitIsExceededForNormalFrame() {
+        try {
+            int scoreOfFirstRoll = 1;
+            frame.addScoreForRoll(scoreOfFirstRoll);
+            int scoreOfSecondRoll = 2;
+            frame.addScoreForRoll(scoreOfSecondRoll);
+            int scoreOfThirdRoll = 3;
+            frame.addScoreForRoll(scoreOfThirdRoll);
+            fail("Expected an ExceededRollLimitException to be thrown");
+        } catch (Exception e) {
+            String expectedExceptionMessage = "Exceeded roll limit of: 2";
+            String actualExceptionMessage = e.getMessage();
+            assertEquals(expectedExceptionMessage, actualExceptionMessage);
+        }
+    }
 }
