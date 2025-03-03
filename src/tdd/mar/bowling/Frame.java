@@ -8,6 +8,6 @@ public class Frame {
     }
 
     public void addScoreForRoll(int score) {
-        this.score = score;
+        this.score += score;
     }
 }
