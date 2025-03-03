@@ -59,4 +59,14 @@ class FrameTest {
 
         assertFalse(frame.isSpare());
     }
+
+    @Test
+    public void isSpare() {
+        int scoreOfFirstRoll = 5;
+        frame.addScoreForRoll(scoreOfFirstRoll);
+        int scoreOfSecondRoll = 5;
+        frame.addScoreForRoll(scoreOfSecondRoll);
+
+        assertTrue(frame.isSpare());
+    }
 }

@@ -1,17 +1,24 @@
 package tdd.mar.bowling;
 
 public class Frame {
-    private int score = 0;
+    private boolean isSpare = false;
+    private int numberOfRolls = 0;
+    private int totalScore = 0;
 
     public int getScore() {
-        return score;
+        return totalScore;
     }
 
     public void addScoreForRoll(int score) {
-        this.score += score;
+        totalScore += score;
+        numberOfRolls++;
+
+        if (numberOfRolls == 2 && score > 0 && totalScore == 10) {
+            isSpare = true;
+        }
     }
 
     public boolean isSpare() {
-        return false;
+        return isSpare;
     }
 }
