@@ -13,4 +13,15 @@ class FrameTest {
         int actualScore = frame.getScore();
         assertEquals(expectedScore, actualScore);
     }
+
+    @Test
+    public void addScoreForFirstRoll() {
+        Frame frame = new Frame();
+        int scoreOfFirstRoll = 1;
+        frame.addScoreForRoll(scoreOfFirstRoll);
+
+        int expectedScore = scoreOfFirstRoll;
+        int actualScore = frame.getScore();
+        assertEquals(expectedScore, actualScore);
+    }
 }
