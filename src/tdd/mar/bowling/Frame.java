@@ -21,4 +21,8 @@ public class Frame {
     public boolean isSpare() {
         return isSpare;
     }
+
+    public boolean isStrike() {
+        return true;
+    }
 }

@@ -69,4 +69,12 @@ class FrameTest {
 
         assertTrue(frame.isSpare());
     }
+
+    @Test
+    public void isStrike() {
+        int scoreOfFirstRoll = 10;
+        frame.addScoreForRoll(scoreOfFirstRoll);
+
+        assertTrue(frame.isStrike());
+    }
 }
