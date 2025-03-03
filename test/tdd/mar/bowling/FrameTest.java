@@ -41,4 +41,12 @@ class FrameTest {
         int actualScore = frame.getScore();
         assertEquals(expectedScore, actualScore);
     }
+
+    @Test
+    public void isNotSpareWhenScoreOfFirstRollEqualsTen() {
+        int scoreOfFirstRoll = 10;
+        frame.addScoreForRoll(scoreOfFirstRoll);
+
+        assertFalse(frame.isSpare());
+    }
 }
