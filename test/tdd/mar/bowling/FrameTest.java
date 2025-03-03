@@ -49,4 +49,14 @@ class FrameTest {
 
         assertFalse(frame.isSpare());
     }
+
+    @Test
+    public void isNotSpareWhenScoreOfFirstRollEqualsTenAndSecondRollEqualsZero() {
+        int scoreOfFirstRoll = 10;
+        frame.addScoreForRoll(scoreOfFirstRoll);
+        int scoreOfSecondRoll = 0;
+        frame.addScoreForRoll(scoreOfSecondRoll);
+
+        assertFalse(frame.isSpare());
+    }
 }
