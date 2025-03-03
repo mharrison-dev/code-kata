@@ -4,6 +4,7 @@ public class Frame {
     private boolean isSpare = false;
     private boolean isStrike = false;
     private int numberOfRolls = 0;
+    private int rollLimit = 2;
     private int totalScore = 0;
 
     public int getScore() {
@@ -11,8 +12,8 @@ public class Frame {
     }
 
     public void addScoreForRoll(int score) {
-        if (numberOfRolls == 2) {
-            throw new ExceededRollLimitException("Exceeded roll limit of: 2");
+        if (numberOfRolls == rollLimit) {
+            throw new ExceededRollLimitException("Exceeded roll limit of: " + rollLimit);
         }
 
         totalScore += score;
@@ -24,6 +25,7 @@ public class Frame {
 
         if (numberOfRolls == 2 && score > 0 && totalScore == 10) {
             isSpare = true;
+            rollLimit++;
         }
     }
 

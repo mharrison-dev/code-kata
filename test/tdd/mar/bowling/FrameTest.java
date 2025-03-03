@@ -104,4 +104,23 @@ class FrameTest {
             assertEquals(expectedExceptionMessage, actualExceptionMessage);
         }
     }
+
+    @Test
+    public void throwExceptionWhenRollLimitIsExceededForSpareFrame() {
+        try {
+            int scoreOfFirstRoll = 5;
+            frame.addScoreForRoll(scoreOfFirstRoll);
+            int scoreOfSecondRoll = 5;
+            frame.addScoreForRoll(scoreOfSecondRoll);
+            int scoreOfThirdRoll = 3;
+            frame.addScoreForRoll(scoreOfThirdRoll);
+            int scoreOfFourthRoll = 4;
+            frame.addScoreForRoll(scoreOfFourthRoll);
+            fail("Expected an ExceededRollLimitException to be thrown");
+        } catch (Exception e) {
+            String expectedExceptionMessage = "Exceeded roll limit of: 3";
+            String actualExceptionMessage = e.getMessage();
+            assertEquals(expectedExceptionMessage, actualExceptionMessage);
+        }
+    }
 }
