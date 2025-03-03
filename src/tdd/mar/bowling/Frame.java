@@ -21,6 +21,7 @@ public class Frame {
 
         if (numberOfRolls == 1 && score == 10) {
             isStrike = true;
+            rollLimit++;
         }
 
         if (numberOfRolls == 2 && score > 0 && totalScore == 10) {
