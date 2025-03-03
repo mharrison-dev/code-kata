@@ -77,4 +77,14 @@ class FrameTest {
 
         assertTrue(frame.isStrike());
     }
+
+    @Test
+    public void isNotStrikeWhenScoreOfFirstRollEqualsZeroAndSecondRollEqualsTen() {
+        int scoreOfFirstRoll = 0;
+        frame.addScoreForRoll(scoreOfFirstRoll);
+        int scoreOfSecondRoll = 10;
+        frame.addScoreForRoll(scoreOfSecondRoll);
+
+        assertFalse(frame.isStrike());
+    }
 }
