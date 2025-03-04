@@ -1,14 +1,21 @@
 package tdd.mar.stringcalculator;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class StringCalculatorTest {
+    private StringCalculator stringCalculator = null;
+
+    @BeforeEach
+    public void setUp() {
+        stringCalculator = new StringCalculator();
+    }
+
     @Test
     public void shouldReturnZeroWhenGivenAnEmptyString() {
         String emptyString = "";
-        StringCalculator stringCalculator = new StringCalculator();
 
         int expectedSum = 0;
         int actualSum = stringCalculator.add(emptyString);
@@ -18,9 +25,17 @@ class StringCalculatorTest {
     @Test
     public void shouldReturnGivenNumberWhenGivenStringWithOnlyOneNumber() {
         String numberString = "10";
-        StringCalculator stringCalculator = new StringCalculator();
 
         int expectedSum = 10;
+        int actualSum = stringCalculator.add(numberString);
+        assertEquals(expectedSum, actualSum);
+    }
+
+    @Test
+    public void shouldReturnSumOfTwoNumbers() {
+        String numberString = "5, 2";
+
+        int expectedSum = 5 + 2;
         int actualSum = stringCalculator.add(numberString);
         assertEquals(expectedSum, actualSum);
     }

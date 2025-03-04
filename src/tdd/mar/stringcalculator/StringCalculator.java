@@ -1,9 +1,14 @@
 package tdd.mar.stringcalculator;
 
+import java.util.Arrays;
+
 public class StringCalculator {
     public int add(String numberString) {
         return (numberString.isEmpty())
                 ? 0
-                : Integer.parseInt(numberString);
+                : Arrays.stream(numberString.split(","))
+                .map(String::trim)
+                .mapToInt(Integer::parseInt)
+                .sum();
     }
 }
