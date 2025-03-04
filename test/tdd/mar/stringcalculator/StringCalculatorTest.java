@@ -14,4 +14,14 @@ class StringCalculatorTest {
         int actualSum = stringCalculator.add(emptyString);
         assertEquals(expectedSum, actualSum);
     }
+
+    @Test
+    public void shouldReturnGivenNumberWhenGivenStringWithOnlyOneNumber() {
+        String numberString = "10";
+        StringCalculator stringCalculator = new StringCalculator();
+
+        int expectedSum = 10;
+        int actualSum = stringCalculator.add(numberString);
+        assertEquals(expectedSum, actualSum);
+    }
 }

@@ -2,6 +2,8 @@ package tdd.mar.stringcalculator;
 
 public class StringCalculator {
     public int add(String numberString) {
-        return 0;
+        return (numberString.isEmpty())
+                ? 0
+                : Integer.parseInt(numberString);
     }
 }
