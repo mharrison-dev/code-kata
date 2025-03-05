@@ -13,11 +13,18 @@ public class RomanNumeralConverter {
             if (difference >= 1) {
                 difference--;
                 romanNumeralBuilder.append("I");
-                int indexOfMalformedNumeral = romanNumeralBuilder.indexOf("IIII");
-                if (indexOfMalformedNumeral > -1) {
-                    romanNumeralBuilder.delete(indexOfMalformedNumeral, romanNumeralBuilder.length());
-                    romanNumeralBuilder.append("IV");
-                }
+            }
+
+            int indexOfMalformedNumeral = romanNumeralBuilder.indexOf("IIII");
+            if (indexOfMalformedNumeral > -1) {
+                romanNumeralBuilder.delete(indexOfMalformedNumeral, romanNumeralBuilder.length());
+                romanNumeralBuilder.append("IV");
+            }
+
+            int indexOfOtherMalformedNumeral = romanNumeralBuilder.indexOf("VIV");
+            if (indexOfOtherMalformedNumeral > -1) {
+                romanNumeralBuilder.delete(indexOfOtherMalformedNumeral, romanNumeralBuilder.length());
+                romanNumeralBuilder.append("IX");
             }
         }
 
