@@ -11,7 +11,7 @@ public class RomanNumeralConverter {
         while (difference > 0) {
             for (int i = 0; i < NUMBER_OF_NUMERAL_LETTERS; i++) {
                 int currentNumeralLetterValue = NUMERAL_LETTER_VALUES[i];
-                if (difference >= currentNumeralLetterValue) {
+                while (difference >= currentNumeralLetterValue) {
                     difference -= currentNumeralLetterValue;
                     String currentNumeralLetter = NUMERAL_LETTERS[i];
                     romanNumeralBuilder.append(currentNumeralLetter);
