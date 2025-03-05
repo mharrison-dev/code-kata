@@ -1,14 +1,20 @@
 package tdd.mar.romannumeralconverter;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class RomanNumeralConverterTest {
+    private RomanNumeralConverter romanNumeralConverter = null;
+
+    @BeforeEach
+    public void setUp() {
+        romanNumeralConverter = new RomanNumeralConverter();
+    }
+
     @Test
     public void shouldReturnIWhenGivenOne() {
-        RomanNumeralConverter romanNumeralConverter = new RomanNumeralConverter();
-
         String expectedRomanNumeral = "I";
         String actualRomanNumeral = romanNumeralConverter.convertToRomanNumeral(1);
         assertEquals(expectedRomanNumeral, actualRomanNumeral);
@@ -16,8 +22,6 @@ class RomanNumeralConverterTest {
 
     @Test
     public void shouldReturnIIIWhenGivenThree() {
-        RomanNumeralConverter romanNumeralConverter = new RomanNumeralConverter();
-
         String expectedRomanNumeral = "III";
         String actualRomanNumeral = romanNumeralConverter.convertToRomanNumeral(3);
         assertEquals(expectedRomanNumeral, actualRomanNumeral);
@@ -25,10 +29,15 @@ class RomanNumeralConverterTest {
 
     @Test
     public void shouldReturnIVWhenGivenFour() {
-        RomanNumeralConverter romanNumeralConverter = new RomanNumeralConverter();
-
         String expectedRomanNumeral = "IV";
         String actualRomanNumeral = romanNumeralConverter.convertToRomanNumeral(4);
+        assertEquals(expectedRomanNumeral, actualRomanNumeral);
+    }
+
+    @Test
+    public void shouldReturnVWhenGivenFive() {
+        String expectedRomanNumeral = "V";
+        String actualRomanNumeral = romanNumeralConverter.convertToRomanNumeral(5);
         assertEquals(expectedRomanNumeral, actualRomanNumeral);
     }
 }
