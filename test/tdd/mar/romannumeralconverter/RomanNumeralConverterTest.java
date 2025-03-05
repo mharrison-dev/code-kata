@@ -22,4 +22,13 @@ class RomanNumeralConverterTest {
         String actualRomanNumeral = romanNumeralConverter.convertToRomanNumeral(3);
         assertEquals(expectedRomanNumeral, actualRomanNumeral);
     }
+
+    @Test
+    public void shouldReturnIVWhenGivenFour() {
+        RomanNumeralConverter romanNumeralConverter = new RomanNumeralConverter();
+
+        String expectedRomanNumeral = "IV";
+        String actualRomanNumeral = romanNumeralConverter.convertToRomanNumeral(4);
+        assertEquals(expectedRomanNumeral, actualRomanNumeral);
+    }
 }
