@@ -13,4 +13,13 @@ class RomanNumeralConverterTest {
         String actualRomanNumeral = romanNumeralConverter.convertToRomanNumeral(1);
         assertEquals(expectedRomanNumeral, actualRomanNumeral);
     }
+
+    @Test
+    public void shouldReturnIIIWhenGivenThree() {
+        RomanNumeralConverter romanNumeralConverter = new RomanNumeralConverter();
+
+        String expectedRomanNumeral = "III";
+        String actualRomanNumeral = romanNumeralConverter.convertToRomanNumeral(3);
+        assertEquals(expectedRomanNumeral, actualRomanNumeral);
+    }
 }
