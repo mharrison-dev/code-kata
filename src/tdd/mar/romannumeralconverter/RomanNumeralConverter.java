@@ -1,9 +1,9 @@
 package tdd.mar.romannumeralconverter;
 
 public class RomanNumeralConverter {
-    private static final int NUMBER_OF_NUMERAL_LETTERS = 4;
-    private static final int[] NUMERAL_LETTER_VALUES = {50, 10, 5, 1};
-    private static final String[] NUMERAL_LETTERS = {"L", "X", "V", "I"};
+    private static final int NUMBER_OF_NUMERAL_LETTERS = 5;
+    private static final int[] NUMERAL_LETTER_VALUES = {100, 50, 10, 5, 1};
+    private static final String[] NUMERAL_LETTERS = {"C", "L", "X", "V", "I"};
 
     public String convertToRomanNumeral(int number) {
         StringBuilder romanNumeralBuilder = new StringBuilder();
@@ -23,12 +23,16 @@ public class RomanNumeralConverter {
                 String correctNumeralRepresentation = NUMERAL_LETTERS[i] + NUMERAL_LETTERS[i - 1];
                 romanNumeralBuilder.append(correctNumeralRepresentation);
             }
-        }
 
-        int indexOfOtherMalformedNumeral = romanNumeralBuilder.indexOf("VIV");
-        if (indexOfOtherMalformedNumeral > -1) {
-            romanNumeralBuilder.delete(indexOfOtherMalformedNumeral, romanNumeralBuilder.length());
-            romanNumeralBuilder.append("IX");
+            if (i >= 2) {
+                String previousLetterSandwich = NUMERAL_LETTERS[i - 1] + NUMERAL_LETTERS[i] + NUMERAL_LETTERS[i - 1];
+                int indexOfPreviousLetterSandwich = romanNumeralBuilder.indexOf(previousLetterSandwich);
+                if (indexOfPreviousLetterSandwich > -1) {
+                    romanNumeralBuilder.delete(indexOfPreviousLetterSandwich, romanNumeralBuilder.length());
+                    String correctNumeralRepresentation = NUMERAL_LETTERS[i] + NUMERAL_LETTERS[i - 2];
+                    romanNumeralBuilder.append(correctNumeralRepresentation);
+                }
+            }
         }
 
         return romanNumeralBuilder.toString();
