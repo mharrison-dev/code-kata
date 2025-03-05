@@ -40,4 +40,11 @@ class RomanNumeralConverterTest {
         String actualRomanNumeral = romanNumeralConverter.convertToRomanNumeral(5);
         assertEquals(expectedRomanNumeral, actualRomanNumeral);
     }
+
+    @Test
+    public void shouldReturnVIWhenGivenSix() {
+        String expectedRomanNumeral = "VI";
+        String actualRomanNumeral = romanNumeralConverter.convertToRomanNumeral(6);
+        assertEquals(expectedRomanNumeral, actualRomanNumeral);
+    }
 }

@@ -5,7 +5,7 @@ public class RomanNumeralConverter {
         StringBuilder romanNumeralBuilder = new StringBuilder();
         int difference = number;
         while (difference > 0) {
-            if (difference == 5) {
+            if (difference >= 5) {
                 difference -= 5;
                 romanNumeralBuilder.append("V");
             }
