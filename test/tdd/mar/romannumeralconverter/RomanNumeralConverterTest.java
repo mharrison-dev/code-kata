@@ -89,4 +89,11 @@ class RomanNumeralConverterTest {
         String actualRomanNumeral = romanNumeralConverter.convertToRomanNumeral(500);
         assertEquals(expectedRomanNumeral, actualRomanNumeral);
     }
+
+    @Test
+    public void shouldReturnMWhenGivenThousand() {
+        String expectedRomanNumeral = "M";
+        String actualRomanNumeral = romanNumeralConverter.convertToRomanNumeral(1000);
+        assertEquals(expectedRomanNumeral, actualRomanNumeral);
+    }
 }

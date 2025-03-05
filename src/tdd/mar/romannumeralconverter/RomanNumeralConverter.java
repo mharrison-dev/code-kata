@@ -1,9 +1,9 @@
 package tdd.mar.romannumeralconverter;
 
 public class RomanNumeralConverter {
-    private static final int NUMBER_OF_NUMERAL_LETTERS = 6;
-    private static final int[] NUMERAL_LETTER_VALUES = {500, 100, 50, 10, 5, 1};
-    private static final String[] NUMERAL_LETTERS = {"D", "C", "L", "X", "V", "I"};
+    private static final int NUMBER_OF_NUMERAL_LETTERS = 7;
+    private static final int[] NUMERAL_LETTER_VALUES = {1000, 500, 100, 50, 10, 5, 1};
+    private static final String[] NUMERAL_LETTERS = {"M", "D", "C", "L", "X", "V", "I"};
 
     public String convertToRomanNumeral(int number) {
         StringBuilder romanNumeralBuilder = new StringBuilder();
