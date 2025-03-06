@@ -103,4 +103,11 @@ class RomanNumeralCalculatorTest {
         String actualSum = romanNumeralCalculator.add("D", "D");
         assertEquals(expectedSum, actualSum);
     }
+
+    @Test
+    public void addMAndMToGetMM() {
+        String expectedSum = "MM";
+        String actualSum = romanNumeralCalculator.add("M", "M");
+        assertEquals(expectedSum, actualSum);
+    }
 }
