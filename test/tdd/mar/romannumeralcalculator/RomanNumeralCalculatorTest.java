@@ -9,7 +9,7 @@ class RomanNumeralCalculatorTest {
     private RomanNumeralCalculator romanNumeralCalculator = null;
 
     @BeforeEach
-    public void setUp(){
+    public void setUp() {
         romanNumeralCalculator = new RomanNumeralCalculator();
     }
 
@@ -59,6 +59,13 @@ class RomanNumeralCalculatorTest {
     public void addXAndXToGetXX() {
         String expectedSum = "XX";
         String actualSum = romanNumeralCalculator.add("X", "X");
+        assertEquals(expectedSum, actualSum);
+    }
+
+    @Test
+    public void addXXAndXXToGetXL() {
+        String expectedSum = "XL";
+        String actualSum = romanNumeralCalculator.add("XX", "XX");
         assertEquals(expectedSum, actualSum);
     }
 }

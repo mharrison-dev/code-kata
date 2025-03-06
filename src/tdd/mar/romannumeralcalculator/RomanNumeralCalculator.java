@@ -1,6 +1,8 @@
 package tdd.mar.romannumeralcalculator;
 
 public class RomanNumeralCalculator {
+    private static final char[] orderedLettersFromGreatestToLeast = {'L', 'X', 'V', 'I'};
+
     public String add(String numeral, String otherNumeral) {
         String unformattedSum = combine(numeral, otherNumeral);
         String sumWithoutExcessiveLetterDuplicates = removeExcessiveLetterDuplicates(unformattedSum);
@@ -12,7 +14,6 @@ public class RomanNumeralCalculator {
         int numeralIndex = 0;
         int otherNumeralIndex = 0;
 
-        char[] orderedLettersFromGreatestToLeast = {'X', 'V', 'I'};
         for (char letter : orderedLettersFromGreatestToLeast) {
             while (numeralIndex < numeral.length() && numeral.charAt(numeralIndex) == letter) {
                 numeralBuilder.append(letter);
@@ -29,9 +30,24 @@ public class RomanNumeralCalculator {
     }
 
     private String removeExcessiveLetterDuplicates(String numeral) {
-        return numeral
-                .replace("IIII", "IV")
-                .replace("VV", "X");
+        String numeralWithoutLetterGroupARepeats = removeExcessiveLetterDuplicatesForLetterGroupA(numeral);
+        return numeralWithoutLetterGroupARepeats.replace("VV", "X");
+    }
+
+    private String removeExcessiveLetterDuplicatesForLetterGroupA(String numeral) {
+        String editedNumeral = numeral;
+
+        String[] letterGroupA = {"X", "I"};
+        String[] letterGroupB = {"L", "V"};
+        for (int i = 0; i < letterGroupA.length; i++) {
+            String currentLetter = letterGroupA[i];
+            String precedingLetter = letterGroupB[i];
+            String wrongNotation = currentLetter.repeat(4);
+            String properNotation = currentLetter + precedingLetter;
+            editedNumeral = editedNumeral.replace(wrongNotation, properNotation);
+        }
+
+        return editedNumeral;
     }
 
     private String removeLetterSandwich(String numeral) {
