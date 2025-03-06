@@ -47,4 +47,11 @@ class RomanNumeralCalculatorTest {
         String actualSum = romanNumeralCalculator.add("V", "V");
         assertEquals(expectedSum, actualSum);
     }
+
+    @Test
+    public void addVIAndVIToGetXII() {
+        String expectedSum = "XII";
+        String actualSum = romanNumeralCalculator.add("VI", "VI");
+        assertEquals(expectedSum, actualSum);
+    }
 }
