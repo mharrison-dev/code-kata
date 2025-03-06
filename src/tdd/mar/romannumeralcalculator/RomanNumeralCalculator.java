@@ -51,6 +51,16 @@ public class RomanNumeralCalculator {
     }
 
     private String removeLetterSandwich(String numeral) {
-        return numeral.replace("IVI", "V");
+        String editedNumeral = numeral;
+
+        for (int i = 1; i < orderedLettersFromGreatestToLeast.length; i++) {
+            String currentLetter = "" + orderedLettersFromGreatestToLeast[i];
+            String precedingLetter = "" + orderedLettersFromGreatestToLeast[i - 1];
+            String wrongNotation = currentLetter + precedingLetter + currentLetter;
+            String properNotation = precedingLetter;
+            editedNumeral = editedNumeral.replace(wrongNotation, properNotation);
+        }
+
+        return editedNumeral;
     }
 }
