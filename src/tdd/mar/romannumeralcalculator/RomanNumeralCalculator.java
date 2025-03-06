@@ -7,7 +7,9 @@ public class RomanNumeralCalculator {
     }
 
     private String removeExcessiveLetterDuplicates(String numeral) {
-        return numeral.replace("IIII", "IV");
+        return numeral
+                .replace("IIII", "IV")
+                .replace("VV", "X");
     }
 
     private String removeLetterSandwich(String numeral) {

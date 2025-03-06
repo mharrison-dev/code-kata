@@ -1,14 +1,20 @@
 package tdd.mar.romannumeralcalculator;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class RomanNumeralCalculatorTest {
+    private RomanNumeralCalculator romanNumeralCalculator = null;
+
+    @BeforeEach
+    public void setUp(){
+        romanNumeralCalculator = new RomanNumeralCalculator();
+    }
+
     @Test
     public void addIAndIToGetII() {
-        RomanNumeralCalculator romanNumeralCalculator = new RomanNumeralCalculator();
-
         String expectedSum = "II";
         String actualSum = romanNumeralCalculator.add("I", "I");
         assertEquals(expectedSum, actualSum);
@@ -16,8 +22,6 @@ class RomanNumeralCalculatorTest {
 
     @Test
     public void addIAndIIToGetIII() {
-        RomanNumeralCalculator romanNumeralCalculator = new RomanNumeralCalculator();
-
         String expectedSum = "III";
         String actualSum = romanNumeralCalculator.add("I", "II");
         assertEquals(expectedSum, actualSum);
@@ -25,8 +29,6 @@ class RomanNumeralCalculatorTest {
 
     @Test
     public void addIIAndIIToGetIV() {
-        RomanNumeralCalculator romanNumeralCalculator = new RomanNumeralCalculator();
-
         String expectedSum = "IV";
         String actualSum = romanNumeralCalculator.add("II", "II");
         assertEquals(expectedSum, actualSum);
@@ -34,10 +36,15 @@ class RomanNumeralCalculatorTest {
 
     @Test
     public void addIIAndIIIToGetV() {
-        RomanNumeralCalculator romanNumeralCalculator = new RomanNumeralCalculator();
-
         String expectedSum = "V";
         String actualSum = romanNumeralCalculator.add("II", "III");
+        assertEquals(expectedSum, actualSum);
+    }
+
+    @Test
+    public void addVAndVToGetX() {
+        String expectedSum = "X";
+        String actualSum = romanNumeralCalculator.add("V", "V");
         assertEquals(expectedSum, actualSum);
     }
 }
