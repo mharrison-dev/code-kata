@@ -12,7 +12,7 @@ public class RomanNumeralCalculator {
         int numeralIndex = 0;
         int otherNumeralIndex = 0;
 
-        char[] orderedLettersFromGreatestToLeast = {'V', 'I'};
+        char[] orderedLettersFromGreatestToLeast = {'X', 'V', 'I'};
         for (char letter : orderedLettersFromGreatestToLeast) {
             while (numeralIndex < numeral.length() && numeral.charAt(numeralIndex) == letter) {
                 numeralBuilder.append(letter);
