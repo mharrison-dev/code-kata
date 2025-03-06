@@ -2,6 +2,8 @@ package tdd.mar.romannumeralcalculator;
 
 public class RomanNumeralCalculator {
     private static final char[] orderedLettersFromGreatestToLeast = {'L', 'X', 'V', 'I'};
+    private static final String[] letterGroupA = {"C", "X", "I"};
+    private static final String[] letterGroupB = {"D", "L", "V"};
 
     public String add(String numeral, String otherNumeral) {
         String unformattedSum = combine(numeral, otherNumeral);
@@ -31,19 +33,32 @@ public class RomanNumeralCalculator {
 
     private String removeExcessiveLetterDuplicates(String numeral) {
         String numeralWithoutLetterGroupARepeats = removeExcessiveLetterDuplicatesForLetterGroupA(numeral);
-        return numeralWithoutLetterGroupARepeats.replace("VV", "X");
+        String numeralWithoutLetterGroupAAndGroupBRepeats = removeExcessiveLetterDuplicatesForLetterGroupB(numeralWithoutLetterGroupARepeats);
+        return numeralWithoutLetterGroupAAndGroupBRepeats;
     }
 
     private String removeExcessiveLetterDuplicatesForLetterGroupA(String numeral) {
         String editedNumeral = numeral;
 
-        String[] letterGroupA = {"X", "I"};
-        String[] letterGroupB = {"L", "V"};
         for (int i = 0; i < letterGroupA.length; i++) {
             String currentLetter = letterGroupA[i];
             String precedingLetter = letterGroupB[i];
             String wrongNotation = currentLetter.repeat(4);
             String properNotation = currentLetter + precedingLetter;
+            editedNumeral = editedNumeral.replace(wrongNotation, properNotation);
+        }
+
+        return editedNumeral;
+    }
+
+    private String removeExcessiveLetterDuplicatesForLetterGroupB(String numeral) {
+        String editedNumeral = numeral;
+
+        for (int i = 1; i < letterGroupB.length; i++) {
+            String currentLetter = letterGroupB[i];
+            String precedingLetter = letterGroupA[i - 1];
+            String wrongNotation = currentLetter.repeat(2);
+            String properNotation = precedingLetter;
             editedNumeral = editedNumeral.replace(wrongNotation, properNotation);
         }
 

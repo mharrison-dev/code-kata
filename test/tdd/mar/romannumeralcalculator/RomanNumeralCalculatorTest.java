@@ -75,4 +75,11 @@ class RomanNumeralCalculatorTest {
         String actualSum = romanNumeralCalculator.add("XX", "XXX");
         assertEquals(expectedSum, actualSum);
     }
+
+    @Test
+    public void addLAndLToGetC() {
+        String expectedSum = "C";
+        String actualSum = romanNumeralCalculator.add("L", "L");
+        assertEquals(expectedSum, actualSum);
+    }
 }
