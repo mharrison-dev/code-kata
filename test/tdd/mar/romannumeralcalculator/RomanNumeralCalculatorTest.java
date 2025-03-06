@@ -89,4 +89,11 @@ class RomanNumeralCalculatorTest {
         String actualSum = romanNumeralCalculator.add("C", "C");
         assertEquals(expectedSum, actualSum);
     }
+
+    @Test
+    public void addCCAndCCCToGetD() {
+        String expectedSum = "D";
+        String actualSum = romanNumeralCalculator.add("CC", "CCC");
+        assertEquals(expectedSum, actualSum);
+    }
 }

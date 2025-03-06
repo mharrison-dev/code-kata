@@ -1,7 +1,7 @@
 package tdd.mar.romannumeralcalculator;
 
 public class RomanNumeralCalculator {
-    private static final char[] orderedLettersFromGreatestToLeast = {'C', 'L', 'X', 'V', 'I'};
+    private static final char[] orderedLettersFromGreatestToLeast = {'D', 'C', 'L', 'X', 'V', 'I'};
     private static final String[] letterGroupA = {"C", "X", "I"};
     private static final String[] letterGroupB = {"D", "L", "V"};
 
