@@ -12,6 +12,9 @@ public class RomanNumeralCalculator {
     }
 
     private String combine(String numeral, String otherNumeral) {
+        numeral = expand(numeral);
+        otherNumeral = expand(otherNumeral);
+
         StringBuilder numeralBuilder = new StringBuilder();
         int numeralIndex = 0;
         int otherNumeralIndex = 0;
@@ -29,6 +32,18 @@ public class RomanNumeralCalculator {
         }
 
         return numeralBuilder.toString();
+    }
+
+    private String expand(String numeral) {
+        String expandedNumeral = numeral;
+
+        for (int i = 1; i < letterGroupA.length; i++) {
+            String unexpandedForm = letterGroupA[i] + letterGroupB[i - 1];
+            String expandedForm = letterGroupA[i].repeat(4);
+            expandedNumeral = expandedNumeral.replace(unexpandedForm, expandedForm);
+        }
+
+        return expandedNumeral;
     }
 
     private String removeExcessiveLetterDuplicates(String numeral) {
