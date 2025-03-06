@@ -22,4 +22,13 @@ class RomanNumeralCalculatorTest {
         String actualSum = romanNumeralCalculator.add("I", "II");
         assertEquals(expectedSum, actualSum);
     }
+
+  @Test
+  public void addIIAndIIToGetIV() {
+    RomanNumeralCalculator romanNumeralCalculator = new RomanNumeralCalculator();
+
+    String expectedSum = "IV";
+    String actualSum = romanNumeralCalculator.add("II", "II");
+    assertEquals(expectedSum, actualSum);
+  }
 }
