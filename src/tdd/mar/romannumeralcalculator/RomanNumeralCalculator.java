@@ -2,7 +2,7 @@ package tdd.mar.romannumeralcalculator;
 
 public class RomanNumeralCalculator {
     private static final char[] orderedLettersFromGreatestToLeast = {'D', 'C', 'L', 'X', 'V', 'I'};
-    private static final String[] letterGroupA = {"C", "X", "I"};
+    private static final String[] letterGroupA = {"M", "C", "X", "I"};
     private static final String[] letterGroupB = {"D", "L", "V"};
 
     public String add(String numeral, String otherNumeral) {
@@ -40,9 +40,9 @@ public class RomanNumeralCalculator {
     private String removeExcessiveLetterDuplicatesForLetterGroupA(String numeral) {
         String editedNumeral = numeral;
 
-        for (int i = 0; i < letterGroupA.length; i++) {
+        for (int i = 1; i < letterGroupA.length; i++) {
             String currentLetter = letterGroupA[i];
-            String precedingLetter = letterGroupB[i];
+            String precedingLetter = letterGroupB[i - 1];
             String wrongNotation = currentLetter.repeat(4);
             String properNotation = currentLetter + precedingLetter;
             editedNumeral = editedNumeral.replace(wrongNotation, properNotation);
@@ -54,9 +54,9 @@ public class RomanNumeralCalculator {
     private String removeExcessiveLetterDuplicatesForLetterGroupB(String numeral) {
         String editedNumeral = numeral;
 
-        for (int i = 1; i < letterGroupB.length; i++) {
+        for (int i = 0; i < letterGroupB.length; i++) {
             String currentLetter = letterGroupB[i];
-            String precedingLetter = letterGroupA[i - 1];
+            String precedingLetter = letterGroupA[i];
             String wrongNotation = currentLetter.repeat(2);
             String properNotation = precedingLetter;
             editedNumeral = editedNumeral.replace(wrongNotation, properNotation);

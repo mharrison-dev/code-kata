@@ -96,4 +96,11 @@ class RomanNumeralCalculatorTest {
         String actualSum = romanNumeralCalculator.add("CC", "CCC");
         assertEquals(expectedSum, actualSum);
     }
+
+    @Test
+    public void addDAndDToGetM() {
+        String expectedSum = "M";
+        String actualSum = romanNumeralCalculator.add("D", "D");
+        assertEquals(expectedSum, actualSum);
+    }
 }
