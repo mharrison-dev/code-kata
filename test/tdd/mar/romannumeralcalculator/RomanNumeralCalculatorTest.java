@@ -23,12 +23,21 @@ class RomanNumeralCalculatorTest {
         assertEquals(expectedSum, actualSum);
     }
 
-  @Test
-  public void addIIAndIIToGetIV() {
-    RomanNumeralCalculator romanNumeralCalculator = new RomanNumeralCalculator();
+    @Test
+    public void addIIAndIIToGetIV() {
+        RomanNumeralCalculator romanNumeralCalculator = new RomanNumeralCalculator();
 
-    String expectedSum = "IV";
-    String actualSum = romanNumeralCalculator.add("II", "II");
-    assertEquals(expectedSum, actualSum);
-  }
+        String expectedSum = "IV";
+        String actualSum = romanNumeralCalculator.add("II", "II");
+        assertEquals(expectedSum, actualSum);
+    }
+
+    @Test
+    public void addIIAndIIIToGetV() {
+        RomanNumeralCalculator romanNumeralCalculator = new RomanNumeralCalculator();
+
+        String expectedSum = "V";
+        String actualSum = romanNumeralCalculator.add("II", "III");
+        assertEquals(expectedSum, actualSum);
+    }
 }
