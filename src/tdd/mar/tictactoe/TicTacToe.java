@@ -44,6 +44,13 @@ public class TicTacToe {
 
         lines.addAll(horizontals);
 
+        List<String> verticals = new ArrayList<>();
+        for (int i = 0; i < 3; i++) {
+            verticals.add(board[0][i] + board[1][i] + board[2][i]);
+        }
+
+        lines.addAll(verticals);
+
         return lines.toArray(new String[0]);
     }
 }
