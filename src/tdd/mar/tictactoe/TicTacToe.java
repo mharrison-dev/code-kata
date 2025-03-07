@@ -12,6 +12,11 @@ public class TicTacToe {
     }
 
     public String getWinner() {
-        return null;
+        String diagonal = board[0][0] + board[1][1] + board[2][2];
+        if (diagonal.equals("XXX")) {
+            return "X";
+        } else {
+            return null;
+        }
     }
 }
