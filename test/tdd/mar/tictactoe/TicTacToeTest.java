@@ -65,4 +65,15 @@ class TicTacToeTest {
         String actualWinner = ticTacToe.getWinner();
         assertEquals(expectedWinner, actualWinner);
     }
+
+    @Test
+    public void returnXForWinnerForXFlippedDiagonal() {
+        ticTacToe.place(0, 2, "X");
+        ticTacToe.place(1, 1, "X");
+        ticTacToe.place(2, 0, "X");
+
+        String expectedWinner = "X";
+        String actualWinner = ticTacToe.getWinner();
+        assertEquals(expectedWinner, actualWinner);
+    }
 }
