@@ -1,5 +1,8 @@
 package tdd.mar.tictactoe;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class TicTacToe {
     private final String[][] board = {{"", "", ""}, {"", "", ""}, {"", "", ""}};
 
@@ -26,9 +29,21 @@ public class TicTacToe {
     }
 
     private String[] getLines() {
+        List<String> lines = new ArrayList<>();
+
         String diagonal = board[0][0] + board[1][1] + board[2][2];
+        lines.add(diagonal);
+
         String flippedDiagonal = board[0][2] + board[1][1] + board[2][0];
-        String topHorizontal = board[0][0] + board[0][1] + board[0][2];
-        return new String[]{diagonal, flippedDiagonal, topHorizontal};
+        lines.add(flippedDiagonal);
+
+        List<String> horizontals = new ArrayList<>();
+        for (int i = 0; i < 3; i++) {
+            horizontals.add(board[i][0] + board[i][1] + board[i][2]);
+        }
+
+        lines.addAll(horizontals);
+
+        return lines.toArray(new String[0]);
     }
 }
