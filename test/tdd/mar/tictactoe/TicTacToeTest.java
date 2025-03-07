@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class TicTacToeTest {
     private TicTacToe ticTacToe = null;
@@ -45,5 +46,12 @@ class TicTacToeTest {
         String[][] expectedBoard = {{"O", "", ""}, {"", "", ""}, {"", "", ""}};
         String[][] actualBoard = ticTacToe.getBoard();
         assertArrayEquals(expectedBoard, actualBoard);
+    }
+
+    @Test
+    public void returnNullForWinner() {
+        String expectedWinner = null;
+        String actualWinner = ticTacToe.getWinner();
+        assertEquals(expectedWinner, actualWinner);
     }
 }

@@ -10,4 +10,8 @@ public class TicTacToe {
     public void place(int rowIndex, int columnIndex, String piece) {
         board[rowIndex][columnIndex] = piece;
     }
+
+    public String getWinner() {
+        return null;
+    }
 }
