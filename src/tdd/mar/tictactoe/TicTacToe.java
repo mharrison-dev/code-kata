@@ -12,12 +12,15 @@ public class TicTacToe {
     }
 
     public String getWinner() {
-        String diagonal = board[0][0] + board[1][1] + board[2][2];
-        String flippedDiagonal = board[0][2] + board[1][1] + board[2][0];
-        if (diagonal.equals("XXX") || flippedDiagonal.equals("XXX")) {
-            return "X";
-        } else {
-            return null;
+        String[] pieces = {"X", "O"};
+        for (String piece : pieces) {
+            String diagonal = board[0][0] + board[1][1] + board[2][2];
+            String flippedDiagonal = board[0][2] + board[1][1] + board[2][0];
+            if (diagonal.equals(piece.repeat(3)) || flippedDiagonal.equals(piece.repeat(3))) {
+                return piece;
+            }
         }
+
+        return null;
     }
 }
