@@ -37,4 +37,13 @@ class TicTacToeTest {
         String[][] actualBoard = ticTacToe.getBoard();
         assertArrayEquals(expectedBoard, actualBoard);
     }
+
+    @Test
+    public void return2DArrayThatContainsOneO() {
+        ticTacToe.place(0, 0, "O");
+
+        String[][] expectedBoard = {{"O", "", ""}, {"", "", ""}, {"", "", ""}};
+        String[][] actualBoard = ticTacToe.getBoard();
+        assertArrayEquals(expectedBoard, actualBoard);
+    }
 }

@@ -8,6 +8,6 @@ public class TicTacToe {
     }
 
     public void place(int rowIndex, int columnIndex, String piece) {
-        board[rowIndex][columnIndex] = "X";
+        board[rowIndex][columnIndex] = piece;
     }
 }
