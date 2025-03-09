@@ -6,8 +6,15 @@ public class SimplePigLatin {
             return sentence;
         }
 
-        String firstLetterOfWord = sentence.substring(0, 1);
-        String remainingPortionOfWord = sentence.substring(1);
-        return remainingPortionOfWord + firstLetterOfWord + "ay";
+        String lastLetterOfWord = sentence.substring(sentence.length() - 1);
+        if (lastLetterOfWord.matches("\\p{Punct}") || lastLetterOfWord.equals("...")) {
+            String firstLetterOfWord = sentence.substring(0, 1);
+            String remainingPortionOfWord = sentence.substring(1, sentence.length() - 1);
+            return remainingPortionOfWord + firstLetterOfWord + "ay" + lastLetterOfWord;
+        } else {
+            String firstLetterOfWord = sentence.substring(0, 1);
+            String remainingPortionOfWord = sentence.substring(1);
+            return remainingPortionOfWord + firstLetterOfWord + "ay";
+        }
     }
 }

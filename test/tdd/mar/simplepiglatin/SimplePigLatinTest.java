@@ -1,5 +1,6 @@
 package tdd.mar.simplepiglatin;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -7,11 +8,16 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.junit.jupiter.api.Assertions.*;
 
 class SimplePigLatinTest {
+    private SimplePigLatin simplePigLatin = null;
+
+    @BeforeEach
+    public void setUp() {
+        simplePigLatin = new SimplePigLatin();
+    }
+
     @ParameterizedTest
     @ValueSource(strings = {",", ".", "(", ")", ":", "'", ";", "?", "!", "\"", "-", "{", "}", "...", "[", "]", "/"})
     public void shouldIgnorePunctuationMarks(String punctuationMark) {
-        SimplePigLatin simplePigLatin = new SimplePigLatin();
-
         String expectedString = punctuationMark;
         String actualString = simplePigLatin.translate(punctuationMark);
         assertEquals(expectedString, actualString);
@@ -19,10 +25,15 @@ class SimplePigLatinTest {
 
     @Test
     public void shouldModifyWord() {
-        SimplePigLatin simplePigLatin = new SimplePigLatin();
-
         String expectedString = "igpay";
         String actualString = simplePigLatin.translate("pig");
+        assertEquals(expectedString, actualString);
+    }
+
+    @Test
+    public void shouldModifyWordAndLeaveAttachedPunctuationInPlace() {
+        String expectedString = "igpay!";
+        String actualString = simplePigLatin.translate("pig!");
         assertEquals(expectedString, actualString);
     }
 }
