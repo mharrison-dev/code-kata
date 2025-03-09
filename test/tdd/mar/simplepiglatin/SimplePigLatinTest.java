@@ -1,5 +1,6 @@
 package tdd.mar.simplepiglatin;
 
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -13,6 +14,15 @@ class SimplePigLatinTest {
 
         String expectedString = punctuationMark;
         String actualString = simplePigLatin.translate(punctuationMark);
+        assertEquals(expectedString, actualString);
+    }
+
+    @Test
+    public void shouldModifyWord() {
+        SimplePigLatin simplePigLatin = new SimplePigLatin();
+
+        String expectedString = "igpay";
+        String actualString = simplePigLatin.translate("pig");
         assertEquals(expectedString, actualString);
     }
 }
