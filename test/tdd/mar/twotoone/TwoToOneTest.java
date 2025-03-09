@@ -13,4 +13,13 @@ class TwoToOneTest {
         String actualString = twoToOne.combine("a", "b");
         assertEquals(expectedString, actualString);
     }
+
+    @Test
+    public void shouldReturnSortedStringWhenArgumentsAreFlipped() {
+        TwoToOne twoToOne = new TwoToOne();
+
+        String expectedString = "ab";
+        String actualString = twoToOne.combine("b", "a");
+        assertEquals(expectedString, actualString);
+    }
 }
