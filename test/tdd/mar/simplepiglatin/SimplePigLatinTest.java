@@ -36,4 +36,11 @@ class SimplePigLatinTest {
         String actualString = simplePigLatin.translate("pig!");
         assertEquals(expectedString, actualString);
     }
+
+    @Test
+    public void shouldModifySentence() {
+        String expectedString = "hisTay siay aay igpay!";
+        String actualString = simplePigLatin.translate("This is a pig!");
+        assertEquals(expectedString, actualString);
+    }
 }
