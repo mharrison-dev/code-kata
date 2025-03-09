@@ -33,4 +33,11 @@ class TwoToOneTest {
         String actualString = twoToOne.combine("bd", "ac");
         assertEquals(expectedString, actualString);
     }
+
+    @Test
+    public void shouldReturnSortedStringWithDistinctLetters() {
+        String expectedString = "abcd";
+        String actualString = twoToOne.combine("bdd", "aac");
+        assertEquals(expectedString, actualString);
+    }
 }
