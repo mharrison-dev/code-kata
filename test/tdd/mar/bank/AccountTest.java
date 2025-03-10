@@ -56,7 +56,7 @@ class AccountTest {
         accountService.deposit(2000);
         accountService.printStatement();
 
-        String expectedStatement = "Date||Amount||Balance\n10/01/2012||1000||1000\n10/01/2012||2000||3000";
+        String expectedStatement = "Date||Amount||Balance\n10/01/2012||2000||3000\n10/01/2012||1000||1000";
         String actualStatement = byteArrayOutputStreamOfTestOut.toString();
         assertEquals(expectedStatement, actualStatement);
     }
@@ -68,7 +68,7 @@ class AccountTest {
         accountService.deposit(2000);
         accountService.printStatement();
 
-        String expectedStatement = "Date||Amount||Balance\n10/01/2012||1000||1000\n11/01/2012||2000||3000";
+        String expectedStatement = "Date||Amount||Balance\n11/01/2012||2000||3000\n10/01/2012||1000||1000";
         String actualStatement = byteArrayOutputStreamOfTestOut.toString();
         assertEquals(expectedStatement, actualStatement);
     }

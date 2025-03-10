@@ -26,7 +26,7 @@ public final class Account implements AccountService {
         String header = "Date||Amount||Balance";
         System.out.print(header);
 
-        for (Transaction transaction : transactions) {
+        for (Transaction transaction : transactions.reversed()) {
             String entry = getEntryFor(transaction);
             System.out.print("\n" + entry);
         }
