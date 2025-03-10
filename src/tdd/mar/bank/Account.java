@@ -17,7 +17,8 @@ public final class Account implements AccountService {
 
     @Override
     public void withdraw(int amount) {
-
+        balance -= amount;
+        transactions.add(new Transaction(CALENDER.getCurrentDate(), -amount, balance));
     }
 
     @Override

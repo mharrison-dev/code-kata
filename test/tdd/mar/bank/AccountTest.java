@@ -72,4 +72,14 @@ class AccountTest {
         String actualStatement = byteArrayOutputStreamOfTestOut.toString();
         assertEquals(expectedStatement, actualStatement);
     }
+
+    @Test
+    public void printStatementAfterMakingWithdrawal() {
+        accountService.withdraw(500);
+        accountService.printStatement();
+
+        String expectedStatement = "Date||Amount||Balance\n10/01/2012||-500||-500";
+        String actualStatement = byteArrayOutputStreamOfTestOut.toString();
+        assertEquals(expectedStatement, actualStatement);
+    }
 }
