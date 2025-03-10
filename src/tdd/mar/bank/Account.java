@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class Account implements AccountService {
-    private final List<Transaction> transactions = new ArrayList<>();
     private int balance = 0;
+    private final List<Transaction> transactions = new ArrayList<>();
     private static final Calender CALENDER = Calender.getInstance();
 
     @Override

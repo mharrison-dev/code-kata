@@ -82,4 +82,19 @@ class AccountTest {
         String actualStatement = byteArrayOutputStreamOfTestOut.toString();
         assertEquals(expectedStatement, actualStatement);
     }
+
+    @Test
+    public void passAcceptanceTest() {
+        CALENDER.setCurrentDate(LocalDate.of(2012, 1, 10));
+        accountService.deposit(1000);
+        CALENDER.setCurrentDate(LocalDate.of(2012, 1, 13));
+        accountService.deposit(2000);
+        CALENDER.setCurrentDate(LocalDate.of(2012, 1, 14));
+        accountService.withdraw(500);
+        accountService.printStatement();
+
+        String expectedStatement = "Date||Amount||Balance\n14/01/2012||-500||2500\n13/01/2012||2000||3000\n10/01/2012||1000||1000";
+        String actualStatement = byteArrayOutputStreamOfTestOut.toString();
+        assertEquals(expectedStatement, actualStatement);
+    }
 }
