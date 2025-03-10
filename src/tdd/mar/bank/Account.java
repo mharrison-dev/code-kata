@@ -1,9 +1,11 @@
 package tdd.mar.bank;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public final class Account implements AccountService {
-    private int amount = 0;
+    private final List<Transaction> transactions = new ArrayList<>();
     private int balance = 0;
     private final LocalDate accountCreationDate;
 
@@ -13,8 +15,8 @@ public final class Account implements AccountService {
 
     @Override
     public void deposit(int amount) {
-        this.amount = amount;
-        this.balance = amount;
+        balance += amount;
+        transactions.add(new Transaction(amount, balance));
     }
 
     @Override
@@ -27,17 +29,17 @@ public final class Account implements AccountService {
         String header = "Date||Amount||Balance";
         System.out.print(header);
 
-        if (amount > 0) {
-            String entry = getEntry();
+        for (Transaction transaction : transactions) {
+            String entry = getEntryFor(transaction);
             System.out.print("\n" + entry);
         }
     }
 
-    private String getEntry() {
+    private String getEntryFor(Transaction transaction) {
         String[] entryComponents = new String[3];
         entryComponents[0] = formatDate(accountCreationDate.toString());
-        entryComponents[1] = String.valueOf(amount);
-        entryComponents[2] = String.valueOf(balance);
+        entryComponents[1] = String.valueOf(transaction.amount);
+        entryComponents[2] = String.valueOf(transaction.balance);
 
         return String.join("||", entryComponents);
     }
@@ -51,5 +53,8 @@ public final class Account implements AccountService {
 
         // Replace each "-" with a "/"
         return String.join("/", dateComponents);
+    }
+
+    private record Transaction(int amount, int balance) {
     }
 }

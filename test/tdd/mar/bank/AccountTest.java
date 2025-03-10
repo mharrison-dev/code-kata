@@ -1,5 +1,7 @@
 package tdd.mar.bank;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
@@ -9,40 +11,52 @@ import java.time.LocalDate;
 import static org.junit.jupiter.api.Assertions.*;
 
 class AccountTest {
-    @Test
-    public void printEmptyStatement() {
-        PrintStream productionOut = System.out;
-        ByteArrayOutputStream byteArrayOutputStreamOfTestOut = new ByteArrayOutputStream();
+    private AccountService accountService = null;
+    private ByteArrayOutputStream byteArrayOutputStreamOfTestOut = null;
+    private final PrintStream productionOut = System.out;
+
+    @BeforeEach
+    public void setUp() {
+        LocalDate accountCreationDate = LocalDate.of(2012, 1, 10);
+        accountService = new Account(accountCreationDate);
+
+        byteArrayOutputStreamOfTestOut = new ByteArrayOutputStream();
         PrintStream testOut = new PrintStream(byteArrayOutputStreamOfTestOut);
         System.setOut(testOut);
+    }
 
-        LocalDate accountCreationDate = LocalDate.of(2012, 1, 10);
-        AccountService accountService = new Account(accountCreationDate);
+    @AfterEach
+    public void cleanUp() {
+        System.setOut(productionOut);
+    }
+
+    @Test
+    public void printEmptyStatement() {
         accountService.printStatement();
 
         String expectedStatement = "Date||Amount||Balance";
         String actualStatement = byteArrayOutputStreamOfTestOut.toString();
         assertEquals(expectedStatement, actualStatement);
-
-        System.setOut(productionOut);
     }
 
     @Test
     public void printStatementAfterMakingDeposit() {
-        PrintStream productionOut = System.out;
-        ByteArrayOutputStream byteArrayOutputStreamOfTestOut = new ByteArrayOutputStream();
-        PrintStream testOut = new PrintStream(byteArrayOutputStreamOfTestOut);
-        System.setOut(testOut);
-
-        LocalDate accountCreationDate = LocalDate.of(2012, 1, 10);
-        AccountService accountService = new Account(accountCreationDate);
         accountService.deposit(1000);
         accountService.printStatement();
 
         String expectedStatement = "Date||Amount||Balance\n10/01/2012||1000||1000";
         String actualStatement = byteArrayOutputStreamOfTestOut.toString();
         assertEquals(expectedStatement, actualStatement);
+    }
 
-        System.setOut(productionOut);
+    @Test
+    public void printStatementAfterMakingTwoDeposits() {
+        accountService.deposit(1000);
+        accountService.deposit(2000);
+        accountService.printStatement();
+
+        String expectedStatement = "Date||Amount||Balance\n10/01/2012||1000||1000\n10/01/2012||2000||3000";
+        String actualStatement = byteArrayOutputStreamOfTestOut.toString();
+        assertEquals(expectedStatement, actualStatement);
     }
 }
