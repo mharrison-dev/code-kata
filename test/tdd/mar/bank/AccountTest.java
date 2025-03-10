@@ -14,11 +14,12 @@ class AccountTest {
     private AccountService accountService = null;
     private ByteArrayOutputStream byteArrayOutputStreamOfTestOut = null;
     private final PrintStream productionOut = System.out;
+    private final static Calender CALENDER = Calender.getInstance();
 
     @BeforeEach
     public void setUp() {
-        LocalDate accountCreationDate = LocalDate.of(2012, 1, 10);
-        accountService = new Account(accountCreationDate);
+        CALENDER.setCurrentDate(LocalDate.of(2012, 1, 10));
+        accountService = new Account();
 
         byteArrayOutputStreamOfTestOut = new ByteArrayOutputStream();
         PrintStream testOut = new PrintStream(byteArrayOutputStreamOfTestOut);
@@ -56,6 +57,18 @@ class AccountTest {
         accountService.printStatement();
 
         String expectedStatement = "Date||Amount||Balance\n10/01/2012||1000||1000\n10/01/2012||2000||3000";
+        String actualStatement = byteArrayOutputStreamOfTestOut.toString();
+        assertEquals(expectedStatement, actualStatement);
+    }
+
+    @Test
+    public void printStatementAfterMakingDepositsOnTwoDifferentDays() {
+        accountService.deposit(1000);
+        CALENDER.setCurrentDate(LocalDate.of(2012, 1, 11));
+        accountService.deposit(2000);
+        accountService.printStatement();
+
+        String expectedStatement = "Date||Amount||Balance\n10/01/2012||1000||1000\n11/01/2012||2000||3000";
         String actualStatement = byteArrayOutputStreamOfTestOut.toString();
         assertEquals(expectedStatement, actualStatement);
     }

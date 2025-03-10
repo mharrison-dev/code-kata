@@ -7,16 +7,12 @@ import java.util.List;
 public final class Account implements AccountService {
     private final List<Transaction> transactions = new ArrayList<>();
     private int balance = 0;
-    private final LocalDate accountCreationDate;
-
-    public Account(LocalDate accountCreationDate) {
-        this.accountCreationDate = accountCreationDate;
-    }
+    private static final Calender CALENDER = Calender.getInstance();
 
     @Override
     public void deposit(int amount) {
         balance += amount;
-        transactions.add(new Transaction(amount, balance));
+        transactions.add(new Transaction(CALENDER.getCurrentDate(), amount, balance));
     }
 
     @Override
@@ -37,7 +33,7 @@ public final class Account implements AccountService {
 
     private String getEntryFor(Transaction transaction) {
         String[] entryComponents = new String[3];
-        entryComponents[0] = formatDate(accountCreationDate.toString());
+        entryComponents[0] = formatDate(transaction.date.toString());
         entryComponents[1] = String.valueOf(transaction.amount);
         entryComponents[2] = String.valueOf(transaction.balance);
 
@@ -55,6 +51,6 @@ public final class Account implements AccountService {
         return String.join("/", dateComponents);
     }
 
-    private record Transaction(int amount, int balance) {
+    private record Transaction(LocalDate date, int amount, int balance) {
     }
 }
