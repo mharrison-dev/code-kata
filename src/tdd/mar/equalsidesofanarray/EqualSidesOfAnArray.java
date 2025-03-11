@@ -6,6 +6,6 @@ public class EqualSidesOfAnArray {
             return -1;
         }
 
-        return 0;
+        return integers.length / 2;
     }
 }
