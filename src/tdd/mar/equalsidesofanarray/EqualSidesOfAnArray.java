@@ -6,6 +6,14 @@ public class EqualSidesOfAnArray {
             return -1;
         }
 
-        return integers.length / 2;
+        if (integers.length == 1) {
+            return 0;
+        }
+
+        if (integers[0] == integers[2]) {
+            return 1;
+        }
+
+        return -1;
     }
 }

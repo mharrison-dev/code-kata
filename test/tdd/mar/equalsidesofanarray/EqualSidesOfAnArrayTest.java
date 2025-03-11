@@ -1,14 +1,20 @@
 package tdd.mar.equalsidesofanarray;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class EqualSidesOfAnArrayTest {
+    private EqualSidesOfAnArray equalSidesOfAnArray = null;
+
+    @BeforeEach
+    public void setUp() {
+        equalSidesOfAnArray = new EqualSidesOfAnArray();
+    }
+
     @Test
     public void shouldReturnNegativeOneWhenGivenEmptyArray() {
-        EqualSidesOfAnArray equalSidesOfAnArray = new EqualSidesOfAnArray();
-
         int expectedIndex = -1;
         int actualIndex = equalSidesOfAnArray.findMiddleIndex(new int[0]);
         assertEquals(expectedIndex, actualIndex);
@@ -16,8 +22,6 @@ class EqualSidesOfAnArrayTest {
 
     @Test
     public void shouldReturnZeroWhenGivenArrayWithOneElement() {
-        EqualSidesOfAnArray equalSidesOfAnArray = new EqualSidesOfAnArray();
-
         int expectedIndex = 0;
         int actualIndex = equalSidesOfAnArray.findMiddleIndex(new int[]{0});
         assertEquals(expectedIndex, actualIndex);
@@ -25,10 +29,15 @@ class EqualSidesOfAnArrayTest {
 
     @Test
     public void shouldReturnOneWhenGivenArrayWithOneElementSurroundedByTwoIdenticalElements() {
-        EqualSidesOfAnArray equalSidesOfAnArray = new EqualSidesOfAnArray();
-
         int expectedIndex = 1;
         int actualIndex = equalSidesOfAnArray.findMiddleIndex(new int[]{1, 0, 1});
+        assertEquals(expectedIndex, actualIndex);
+    }
+
+    @Test
+    public void shouldReturnNegativeOneWhenGivenArrayWithOneElementSurroundedByTwoDifferentElements() {
+        int expectedIndex = -1;
+        int actualIndex = equalSidesOfAnArray.findMiddleIndex(new int[]{1, 0, 2});
         assertEquals(expectedIndex, actualIndex);
     }
 }
