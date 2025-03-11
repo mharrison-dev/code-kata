@@ -13,4 +13,13 @@ class EqualSidesOfAnArrayTest {
         int actualIndex = equalSidesOfAnArray.findMiddleIndex(new int[0]);
         assertEquals(expectedIndex, actualIndex);
     }
+
+    @Test
+    public void shouldReturnZeroWhenGivenArrayWithOneElement() {
+        EqualSidesOfAnArray equalSidesOfAnArray = new EqualSidesOfAnArray();
+
+        int expectedIndex = 0;
+        int actualIndex = equalSidesOfAnArray.findMiddleIndex(new int[]{0});
+        assertEquals(expectedIndex, actualIndex);
+    }
 }
