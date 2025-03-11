@@ -40,4 +40,11 @@ class EqualSidesOfAnArrayTest {
         int actualIndex = equalSidesOfAnArray.findMiddleIndex(new int[]{1, 0, 2});
         assertEquals(expectedIndex, actualIndex);
     }
+
+    @Test
+    public void shouldReturnTwoWhenMiddleIntegerIsThirdElementOutOfFourElements() {
+        int expectedIndex = 2;
+        int actualIndex = equalSidesOfAnArray.findMiddleIndex(new int[]{1, 1, 0, 2});
+        assertEquals(expectedIndex, actualIndex);
+    }
 }
