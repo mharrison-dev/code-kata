@@ -73,4 +73,14 @@ class SimpleMarsRoverTest {
         String actualOrientationOfSimpleMarsRover = simpleMarsRover.getState().substring(4);
         assertEquals(expectedOrientation, actualOrientationOfSimpleMarsRover);
     }
+
+    @Test
+    public void shouldRotateTwiceFromOneMessage() {
+        simpleMarsRover.landAt(startingPosition);
+        simpleMarsRover.executeCommands("LL");
+
+        String expectedOrientation = "S";
+        String actualOrientationOfSimpleMarsRover = simpleMarsRover.getState().substring(4);
+        assertEquals(expectedOrientation, actualOrientationOfSimpleMarsRover);
+    }
 }
