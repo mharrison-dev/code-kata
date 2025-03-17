@@ -35,6 +35,10 @@ public class SimpleMarsRover {
     }
 
     public void executeCommands(String commands) {
-        cardinalDirectionIndex = Math.floorMod(cardinalDirectionIndex - 1, CARDINAL_DIRECTIONS_IN_CLOCKWISE_ORDER.length);
+        if (commands.contains("L")) {
+            cardinalDirectionIndex = Math.floorMod(cardinalDirectionIndex - 1, CARDINAL_DIRECTIONS_IN_CLOCKWISE_ORDER.length);
+        } else {
+            cardinalDirectionIndex = Math.floorMod(cardinalDirectionIndex + 1, CARDINAL_DIRECTIONS_IN_CLOCKWISE_ORDER.length);
+        }
     }
 }

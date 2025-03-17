@@ -61,4 +61,16 @@ class SimpleMarsRoverTest {
         String actualOrientationOfSimpleMarsRover = simpleMarsRover.getState().substring(4);
         assertEquals(expectedOrientation, actualOrientationOfSimpleMarsRover);
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"NE", "ES", "SW", "WN"})
+    public void shouldRotateRight(String initialAndFinalCardinalDirection) {
+        String startingPosition = "0:0:" + initialAndFinalCardinalDirection.charAt(0);
+        simpleMarsRover.landAt(startingPosition);
+        simpleMarsRover.executeCommands("R");
+
+        String expectedOrientation = initialAndFinalCardinalDirection.substring(1);
+        String actualOrientationOfSimpleMarsRover = simpleMarsRover.getState().substring(4);
+        assertEquals(expectedOrientation, actualOrientationOfSimpleMarsRover);
+    }
 }
