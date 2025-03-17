@@ -2,6 +2,8 @@ package tdd.mar.simplemarsrover;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -46,5 +48,17 @@ class SimpleMarsRoverTest {
         String expectedState = startingPosition;
         String stateOfSimpleMarsRover = simpleMarsRover.getState();
         assertEquals(expectedState, stateOfSimpleMarsRover);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"NW", "WS", "SE", "EN"})
+    public void shouldRotateLeft(String initialAndFinalCardinalDirection) {
+        String startingPosition = "0:0:" + initialAndFinalCardinalDirection.charAt(0);
+        simpleMarsRover.landAt(startingPosition);
+        simpleMarsRover.executeCommands("L");
+
+        String expectedOrientation = initialAndFinalCardinalDirection.substring(1);
+        String actualOrientationOfSimpleMarsRover = simpleMarsRover.getState().substring(4);
+        assertEquals(expectedOrientation, actualOrientationOfSimpleMarsRover);
     }
 }
