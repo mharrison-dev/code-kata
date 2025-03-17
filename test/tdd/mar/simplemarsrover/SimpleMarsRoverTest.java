@@ -24,4 +24,15 @@ class SimpleMarsRoverTest {
         String stateOfSimpleMarsRover = simpleMarsRover.getState();
         assertTrue(stateOfSimpleMarsRover.startsWith(expectedGridPosition));
     }
+
+    @Test
+    public void shouldLandWithCorrectOrientation() {
+        SimpleMarsRover simpleMarsRover = new SimpleMarsRover();
+        String startingPosition = "0:0:N";
+        simpleMarsRover.landAt(startingPosition);
+
+        String expectedOrientation = "N";
+        String stateOfSimpleMarsRover = simpleMarsRover.getState();
+        assertTrue(stateOfSimpleMarsRover.endsWith(expectedOrientation));
+    }
 }
