@@ -34,8 +34,8 @@ public class SimpleMarsRover {
             } else if (command.equals("R")) {
                 cardinalDirection = cardinalDirection.getRightCardinalDirection();
             } else {
-                xPosition += cardinalDirection.xOffset;
-                yPosition += cardinalDirection.yOffset;
+                xPosition = Math.floorMod(xPosition + cardinalDirection.xOffset, 10);
+                yPosition = Math.floorMod(yPosition + cardinalDirection.yOffset, 10);
             }
         }
     }

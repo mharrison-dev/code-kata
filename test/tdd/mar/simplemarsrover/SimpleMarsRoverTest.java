@@ -95,4 +95,16 @@ class SimpleMarsRoverTest {
         String actualStateOfSimpleMarsRover = simpleMarsRover.getState();
         assertEquals(expectedState, actualStateOfSimpleMarsRover);
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"0:0:N,0:9:N", "9:0:W,0:0:W", "0:9:S,0:0:S", "0:0:E,9:0:E"})
+    public void shouldWrapAroundGrid(String example) {
+        String startingPosition = example.split(",")[0];
+        simpleMarsRover.landAt(startingPosition);
+        simpleMarsRover.executeCommands("M");
+
+        String expectedState = example.split(",")[1];
+        String actualStateOfSimpleMarsRover = simpleMarsRover.getState();
+        assertEquals(expectedState, actualStateOfSimpleMarsRover);
+    }
 }
