@@ -1,45 +1,41 @@
 package tdd.mar.simplemarsrover;
 
 public class SimpleMarsRover {
-    private String firstPortionOfState = "";
-    private int cardinalDirectionIndex = -1;
-    private final static String[] CARDINAL_DIRECTIONS_IN_CLOCKWISE_ORDER = {"N", "E", "S", "W"};
+    private boolean landed = false;
+    private int xPosition = -1;
+    private int yPosition = -1;
+    private CardinalDirection cardinalDirection = null;
 
     public void landAt(String startingPosition) {
-        String cardinalDirection = startingPosition.substring(4);
-        cardinalDirectionIndex = getIndexFor(cardinalDirection);
+        landed = true;
 
-        firstPortionOfState = startingPosition.substring(0, 4);
-    }
+        String xPositionComponent = startingPosition.substring(0, 1);
+        xPosition = Integer.parseInt(xPositionComponent);
 
-    private int getIndexFor(String cardinalDirection) {
-        for (int i = 0; i < CARDINAL_DIRECTIONS_IN_CLOCKWISE_ORDER.length; i++) {
-            if (CARDINAL_DIRECTIONS_IN_CLOCKWISE_ORDER[i].equals(cardinalDirection)) {
-                return i;
-            }
-        }
+        String yPositionComponent = startingPosition.substring(2, 3);
+        yPosition = Integer.parseInt(yPositionComponent);
 
-        return -1;
+        String orientationComponent = startingPosition.substring(4);
+        cardinalDirection = CardinalDirection.valueOf(orientationComponent);
     }
 
     public String getState() {
-        return firstPortionOfState + getCardinalDirectionFor(cardinalDirectionIndex);
-    }
-
-    private String getCardinalDirectionFor(int cardinalDirectionIndex) {
-        if (cardinalDirectionIndex == -1) {
+        if (!landed) {
             return "";
         }
 
-        return CARDINAL_DIRECTIONS_IN_CLOCKWISE_ORDER[cardinalDirectionIndex];
+        return xPosition + ":" + yPosition + ":" + cardinalDirection;
     }
 
     public void executeCommands(String commands) {
         for (String command : commands.split("")) {
-            if (command.contains("L")) {
-                cardinalDirectionIndex = Math.floorMod(cardinalDirectionIndex - 1, CARDINAL_DIRECTIONS_IN_CLOCKWISE_ORDER.length);
+            if (command.equals("L")) {
+                cardinalDirection = cardinalDirection.getLeftCardinalDirection();
+            } else if (command.equals("R")) {
+                cardinalDirection = cardinalDirection.getRightCardinalDirection();
             } else {
-                cardinalDirectionIndex = Math.floorMod(cardinalDirectionIndex + 1, CARDINAL_DIRECTIONS_IN_CLOCKWISE_ORDER.length);
+                xPosition += cardinalDirection.xOffset;
+                yPosition += cardinalDirection.yOffset;
             }
         }
     }

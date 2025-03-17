@@ -52,10 +52,10 @@ class SimpleMarsRoverTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"NW", "WS", "SE", "EN"})
-    public void shouldRotateLeft(String initialAndFinalCardinalDirection) {
+    public void shouldRotateRight(String initialAndFinalCardinalDirection) {
         String startingPosition = "0:0:" + initialAndFinalCardinalDirection.charAt(0);
         simpleMarsRover.landAt(startingPosition);
-        simpleMarsRover.executeCommands("L");
+        simpleMarsRover.executeCommands("R");
 
         String expectedOrientation = initialAndFinalCardinalDirection.substring(1);
         String actualOrientationOfSimpleMarsRover = simpleMarsRover.getState().substring(4);
@@ -64,10 +64,10 @@ class SimpleMarsRoverTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"NE", "ES", "SW", "WN"})
-    public void shouldRotateRight(String initialAndFinalCardinalDirection) {
+    public void shouldRotateLeft(String initialAndFinalCardinalDirection) {
         String startingPosition = "0:0:" + initialAndFinalCardinalDirection.charAt(0);
         simpleMarsRover.landAt(startingPosition);
-        simpleMarsRover.executeCommands("R");
+        simpleMarsRover.executeCommands("L");
 
         String expectedOrientation = initialAndFinalCardinalDirection.substring(1);
         String actualOrientationOfSimpleMarsRover = simpleMarsRover.getState().substring(4);
@@ -82,5 +82,17 @@ class SimpleMarsRoverTest {
         String expectedOrientation = "S";
         String actualOrientationOfSimpleMarsRover = simpleMarsRover.getState().substring(4);
         assertEquals(expectedOrientation, actualOrientationOfSimpleMarsRover);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"0:1:N,0:0:N", "0:0:W,1:0:W", "0:0:S,0:1:S", "1:0:E,0:0:E"})
+    public void shouldMoveForwardInCurrentDirection(String example) {
+        String startingPosition = example.split(",")[0];
+        simpleMarsRover.landAt(startingPosition);
+        simpleMarsRover.executeCommands("M");
+
+        String expectedState = example.split(",")[1];
+        String actualStateOfSimpleMarsRover = simpleMarsRover.getState();
+        assertEquals(expectedState, actualStateOfSimpleMarsRover);
     }
 }
