@@ -24,6 +24,10 @@ public class TennisScoreCalculator {
             return "Win Player One";
         }
 
+        if (playerTwoPoints >= 4 && playerTwoPoints - playerOnePoints >= 2) {
+            return "Win Player Two";
+        }
+
         return terminologyForEachPointBelowFour[playerOnePoints] + "-" + terminologyForEachPointBelowFour[playerTwoPoints];
     }
 }

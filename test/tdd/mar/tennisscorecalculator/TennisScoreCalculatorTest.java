@@ -88,4 +88,15 @@ class TennisScoreCalculatorTest {
         String actualScore = tennisScoreCalculator.score(playerOnePoints, playerTwoPoints);
         assertEquals(expectedScore, actualScore);
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"0,4", "4,6"})
+    public void shouldReturnWinPlayerTwo_whenPlayerTwoHasScoredAtLeastFourPointsAndHasTwoMorePointsThanPlayerOne(String points) {
+        int playerOnePoints = Integer.parseInt(points.split(",")[0]);
+        int playerTwoPoints = Integer.parseInt(points.split(",")[1]);
+
+        String expectedScore = "Win Player Two";
+        String actualScore = tennisScoreCalculator.score(playerOnePoints, playerTwoPoints);
+        assertEquals(expectedScore, actualScore);
+    }
 }
