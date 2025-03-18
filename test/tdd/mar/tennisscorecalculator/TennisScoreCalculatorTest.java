@@ -67,4 +67,14 @@ class TennisScoreCalculatorTest {
         String actualScore = tennisScoreCalculator.score(playerOnePoints, playerTwoPoints);
         assertEquals(expectedScore, actualScore);
     }
+
+    @Test
+    public void shouldReturnAdvantagePlayerTwo_whenEachPlayHasScoredAtLeastThreePointsAndPlayerTwoHasScoredOneMorePointThanPlayerOne() {
+        int playerOnePoints = 3;
+        int playerTwoPoints = 4;
+
+        String expectedScore = "Advantage Player Two";
+        String actualScore = tennisScoreCalculator.score(playerOnePoints, playerTwoPoints);
+        assertEquals(expectedScore, actualScore);
+    }
 }
