@@ -46,4 +46,15 @@ class TennisScoreCalculatorTest {
         String actualScore = tennisScoreCalculator.score(playerOnePoints, playerTwoPoints);
         assertEquals(expectedScore, actualScore);
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"3,3", "4,4"})
+    public void shouldReturnDeuce_whenEachPlayerHasScoreAtLeastThreePointsAndHasSameAmountOfPoints(String points) {
+        int playerOnePoints = Integer.parseInt(points.split(",")[0]);
+        int playerTwoPoints = Integer.parseInt(points.split(",")[1]);
+
+        String expectedScore = "Deuce";
+        String actualScore = tennisScoreCalculator.score(playerOnePoints, playerTwoPoints);
+        assertEquals(expectedScore, actualScore);
+    }
 }

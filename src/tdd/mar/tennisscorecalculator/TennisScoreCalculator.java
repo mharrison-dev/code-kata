@@ -8,6 +8,10 @@ public class TennisScoreCalculator {
             return "Love All";
         }
 
+        if (playerOnePoints == playerTwoPoints && playerOnePoints >= 3) {
+            return "Deuce";
+        }
+
         return terminologyForEachPointBelowFour[playerOnePoints] + "-" + terminologyForEachPointBelowFour[playerTwoPoints];
     }
 }
