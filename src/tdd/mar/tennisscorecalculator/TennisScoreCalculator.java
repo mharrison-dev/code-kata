@@ -12,6 +12,10 @@ public class TennisScoreCalculator {
             return "Deuce";
         }
 
+        if (playerOnePoints >= 3 && playerTwoPoints >= 3 && playerOnePoints - playerTwoPoints == 1) {
+            return "Advantage Player One";
+        }
+
         return terminologyForEachPointBelowFour[playerOnePoints] + "-" + terminologyForEachPointBelowFour[playerTwoPoints];
     }
 }
