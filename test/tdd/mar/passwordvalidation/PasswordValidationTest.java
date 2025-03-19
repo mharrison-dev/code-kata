@@ -23,7 +23,7 @@ class PasswordValidationTest {
 
     @Test
     public void shouldReturnTrue_whenGivenPasswordWithMoreThanEightCharacters() {
-        String passwordWithNineCharacters = "01234567A";
+        String passwordWithNineCharacters = "0123456bA";
 
         boolean evaluation = passwordValidation.evaluate(passwordWithNineCharacters);
         assertTrue(evaluation);
@@ -42,6 +42,14 @@ class PasswordValidationTest {
         String passwordWithoutCapitalLetter = "012345678";
 
         boolean evaluation = passwordValidation.evaluate(passwordWithoutCapitalLetter);
+        assertFalse(evaluation);
+    }
+
+    @Test
+    public void shouldReturnFalse_whenGivenPasswordWithoutLowercaseLetter() {
+        String passwordWithoutLowerLetter = "01234567A";
+
+        boolean evaluation = passwordValidation.evaluate(passwordWithoutLowerLetter);
         assertFalse(evaluation);
     }
 }
