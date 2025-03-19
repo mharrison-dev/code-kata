@@ -1,13 +1,20 @@
 package tdd.mar.passwordvalidation;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class PasswordValidationTest {
+    private PasswordValidation passwordValidation = null;
+
+    @BeforeEach
+    public void setUp() {
+        passwordValidation = new PasswordValidation();
+    }
+
     @Test
     public void shouldReturnFalse_whenGivenEmptyPassword() {
-        PasswordValidation passwordValidation = new PasswordValidation();
         String emptyPassword = "";
 
         boolean evaluation = passwordValidation.evaluate(emptyPassword);
@@ -16,8 +23,7 @@ class PasswordValidationTest {
 
     @Test
     public void shouldReturnTrue_whenGivenPasswordWithMoreThanEightCharacters() {
-        PasswordValidation passwordValidation = new PasswordValidation();
-        String passwordWithNineCharacters = "012345678";
+        String passwordWithNineCharacters = "01234567A";
 
         boolean evaluation = passwordValidation.evaluate(passwordWithNineCharacters);
         assertTrue(evaluation);
@@ -25,10 +31,17 @@ class PasswordValidationTest {
 
     @Test
     public void shouldReturnFalse_whenGivenPasswordWithEightCharactersOrFewer() {
-        PasswordValidation passwordValidation = new PasswordValidation();
         String passwordWithEightCharacters = "01234567";
 
         boolean evaluation = passwordValidation.evaluate(passwordWithEightCharacters);
+        assertFalse(evaluation);
+    }
+
+    @Test
+    public void shouldReturnFalse_whenGivenPasswordWithoutCapitalLetter() {
+        String passwordWithoutCapitalLetter = "012345678";
+
+        boolean evaluation = passwordValidation.evaluate(passwordWithoutCapitalLetter);
         assertFalse(evaluation);
     }
 }
