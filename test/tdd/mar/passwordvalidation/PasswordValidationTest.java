@@ -23,7 +23,7 @@ class PasswordValidationTest {
 
     @Test
     public void shouldReturnTrue_whenGivenPasswordWithMoreThanEightCharacters() {
-        String passwordWithNineCharacters = "0123456bA";
+        String passwordWithNineCharacters = "012345_bA";
 
         boolean evaluation = passwordValidation.evaluate(passwordWithNineCharacters);
         assertTrue(evaluation);
@@ -58,6 +58,14 @@ class PasswordValidationTest {
         String passwordWithoutDigit = "ihgfedcbA";
 
         boolean evaluation = passwordValidation.evaluate(passwordWithoutDigit);
+        assertFalse(evaluation);
+    }
+
+    @Test
+    public void shouldReturnFalse_whenGivenPasswordWithoutUnderscore() {
+        String passwordWithoutUnderscore = "0123456bA";
+
+        boolean evaluation = passwordValidation.evaluate(passwordWithoutUnderscore);
         assertFalse(evaluation);
     }
 }
