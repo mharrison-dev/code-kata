@@ -22,4 +22,13 @@ class PasswordValidationTest {
         boolean evaluation = passwordValidation.evaluate(passwordWithNineCharacters);
         assertTrue(evaluation);
     }
+
+    @Test
+    public void shouldReturnFalse_whenGivenPasswordWithEightCharactersOrFewer() {
+        PasswordValidation passwordValidation = new PasswordValidation();
+        String passwordWithEightCharacters = "01234567";
+
+        boolean evaluation = passwordValidation.evaluate(passwordWithEightCharacters);
+        assertFalse(evaluation);
+    }
 }
