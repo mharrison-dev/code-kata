@@ -52,4 +52,12 @@ class PasswordValidationTest {
         boolean evaluation = passwordValidation.evaluate(passwordWithoutLowerLetter);
         assertFalse(evaluation);
     }
+
+    @Test
+    public void shouldReturnFalse_whenGivenPasswordWithoutDigit() {
+        String passwordWithoutDigit = "ihgfedcbA";
+
+        boolean evaluation = passwordValidation.evaluate(passwordWithoutDigit);
+        assertFalse(evaluation);
+    }
 }
