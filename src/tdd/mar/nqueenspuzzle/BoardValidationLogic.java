@@ -2,10 +2,18 @@ package tdd.mar.nqueenspuzzle;
 
 public class BoardValidationLogic {
     public boolean validate(String board) {
-        if (board.matches("[.\n]+")) {
+        String emptyBoardRegex = "^([.]+(\n|$))+";
+        if (board.matches(emptyBoardRegex)) {
             return true;
         }
 
-        return board.matches(".*Q.*");
+        for (String rank : board.split("\n")) {
+            String rankWithTwoQueensRegex = "^.*Q.*Q.*";
+            if (rank.matches(rankWithTwoQueensRegex)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }
