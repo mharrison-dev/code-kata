@@ -36,4 +36,12 @@ class BoardValidationLogicTest {
         boolean result = boardValidationLogic.validate(boardWithOneQueen);
         assertTrue(result);
     }
+
+    @Test
+    public void shouldReturnFalse_whenBoardContainsTwoQueensOnOneFile() {
+        String boardWithTwoQueensOnOnFile = "Q.\nQ.";
+
+        boolean result = boardValidationLogic.validate(boardWithTwoQueensOnOnFile);
+        assertFalse(result);
+    }
 }
