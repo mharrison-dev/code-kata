@@ -44,4 +44,11 @@ class BoardValidationLogicTest {
         boolean result = boardValidationLogic.validate(boardWithTwoQueensOnOnFile);
         assertFalse(result);
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {".Q\nQ.", "Q.\n.Q"})
+    public void shouldReturnFalse_whenBoardContainsTwoQueensOnDiagonal(String boardWithTwoQueensOnOneDiagonal) {
+        boolean result = boardValidationLogic.validate(boardWithTwoQueensOnOneDiagonal);
+        assertFalse(result);
+    }
 }
