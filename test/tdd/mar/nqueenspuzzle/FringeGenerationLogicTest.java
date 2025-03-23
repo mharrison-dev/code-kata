@@ -16,4 +16,14 @@ class FringeGenerationLogicTest {
         List<String> actualBoards = fringeGenerationLogic.generateFringe(emptyBoard);
         assertTrue(expectedBoards.containsAll(actualBoards));
     }
+
+    @Test
+    public void shouldReturnEmptyList_whenGivenTwoByTwoBoardWithOneQueen(){
+        FringeGenerationLogic fringeGenerationLogic = new FringeGenerationLogic();
+        String emptyBoard = "Q.\n..";
+
+        List<String> expectedBoards = List.of();
+        List<String> actualBoards = fringeGenerationLogic.generateFringe(emptyBoard);
+        assertTrue(expectedBoards.containsAll(actualBoards));
+    }
 }
