@@ -24,4 +24,14 @@ class QueenPlacementLogicTest {
         String actualBoard = queenPlacementLogic.placeQueen(1, 1, board);
         assertEquals(expectedBoard, actualBoard);
     }
+
+    @Test
+    public void shouldReturnBoardWithAttackSquaresMarkedByXs_whenQueenIsPlacedInCenterOfEmptyFiveByFiveBoard() {
+        String board = ".....\n.....\n.....\n.....\n.....";
+        QueenPlacementLogic queenPlacementLogic = new QueenPlacementLogic();
+
+        String expectedBoard = "X.X.X\n.XXX.\nXXQXX\n.XXX.\nX.X.X";
+        String actualBoard = queenPlacementLogic.placeQueen(2, 2, board);
+        assertEquals(expectedBoard, actualBoard);
+    }
 }
