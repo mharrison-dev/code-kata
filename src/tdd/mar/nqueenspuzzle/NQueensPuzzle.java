@@ -1,6 +1,8 @@
 package tdd.mar.nqueenspuzzle;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Deque;
 import java.util.List;
 
 public class NQueensPuzzle {
@@ -9,11 +11,19 @@ public class NQueensPuzzle {
     public List<String> solve(String board) {
         int boardDimension = calculateBoardDimension(board);
         List<String> solutions = new ArrayList<>();
-        List<String> fringe = FRINGE_GENERATION_LOGIC.generateFringe(board);
-        for (String newBoard : fringe) {
-            int numberOfQueens = countNumberOfQueens(newBoard);
+        Deque<String> stack = new ArrayDeque<>();
+        stack.push(board);
+        while (!stack.isEmpty()) {
+            String currentBoard = stack.pop();
+
+            List<String> fringe = FRINGE_GENERATION_LOGIC.generateFringe(currentBoard);
+            for (String newBoard : fringe) {
+                stack.push(newBoard);
+            }
+
+            int numberOfQueens = countNumberOfQueens(currentBoard);
             if (numberOfQueens == boardDimension) {
-                solutions.add(newBoard);
+                solutions.add(currentBoard);
             }
         }
 
