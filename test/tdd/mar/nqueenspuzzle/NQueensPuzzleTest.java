@@ -16,4 +16,13 @@ class NQueensPuzzleTest {
         List<String> actualSolutionList = nQueensPuzzle.solve(board);
         assertTrue(expectedSolutionList.containsAll(actualSolutionList));
     }
+
+    @Test
+    public void shouldReturnNoBoard_whenGivenEmptyTwoByTwoBoard(){
+        String board = "..\n..";
+        NQueensPuzzle nQueensPuzzle = new NQueensPuzzle();
+
+        List<String> actualSolutionList = nQueensPuzzle.solve(board);
+        assertTrue(actualSolutionList.isEmpty());
+    }
 }
