@@ -21,6 +21,16 @@ class LiveCellWithFewerThanTwoNeighboursRuleTest {
         assertTrue(Arrays.deepEquals(expectedBoard, actualBoard), getErrorMessage(expectedBoard, actualBoard));
     }
 
+    @ParameterizedTest
+    @MethodSource("getThreeByThreeBoardsThatCellsWithTwoOrMoreNeighbours")
+    public void shouldNotKillCell_whenCellHasTwoOrMoreNeighbours(int[][] board) {
+        LiveCellWithFewerThanTwoNeighboursRule liveCellWithFewerThanTwoNeighboursRule = new LiveCellWithFewerThanTwoNeighboursRule();
+
+        int[][] expectedBoard = board;
+        int[][] actualBoard = liveCellWithFewerThanTwoNeighboursRule.update(board);
+        assertTrue(Arrays.deepEquals(expectedBoard, actualBoard), getErrorMessage(expectedBoard, actualBoard));
+    }
+
     private static Stream<Arguments> getAllThreeByThreeBoardsThatHaveOneCellWithFewerThanTwoNeighbours() {
         return Stream.of(
                 arguments((Object) new int[][]{{0, 0, 0}, {0, 1, 0}, {0, 0, 0}}),
@@ -32,6 +42,13 @@ class LiveCellWithFewerThanTwoNeighboursRuleTest {
                 arguments((Object) new int[][]{{0, 0, 0}, {0, 1, 0}, {1, 0, 0}}),
                 arguments((Object) new int[][]{{0, 0, 0}, {0, 1, 0}, {0, 1, 0}}),
                 arguments((Object) new int[][]{{0, 0, 0}, {0, 1, 0}, {0, 0, 1}})
+        );
+    }
+
+    private static Stream<Arguments> getThreeByThreeBoardsThatCellsWithTwoOrMoreNeighbours() {
+        return Stream.of(
+                arguments((Object) new int[][]{{1, 1, 0}, {1, 0, 0}, {0, 0, 0}}),
+                arguments((Object) new int[][]{{1, 1, 0}, {1, 1, 0}, {0, 0, 0}})
         );
     }
 
