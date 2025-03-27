@@ -21,11 +21,39 @@ class DeadCellWithExactlyThreeNeighboursRuleTest extends RuleTest {
         assertTrue(Arrays.deepEquals(expectedBoard, actualBoard), getErrorMessage(expectedBoard, actualBoard));
     }
 
+    @ParameterizedTest
+    @MethodSource("getBoardsWithDeadCellsThatHaveExactlyThreeLiveNeighbours")
+    public void shouldReviveAnyDeadCell_whenDeadCellsHaveExactlyThreeNeighbours(int[][] board) {
+        DeadCellWithExactlyThreeNeighboursRule deadCellWithExactlyThreeNeighboursRule = new DeadCellWithExactlyThreeNeighboursRule();
+
+        int[][] expectedBoard = reviveCenterCell(board);
+        int[][] actualBoard = deadCellWithExactlyThreeNeighboursRule.update(board);
+        assertTrue(Arrays.deepEquals(expectedBoard, actualBoard), getErrorMessage(expectedBoard, actualBoard));
+    }
+
     private static Stream<Arguments> getBoardsWithDeadCellsThatHaveFewerThanThreeLiveNeighbours() {
         return Stream.of(
                 arguments((Object) new int[][]{{0, 0, 0}, {0, 0, 0}, {0, 0, 0}}),
                 arguments((Object) new int[][]{{1, 0, 0}, {0, 0, 0}, {0, 0, 0}}),
                 arguments((Object) new int[][]{{0, 0, 0}, {1, 0, 1}, {0, 0, 0}})
         );
+    }
+
+    private static Stream<Arguments> getBoardsWithDeadCellsThatHaveExactlyThreeLiveNeighbours() {
+        return Stream.of(
+                arguments((Object) new int[][]{{1, 0, 1}, {0, 0, 0}, {0, 1, 0}}),
+                arguments((Object) new int[][]{{0, 1, 0}, {0, 0, 1}, {0, 0, 1}}),
+                arguments((Object) new int[][]{{0, 0, 1}, {1, 0, 0}, {1, 0, 0}})
+        );
+    }
+
+    private int[][] reviveCenterCell(int[][] board) {
+        int[][] boardCopy = board.clone();
+        for (int i = 0; i < board.length; i++) {
+            boardCopy[i] = boardCopy[i].clone();
+        }
+
+        boardCopy[1][1] = 1;
+        return boardCopy;
     }
 }
