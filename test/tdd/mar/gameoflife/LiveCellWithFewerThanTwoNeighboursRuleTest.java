@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
-class LiveCellWithFewerThanTwoNeighboursRuleTest {
+class LiveCellWithFewerThanTwoNeighboursRuleTest extends RuleTest {
     @ParameterizedTest
     @MethodSource("getAllThreeByThreeBoardsThatHaveOneCellWithFewerThanTwoNeighbours")
     public void shouldKillCell_whenCellHasFewerThanTwoNeighbours(int[][] board) {
@@ -50,9 +50,5 @@ class LiveCellWithFewerThanTwoNeighboursRuleTest {
                 arguments((Object) new int[][]{{1, 1, 0}, {1, 0, 0}, {0, 0, 0}}),
                 arguments((Object) new int[][]{{1, 1, 0}, {1, 1, 0}, {0, 0, 0}})
         );
-    }
-
-    private String getErrorMessage(int[][] expectedBoard, int[][] actualBoard) {
-        return "\nExpected: " + Arrays.deepToString(expectedBoard) + "\nActual: " + Arrays.deepToString(actualBoard);
     }
 }
