@@ -1,10 +1,10 @@
 package tdd.mar.gameoflife;
 
-public class LiveCellWithFewerThanTwoNeighboursRule implements Rule {
+public class LiveCellWithMoreThanThreeNeighboursRule implements Rule {
     @Override
     public int[][] update(int[][] board) {
         int[][] boardCopy = copyBoard(board);
-        killCellsThatHaveFewerThanTwoNeighbours(boardCopy);
+        killCellsThatHaveMoreThanThreeNeighbours(boardCopy);
         return boardCopy;
     }
 
@@ -17,17 +17,17 @@ public class LiveCellWithFewerThanTwoNeighboursRule implements Rule {
         return boardCopy;
     }
 
-    private void killCellsThatHaveFewerThanTwoNeighbours(int[][] boardCopy) {
+    private void killCellsThatHaveMoreThanThreeNeighbours(int[][] boardCopy) {
         for (int i = 0; i < boardCopy.length; i++) {
             for (int j = 0; j < boardCopy[i].length; j++) {
-                if (foundFewerThanTwoNeighbours(i, j, boardCopy)) {
+                if (foundMoreThanThreeNeighbours(i, j, boardCopy)) {
                     boardCopy[i][j] = 0;
                 }
             }
         }
     }
 
-    private boolean foundFewerThanTwoNeighbours(int rowIndex, int columnIndex, int[][] board) {
+    private boolean foundMoreThanThreeNeighbours(int rowIndex, int columnIndex, int[][] board) {
         int numberOfNeighbours = 0;
         for (int i = -1; i <= 1; i++) {
             for (int j = -1; j <= 1; j++) {
@@ -52,6 +52,6 @@ public class LiveCellWithFewerThanTwoNeighboursRule implements Rule {
             }
         }
 
-        return numberOfNeighbours < 2;
+        return numberOfNeighbours > 3;
     }
 }
