@@ -63,6 +63,6 @@ public class DeadCellWithExactlyThreeNeighboursRule implements Rule {
             }
         }
 
-        return numberOfLiveNeighbours >= 3;
+        return numberOfLiveNeighbours == 3;
     }
 }
