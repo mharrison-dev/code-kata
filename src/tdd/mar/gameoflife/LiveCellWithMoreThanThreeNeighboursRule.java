@@ -18,9 +18,20 @@ public class LiveCellWithMoreThanThreeNeighboursRule implements Rule {
     }
 
     private void killCellsThatHaveMoreThanThreeNeighbours(int[][] boardCopy) {
+        // Set dead cells to two so they can still be counted as neighbours for other live cells.
+        // This makes sure that all cells are updated at the same time
         for (int i = 0; i < boardCopy.length; i++) {
             for (int j = 0; j < boardCopy[i].length; j++) {
                 if (foundMoreThanThreeNeighbours(i, j, boardCopy)) {
+                    boardCopy[i][j] = 2;
+                }
+            }
+        }
+
+        // After the update, set all dead cells to zero
+        for (int i = 0; i < boardCopy.length; i++) {
+            for (int j = 0; j < boardCopy[i].length; j++) {
+                if (boardCopy[i][j] == 2) {
                     boardCopy[i][j] = 0;
                 }
             }
@@ -46,7 +57,7 @@ public class LiveCellWithMoreThanThreeNeighboursRule implements Rule {
                     continue;
                 }
 
-                if (board[currentRowIndex][currentColumnIndex] == 1) {
+                if (board[currentRowIndex][currentColumnIndex] > 0) {
                     numberOfNeighbours++;
                 }
             }

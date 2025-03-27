@@ -1,6 +1,5 @@
 package tdd.mar.gameoflife;
 
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -11,7 +10,7 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
-class DeadCellWithExactlyThreeNeighboursRuleTest extends RuleTest {
+class DeadCellWithExactlyThreeNeighboursRuleTest extends tdd.mar.gameoflife.Test {
     @ParameterizedTest
     @MethodSource("getBoardsWithDeadCellsThatHaveFewerThanThreeLiveNeighbours")
     public void shouldNotReviveAnyDeadCell_whenDeadCellsHaveFewerThanThreeLiveNeighbours(int[][] board) {
@@ -32,7 +31,7 @@ class DeadCellWithExactlyThreeNeighboursRuleTest extends RuleTest {
         assertTrue(Arrays.deepEquals(expectedBoard, actualBoard), getErrorMessage(expectedBoard, actualBoard));
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void shouldNotReviveDeadCell_whenDeadCellHasMoreThanThreeLiveNeighbours() {
         int[][] board = {{1, 0, 1}, {0, 0, 0}, {1, 0, 1}};
         DeadCellWithExactlyThreeNeighboursRule deadCellWithExactlyThreeNeighboursRule = new DeadCellWithExactlyThreeNeighboursRule();
