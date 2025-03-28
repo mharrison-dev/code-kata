@@ -39,4 +39,13 @@ class LookAndSaySequenceTest {
         String actualNextMember = lookAndSaySequence.nextMember(member);
         assertEquals(expectedNextMember, actualNextMember);
     }
+
+    @Test
+    public void shouldReturnMemberOneOneOneFive_whenGivenMemberOneFive() {
+        String member = "15";
+
+        String expectedNextMember = "1115";
+        String actualNextMember = lookAndSaySequence.nextMember(member);
+        assertEquals(expectedNextMember, actualNextMember);
+    }
 }
