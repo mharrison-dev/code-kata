@@ -1,5 +1,6 @@
 package tdd.mar.lookandsaysequence;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -7,10 +8,16 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.junit.jupiter.api.Assertions.*;
 
 class LookAndSaySequenceTest {
+    private LookAndSaySequence lookAndSaySequence = null;
+
+    @BeforeEach
+    public void setUp() {
+        lookAndSaySequence = new LookAndSaySequence();
+    }
+
     @Test
     public void shouldReturnEmptyString_whenGivenEmptyString() {
         String emptyString = "";
-        LookAndSaySequence lookAndSaySequence = new LookAndSaySequence();
 
         String expectedNextMember = "";
         String actualNextMember = lookAndSaySequence.nextMember(emptyString);
@@ -20,9 +27,15 @@ class LookAndSaySequenceTest {
     @ParameterizedTest
     @ValueSource(strings = {"1", "5"})
     public void shouldReturnOneFollowedByGivenMember_whenGivenMemberContainsOneDigit(String member) {
-        LookAndSaySequence lookAndSaySequence = new LookAndSaySequence();
-
         String expectedNextMember = "1" + member;
+        String actualNextMember = lookAndSaySequence.nextMember(member);
+        assertEquals(expectedNextMember, actualNextMember);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"11", "55"})
+    public void shouldReturnTwoOnesFollowedByFirstDigitOfGivenMember_whenGivenMemberContainsTwoIdenticalDigits(String member) {
+        String expectedNextMember = "2" + member.charAt(0);
         String actualNextMember = lookAndSaySequence.nextMember(member);
         assertEquals(expectedNextMember, actualNextMember);
     }

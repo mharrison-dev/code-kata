@@ -4,6 +4,6 @@ public class LookAndSaySequence {
     public String nextMember(String member) {
         return (member.isEmpty())
                 ? ""
-                : "1" + member;
+                : "" + member.length() + member.charAt(0);
     }
 }
