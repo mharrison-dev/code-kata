@@ -14,4 +14,14 @@ class OddEvenStringSortTest {
         String actualString = oddEvenStringSort.sort(emptyString);
         assertEquals(expectedString, actualString);
     }
+
+    @Test
+    public void shouldReturnStringOfLengthOne_whenGivenStringOfLengthOne() {
+        String string = "a";
+        OddEvenStringSort oddEvenStringSort = new OddEvenStringSort();
+
+        String expectedString = "a";
+        String actualString = oddEvenStringSort.sort(string);
+        assertEquals(expectedString, actualString);
+    }
 }
