@@ -2,6 +2,6 @@ package tdd.mar.oddevenstringsort;
 
 public class OddEvenStringSort {
     public String sort(String string) {
-        return string;
+        return String.join(" ", string.split(""));
     }
 }

@@ -24,4 +24,14 @@ class OddEvenStringSortTest {
         String actualString = oddEvenStringSort.sort(string);
         assertEquals(expectedString, actualString);
     }
+
+    @Test
+    public void shouldReturnStringWithSpaceSplittingTwoCharacters_whenGivenStringOfLengthTwo() {
+        String string = "ab";
+        OddEvenStringSort oddEvenStringSort = new OddEvenStringSort();
+
+        String expectedString = "a b";
+        String actualString = oddEvenStringSort.sort(string);
+        assertEquals(expectedString, actualString);
+    }
 }
