@@ -10,17 +10,14 @@ public class PrimeFactorization {
             return primeFactors;
         }
 
-        if (number < 4) {
-            primeFactors.add(number);
-            return primeFactors;
-        }
-
         int remainder = number;
-        while (remainder > 1) {
+        while (remainder % 2 == 0) {
             primeFactors.add(2);
             remainder /= 2;
         }
 
-        return primeFactors;
+        return (primeFactors.isEmpty())
+                ? List.of(number)
+                : primeFactors;
     }
 }

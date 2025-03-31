@@ -43,4 +43,14 @@ class PrimeFactorizationTest {
         assertEquals(expectedPrimeFactors.size(), actualPrimeFactors.size());
         assertTrue(expectedPrimeFactors.containsAll(actualPrimeFactors));
     }
+
+    @Test
+    public void shouldReturnListOfFive_whenGivenFive() {
+        int number = 5;
+
+        List<Integer> expectedPrimeFactors = List.of(5);
+        List<Integer> actualPrimeFactors = primeFactorization.of(number);
+        assertEquals(expectedPrimeFactors.size(), actualPrimeFactors.size());
+        assertTrue(expectedPrimeFactors.containsAll(actualPrimeFactors));
+    }
 }
