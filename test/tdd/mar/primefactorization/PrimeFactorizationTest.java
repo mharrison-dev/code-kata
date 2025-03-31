@@ -53,4 +53,14 @@ class PrimeFactorizationTest {
         assertEquals(expectedPrimeFactors.size(), actualPrimeFactors.size());
         assertTrue(expectedPrimeFactors.containsAll(actualPrimeFactors));
     }
+
+    @Test
+    public void shouldReturnListOfTwoAndThree_whenGivenSix() {
+        int number = 6;
+
+        List<Integer> expectedPrimeFactors = List.of(2, 3);
+        List<Integer> actualPrimeFactors = primeFactorization.of(number);
+        assertEquals(expectedPrimeFactors.size(), actualPrimeFactors.size());
+        assertTrue(expectedPrimeFactors.containsAll(actualPrimeFactors));
+    }
 }

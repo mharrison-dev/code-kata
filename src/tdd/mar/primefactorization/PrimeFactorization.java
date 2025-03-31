@@ -6,18 +6,17 @@ import java.util.List;
 public class PrimeFactorization {
     public List<Integer> of(int number) {
         List<Integer> primeFactors = new ArrayList<>();
-        if (number < 2) {
-            return primeFactors;
-        }
 
         int remainder = number;
-        while (remainder % 2 == 0) {
-            primeFactors.add(2);
-            remainder /= 2;
+        int divisor = 2;
+        while (divisor <= number) {
+            while (remainder % divisor == 0) {
+                primeFactors.add(divisor);
+                remainder /= divisor;
+            }
+            divisor++;
         }
 
-        return (primeFactors.isEmpty())
-                ? List.of(number)
-                : primeFactors;
+        return primeFactors;
     }
 }
