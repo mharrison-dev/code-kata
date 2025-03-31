@@ -1,4 +1,4 @@
-package tdd.primefactorization;
+package tdd.mar.primefactorization;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,17 @@ public class PrimeFactorization {
             return primeFactors;
         }
 
-        primeFactors.add(number);
+        if (number < 4) {
+            primeFactors.add(number);
+            return primeFactors;
+        }
+
+        int remainder = number;
+        while (remainder > 1) {
+            primeFactors.add(2);
+            remainder /= 2;
+        }
+
         return primeFactors;
     }
 }

@@ -1,5 +1,6 @@
-package tdd.primefactorization;
+package tdd.mar.primefactorization;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -9,11 +10,16 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class PrimeFactorizationTest {
+    private PrimeFactorization primeFactorization = null;
+
+    @BeforeEach
+    public void setUp() {
+        primeFactorization = new PrimeFactorization();
+    }
+
     @ParameterizedTest
     @ValueSource(ints = {-1, 0, 1})
     public void shouldReturnEmptyList_whenGivenNumberLessThanTwo(int number) {
-        PrimeFactorization primeFactorization = new PrimeFactorization();
-
         List<Integer> primeFactors = primeFactorization.of(number);
         assertTrue(primeFactors.isEmpty());
     }
@@ -21,9 +27,18 @@ class PrimeFactorizationTest {
     @Test
     public void shouldReturnListOfTwo_whenGivenTwo() {
         int number = 2;
-        PrimeFactorization primeFactorization = new PrimeFactorization();
 
         List<Integer> expectedPrimeFactors = List.of(2);
+        List<Integer> actualPrimeFactors = primeFactorization.of(number);
+        assertEquals(expectedPrimeFactors.size(), actualPrimeFactors.size());
+        assertTrue(expectedPrimeFactors.containsAll(actualPrimeFactors));
+    }
+
+    @Test
+    public void shouldReturnListOfTwoAndTwo_whenGivenFour() {
+        int number = 4;
+
+        List<Integer> expectedPrimeFactors = List.of(2, 2);
         List<Integer> actualPrimeFactors = primeFactorization.of(number);
         assertEquals(expectedPrimeFactors.size(), actualPrimeFactors.size());
         assertTrue(expectedPrimeFactors.containsAll(actualPrimeFactors));
