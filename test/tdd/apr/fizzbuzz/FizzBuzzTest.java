@@ -28,13 +28,13 @@ class FizzBuzzTest {
     }
 
     @Test
-    public void shouldNotPrint_whenNumberIsNotDivisibleByThreeOrFive() {
+    public void shouldPrintNumber_whenNumberIsNotDivisibleByThreeOrFive() {
         int number = 16;
 
         fizzBuzz.print(number);
         System.out.flush();
 
-        String expectedPrintStatement = "";
+        String expectedPrintStatement = "16";
         String actualPrintStatement = byteArrayOutputStream.toString();
         assertEquals(expectedPrintStatement, actualPrintStatement);
     }
