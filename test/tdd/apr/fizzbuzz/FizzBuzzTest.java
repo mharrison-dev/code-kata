@@ -25,4 +25,22 @@ class FizzBuzzTest {
         String actualPrintStatement = byteArrayOutputStream.toString();
         assertEquals(expectedPrintStatement, actualPrintStatement);
     }
+
+    @Test
+    public void shouldPrintFizz_whenNumberIsDivisibleByThree() {
+        PrintStream consolePrintStream = System.out;
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        PrintStream testPrintStream = new PrintStream(byteArrayOutputStream);
+        System.setOut(testPrintStream);
+        int number = 6;
+
+        FizzBuzz fizzBuzz = new FizzBuzz();
+        fizzBuzz.print(number);
+        System.out.flush();
+        System.setOut(consolePrintStream);
+
+        String expectedPrintStatement = "Fizz";
+        String actualPrintStatement = byteArrayOutputStream.toString();
+        assertEquals(expectedPrintStatement, actualPrintStatement);
+    }
 }
