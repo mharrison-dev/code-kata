@@ -62,4 +62,16 @@ class FizzBuzzTest {
         String actualPrintStatement = byteArrayOutputStream.toString();
         assertEquals(expectedPrintStatement, actualPrintStatement);
     }
+
+    @Test
+    public void shouldPrintFizzBuzz_whenNumberIsDivisibleByThreeAndFive() {
+        int number = 15;
+
+        fizzBuzz.print(number);
+        System.out.flush();
+
+        String expectedPrintStatement = "FizzBuzz";
+        String actualPrintStatement = byteArrayOutputStream.toString();
+        assertEquals(expectedPrintStatement, actualPrintStatement);
+    }
 }
