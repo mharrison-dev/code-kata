@@ -68,4 +68,18 @@ class BaseConversionTest {
         );
         assertEquals(expectedExceptionMessage, actualException.getMessage());
     }
+
+    @Test
+    public void shouldThrowException_whenValueIsEmpty() {
+        String value = "";
+        int initialBase = 10;
+        int finalBase = 10;
+
+        String expectedExceptionMessage = "Value cannot be empty";
+        Exception actualException = assertThrows(
+                IllegalArgumentException.class,
+                () -> baseConversion.convert(value, initialBase, finalBase)
+        );
+        assertEquals(expectedExceptionMessage, actualException.getMessage());
+    }
 }

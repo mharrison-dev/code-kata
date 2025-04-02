@@ -24,6 +24,10 @@ public class BaseConversion {
             throw new IllegalArgumentException("Value cannot be null");
         }
 
+        if (value.isEmpty()) {
+            throw new IllegalArgumentException("Value cannot be empty");
+        }
+
         if (exceedsRangeOfInitialBase(value, initialBase)) {
             throw new IllegalArgumentException("Cannot convert value(" + value + ") because it exceeds the range of the initial base(" + initialBase + ").");
         }
