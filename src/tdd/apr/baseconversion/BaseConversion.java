@@ -33,11 +33,11 @@ public class BaseConversion {
 
     private void validateValue(String value, int initialBase) {
         if (value == null) {
-            throw new IllegalArgumentException("Value cannot be null");
+            throw new IllegalArgumentException("Value cannot be null.");
         }
 
         if (value.isEmpty()) {
-            throw new IllegalArgumentException("Value cannot be empty");
+            throw new IllegalArgumentException("Value cannot be empty.");
         }
 
         if (exceedsRangeOfInitialBase(value, initialBase)) {

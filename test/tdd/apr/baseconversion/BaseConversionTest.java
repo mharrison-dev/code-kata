@@ -61,7 +61,7 @@ class BaseConversionTest {
         int initialBase = 10;
         int finalBase = 10;
 
-        String expectedExceptionMessage = "Value cannot be null";
+        String expectedExceptionMessage = "Value cannot be null.";
         Exception actualException = assertThrows(
                 IllegalArgumentException.class,
                 () -> baseConversion.convert(value, initialBase, finalBase)
@@ -75,7 +75,7 @@ class BaseConversionTest {
         int initialBase = 10;
         int finalBase = 10;
 
-        String expectedExceptionMessage = "Value cannot be empty";
+        String expectedExceptionMessage = "Value cannot be empty.";
         Exception actualException = assertThrows(
                 IllegalArgumentException.class,
                 () -> baseConversion.convert(value, initialBase, finalBase)
