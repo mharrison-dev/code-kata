@@ -20,9 +20,17 @@ public class BaseConversion {
     }
 
     public String convert(String value, int initialBase, int finalBase) throws RuntimeException {
+        validateFinalBase(finalBase);
         validateInitialBase(initialBase);
         validateValue(value, initialBase);
         return value;
+    }
+
+    private void validateFinalBase(int finalBase) {
+        int smallestBase = 2;
+        if (finalBase < smallestBase) {
+            throw new IllegalArgumentException("Final base cannot be smaller than two.");
+        }
     }
 
     private void validateInitialBase(int initialBase) {
