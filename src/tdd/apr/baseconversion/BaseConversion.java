@@ -20,10 +20,30 @@ public class BaseConversion {
     }
 
     public String convert(String value, int initialBase, int finalBase) throws RuntimeException {
+        validateArguments(value, initialBase, finalBase);
+
+        String conversion = "";
+        int remainder = Integer.parseInt(value);
+        for (int i = finalBase - 1; i > 0; i--) {
+            if (remainder == 0) {
+                break;
+            }
+
+            if (remainder % i == 0) {
+                conversion += LEGAL_CHARACTERS[i];
+                remainder -= i;
+            }
+        }
+
+        return (conversion.isEmpty())
+                ? value
+                : conversion;
+    }
+
+    private void validateArguments(String value, int initialBase, int finalBase) {
         validateFinalBase(finalBase);
         validateInitialBase(initialBase);
         validateValue(value, initialBase);
-        return value;
     }
 
     private void validateFinalBase(int finalBase) {

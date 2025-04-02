@@ -138,4 +138,15 @@ class BaseConversionTest {
         );
         assertEquals(expectedExceptionMessage, actualException.getMessage());
     }
+
+    @ParameterizedTest
+    @ValueSource(ints = {11, 20})
+    public void shouldReturnA_whenTenIsConvertedFromBaseTenToBaseLargerThanTen(int finalBase) {
+        String value = "10";
+        int initialBase = 10;
+
+        String expectedValue = "A";
+        String actualValue = baseConversion.convert(value, initialBase, finalBase);
+        assertEquals(expectedValue, actualValue);
+    }
 }
