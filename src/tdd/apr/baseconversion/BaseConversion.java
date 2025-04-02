@@ -31,6 +31,11 @@ public class BaseConversion {
         if (finalBase < smallestBase) {
             throw new IllegalArgumentException("Final base cannot be smaller than two.");
         }
+
+        int largestBase = 36;
+        if (finalBase > largestBase) {
+            throw new IllegalArgumentException("Final base cannot be larger than thirty-six.");
+        }
     }
 
     private void validateInitialBase(int initialBase) {
