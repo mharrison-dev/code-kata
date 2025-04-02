@@ -24,6 +24,10 @@ public class BaseConversion {
             throw new IllegalArgumentException("Cannot convert value(" + value + ") because it exceeds the range of the initial base(" + initialBase + ").");
         }
 
+        if (containsIllegalCharacters(value)) {
+            throw new IllegalArgumentException("Values can only have characters from the character sets 0-9 or A-Z.");
+        }
+
         return value;
     }
 
@@ -37,5 +41,9 @@ public class BaseConversion {
         }
 
         return false;
+    }
+
+    private boolean containsIllegalCharacters(String value) {
+        return !value.matches("[0-9A-Z]*");
     }
 }
