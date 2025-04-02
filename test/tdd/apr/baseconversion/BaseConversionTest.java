@@ -1,6 +1,7 @@
 package tdd.apr.baseconversion;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -47,6 +48,20 @@ class BaseConversionTest {
         int finalBase = 10;
 
         String expectedExceptionMessage = "Values can only have characters from the character sets 0-9 or A-Z.";
+        Exception actualException = assertThrows(
+                IllegalArgumentException.class,
+                () -> baseConversion.convert(value, initialBase, finalBase)
+        );
+        assertEquals(expectedExceptionMessage, actualException.getMessage());
+    }
+
+    @Test
+    public void shouldThrowException_whenValueIsNull() {
+        String value = null;
+        int initialBase = 10;
+        int finalBase = 10;
+
+        String expectedExceptionMessage = "Value cannot be null";
         Exception actualException = assertThrows(
                 IllegalArgumentException.class,
                 () -> baseConversion.convert(value, initialBase, finalBase)

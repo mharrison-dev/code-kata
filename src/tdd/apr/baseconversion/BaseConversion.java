@@ -20,6 +20,10 @@ public class BaseConversion {
     }
 
     public String convert(String value, int initialBase, int finalBase) throws RuntimeException {
+        if (value == null) {
+            throw new IllegalArgumentException("Value cannot be null");
+        }
+
         if (exceedsRangeOfInitialBase(value, initialBase)) {
             throw new IllegalArgumentException("Cannot convert value(" + value + ") because it exceeds the range of the initial base(" + initialBase + ").");
         }
