@@ -26,8 +26,14 @@ public class BaseConversion {
     }
 
     private void validateInitialBase(int initialBase) {
-        if (initialBase < 2) {
+        int smallestBase = 2;
+        if (initialBase < smallestBase) {
             throw new IllegalArgumentException("Initial base cannot be smaller than two.");
+        }
+
+        int largestBase = 36;
+        if (initialBase > largestBase) {
+            throw new IllegalArgumentException("Initial base cannot be larger than thirty-six.");
         }
     }
 
