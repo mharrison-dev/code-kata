@@ -82,4 +82,18 @@ class BaseConversionTest {
         );
         assertEquals(expectedExceptionMessage, actualException.getMessage());
     }
+
+    @ParameterizedTest
+    @ValueSource(ints = {-1, 0, 1})
+    public void shouldThrowException_whenInitialBaseIsSmallerThanTwo(int initialBase) {
+        String value = "0";
+        int finalBase = 10;
+
+        String expectedExceptionMessage = "Initial base cannot be smaller than two.";
+        Exception actualException = assertThrows(
+                IllegalArgumentException.class,
+                () -> baseConversion.convert(value, initialBase, finalBase)
+        );
+        assertEquals(expectedExceptionMessage, actualException.getMessage());
+    }
 }

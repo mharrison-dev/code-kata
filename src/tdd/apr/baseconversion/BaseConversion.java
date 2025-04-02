@@ -20,6 +20,18 @@ public class BaseConversion {
     }
 
     public String convert(String value, int initialBase, int finalBase) throws RuntimeException {
+        validateInitialBase(initialBase);
+        validateValue(value, initialBase);
+        return value;
+    }
+
+    private void validateInitialBase(int initialBase) {
+        if (initialBase < 2) {
+            throw new IllegalArgumentException("Initial base cannot be smaller than two.");
+        }
+    }
+
+    private void validateValue(String value, int initialBase) {
         if (value == null) {
             throw new IllegalArgumentException("Value cannot be null");
         }
@@ -36,7 +48,6 @@ public class BaseConversion {
             throw new IllegalArgumentException("Values can only have characters from the character sets 0-9 or A-Z.");
         }
 
-        return value;
     }
 
     private boolean exceedsRangeOfInitialBase(String value, int initialBase) {
