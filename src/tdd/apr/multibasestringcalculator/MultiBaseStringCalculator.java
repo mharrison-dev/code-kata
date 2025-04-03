@@ -7,7 +7,7 @@ public class MultiBaseStringCalculator {
         int[] accumulator = new int[Math.max(addend.length(), otherAddend.length()) + 1];
         addToAccumulator(addend, accumulator, base);
         addToAccumulator(otherAddend, accumulator, base);
-        return convertAccumulatorToString(accumulator, base);
+        return convertAccumulatorToString(accumulator);
     }
 
     private void addToAccumulator(String addend, int[] accumulator, int base) {
@@ -20,20 +20,21 @@ public class MultiBaseStringCalculator {
         }
     }
 
-    private String convertAccumulatorToString(int[] accumulator, int base) {
+    private String convertAccumulatorToString(int[] accumulator) {
         String[] accumulatorAsStringArray = Arrays.stream(accumulator)
-                .mapToObj(n -> convertIntegerToString(n, base))
+                .mapToObj(this::convertIntegerToString)
                 .toArray(String[]::new);
         String accumulatorAsString = String.join("", accumulatorAsStringArray);
         return accumulatorAsString.replaceAll("^0", "");
     }
 
-    private String convertIntegerToString(int n, int base) {
+    private String convertIntegerToString(int n) {
         if (n < 10) {
             return String.valueOf(n);
         }
 
-        return "A";
+        int asciiCode = n - 10 + 65;
+        return String.valueOf((char) asciiCode);
     }
 }
 

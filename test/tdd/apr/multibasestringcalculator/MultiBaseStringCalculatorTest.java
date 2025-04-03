@@ -67,4 +67,15 @@ public class MultiBaseStringCalculatorTest {
         String actualSum = multiBaseStringCalculator.add(base, addend, otherAddend);
         assertEquals(expectedSum, actualSum);
     }
+
+    @Test
+    public void shouldReturnF_forSixPlusNine_inBaseSixTeen() {
+        int base = 16;
+        String addend = "6";
+        String otherAddend = "9";
+
+        String expectedSum = "F";
+        String actualSum = multiBaseStringCalculator.add(base, addend, otherAddend);
+        assertEquals(expectedSum, actualSum);
+    }
 }
