@@ -11,13 +11,21 @@ public class MultiBaseStringCalculator {
     }
 
     private void addToAccumulator(String addend, int[] accumulator, int base) {
-        int[] addendAsArray = Arrays.stream(addend.split("")).mapToInt(Integer::parseInt).toArray();
+        int[] addendAsArray = Arrays.stream(addend.split(""))
+                .mapToInt(this::convertStringToInteger)
+                .toArray();
         for (int i = 0; i < addendAsArray.length; i++) {
             int offset = accumulator.length - addendAsArray.length;
             int accumulatorColumn = accumulator[i + offset] + addendAsArray[i];
             accumulator[i + offset - 1] += (accumulatorColumn >= base) ? 1 : 0;
             accumulator[i + offset] = accumulatorColumn % base;
         }
+    }
+
+    private int convertStringToInteger(String s) {
+        return (s.matches("^[A-Z]$"))
+                ? s.charAt(0) - 65 + 10
+                : Integer.parseInt(s);
     }
 
     private String convertAccumulatorToString(int[] accumulator) {
