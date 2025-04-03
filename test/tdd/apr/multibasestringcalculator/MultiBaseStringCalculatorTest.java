@@ -45,4 +45,15 @@ public class MultiBaseStringCalculatorTest {
         String actualSum = multiBaseStringCalculator.add(base, addend, otherAddend);
         assertEquals(expectedSum, actualSum);
     }
+
+    @Test
+    public void shouldReturnOneZeroZero_forOneZeroPlusOneZero_inBaseTwo() {
+        int base = 2;
+        String addend = "10";
+        String otherAddend = "10";
+
+        String expectedSum = "100";
+        String actualSum = multiBaseStringCalculator.add(base, addend, otherAddend);
+        assertEquals(expectedSum, actualSum);
+    }
 }
