@@ -44,4 +44,14 @@ class NameInverterTest {
         String actualInversion = nameInverter.invert(name);
         assertEquals(expectedInversion, actualInversion);
     }
+
+    @Test
+    public void shouldReturnInvertedNameWithoutHonorific_whenGivenNameWithHonorific() {
+        String name = "Mr. John Smith";
+        NameInverter nameInverter = new NameInverter();
+
+        String expectedInversion = "Smith, John";
+        String actualInversion = nameInverter.invert(name);
+        assertEquals(expectedInversion, actualInversion);
+    }
 }
