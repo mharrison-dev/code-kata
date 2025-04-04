@@ -66,4 +66,13 @@ class NameInverterTest {
         String actualInversion = nameInverter.invert(name);
         assertEquals(expectedInversion, actualInversion);
     }
+
+    @Test
+    public void shouldReturnInvertedName_whenGivenNameWithPostnominals() {
+        String name = "John Smith Sr. PhD.";
+
+        String expectedInversion = "Smith, John Sr. PhD.";
+        String actualInversion = nameInverter.invert(name);
+        assertEquals(expectedInversion, actualInversion);
+    }
 }
