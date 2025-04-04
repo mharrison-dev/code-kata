@@ -24,4 +24,14 @@ class NameInverterTest {
         String actualInversion = nameInverter.invert(surname);
         assertEquals(expectedInversion, actualInversion);
     }
+
+    @Test
+    public void shouldReturnInvertedName_whenGivenForenameAndSurname() {
+        String name = "John Smith";
+        NameInverter nameInverter = new NameInverter();
+
+        String expectedInversion = "Smith, John";
+        String actualInversion = nameInverter.invert(name);
+        assertEquals(expectedInversion, actualInversion);
+    }
 }
