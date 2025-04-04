@@ -32,6 +32,10 @@ public class NameInverter {
             return nameComponents[0];
         }
 
+        if (isMissingForenameOrSurname(nameComponents)) {
+            return String.join(" ", nameComponents);
+        }
+
         StringBuilder invertedNameBuilder = new StringBuilder();
         invertedNameBuilder
                 .append(nameComponents[SURNAME])
@@ -44,5 +48,9 @@ public class NameInverter {
                         .append(nameComponents[postnominal]));
 
         return invertedNameBuilder.toString();
+    }
+
+    private static boolean isMissingForenameOrSurname(String[] nameComponents) {
+        return nameComponents[0].contains(".") || nameComponents[1].contains(".");
     }
 }
