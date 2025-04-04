@@ -34,4 +34,14 @@ class NameInverterTest {
         String actualInversion = nameInverter.invert(name);
         assertEquals(expectedInversion, actualInversion);
     }
+
+    @Test
+    public void shouldReturnInvertedName_whenGivenForenameAndSurnameHasExtraWhitespaceBetweenThem() {
+        String name = "John  Smith";
+        NameInverter nameInverter = new NameInverter();
+
+        String expectedInversion = "Smith, John";
+        String actualInversion = nameInverter.invert(name);
+        assertEquals(expectedInversion, actualInversion);
+    }
 }
