@@ -28,12 +28,12 @@ public class NameInverter {
     }
 
     private static String buildInvertedName(String[] nameComponents) {
-        if (nameComponents.length == 1) {
+        if (isMissingForenameOrSurname(nameComponents)) {
             return nameComponents[0];
         }
 
-        if (isMissingForenameOrSurname(nameComponents)) {
-            return String.join(" ", nameComponents);
+        if (isMissingForenameOrSurnameAndHasPostnominal(nameComponents)) {
+            return String.join(SPACE, nameComponents);
         }
 
         StringBuilder invertedNameBuilder = new StringBuilder();
@@ -51,6 +51,10 @@ public class NameInverter {
     }
 
     private static boolean isMissingForenameOrSurname(String[] nameComponents) {
+        return nameComponents.length == 1;
+    }
+
+    private static boolean isMissingForenameOrSurnameAndHasPostnominal(String[] nameComponents) {
         return nameComponents[0].contains(".") || nameComponents[1].contains(".");
     }
 }
