@@ -10,6 +10,13 @@ public class MultiBaseStringCalculator {
         return convertAccumulatorToString(accumulator);
     }
 
+    public String subtract(int base, String minuend, String subtrahend) {
+        int[] accumulator = new int[Math.max(minuend.length(), subtrahend.length()) + 1];
+        addToAccumulator(minuend, accumulator, base);
+        subtractFromAccumulator(subtrahend, accumulator, base);
+        return convertAccumulatorToString(accumulator);
+    }
+
     private void addToAccumulator(String addend, int[] accumulator, int base) {
         int[] addendAsArray = Arrays.stream(addend.split(""))
                 .mapToInt(this::convertStringToInteger)
@@ -19,6 +26,18 @@ public class MultiBaseStringCalculator {
             int accumulatorColumn = accumulator[i + offset] + addendAsArray[i];
             accumulator[i + offset - 1] += (accumulatorColumn >= base) ? 1 : 0;
             accumulator[i + offset] = accumulatorColumn % base;
+        }
+    }
+
+    private void subtractFromAccumulator(String subtrahend, int[] accumulator, int base) {
+        int[] subtrahendAsArray = Arrays.stream(subtrahend.split(""))
+                .mapToInt(this::convertStringToInteger)
+                .toArray();
+        for (int i = 0; i < subtrahendAsArray.length; i++) {
+            int offset = accumulator.length - subtrahendAsArray.length;
+            int accumulatorColumn = accumulator[i + offset] - subtrahendAsArray[i];
+            accumulator[i + offset - 1] -= (accumulatorColumn < 0) ? 1 : 0;
+            accumulator[i + offset] = Math.max(0, accumulatorColumn);
         }
     }
 
