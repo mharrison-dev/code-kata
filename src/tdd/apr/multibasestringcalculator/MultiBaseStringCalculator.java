@@ -13,14 +13,12 @@ public class MultiBaseStringCalculator {
     public String subtract(int base, String minuend, String subtrahend) {
         int[] accumulator = new int[Math.max(minuend.length(), subtrahend.length()) + 1];
         addToAccumulator(minuend, accumulator, base);
-        subtractFromAccumulator(subtrahend, accumulator, base);
+        subtractFromAccumulator(subtrahend, accumulator);
         return convertAccumulatorToString(accumulator);
     }
 
     private void addToAccumulator(String addend, int[] accumulator, int base) {
-        int[] addendAsArray = Arrays.stream(addend.split(""))
-                .mapToInt(this::convertStringToInteger)
-                .toArray();
+        int[] addendAsArray = convertStringToArray(addend);
         for (int i = 0; i < addendAsArray.length; i++) {
             int offset = accumulator.length - addendAsArray.length;
             int accumulatorColumn = accumulator[i + offset] + addendAsArray[i];
@@ -29,16 +27,20 @@ public class MultiBaseStringCalculator {
         }
     }
 
-    private void subtractFromAccumulator(String subtrahend, int[] accumulator, int base) {
-        int[] subtrahendAsArray = Arrays.stream(subtrahend.split(""))
-                .mapToInt(this::convertStringToInteger)
-                .toArray();
+    private void subtractFromAccumulator(String subtrahend, int[] accumulator) {
+        int[] subtrahendAsArray = convertStringToArray(subtrahend);
         for (int i = 0; i < subtrahendAsArray.length; i++) {
             int offset = accumulator.length - subtrahendAsArray.length;
             int accumulatorColumn = accumulator[i + offset] - subtrahendAsArray[i];
             accumulator[i + offset - 1] -= (accumulatorColumn < 0) ? 1 : 0;
             accumulator[i + offset] = Math.max(0, accumulatorColumn);
         }
+    }
+
+    private int[] convertStringToArray(String addend) {
+        return Arrays.stream(addend.split(""))
+                .mapToInt(this::convertStringToInteger)
+                .toArray();
     }
 
     private int convertStringToInteger(String s) {
