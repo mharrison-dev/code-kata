@@ -25,18 +25,12 @@ public class Anagrams {
     private static boolean areAnagrams(String word, String referenceWord) {
         int[] letterVectorOfWord = getLetterVector(word);
         int[] letterVectorOfReferenceWord = getLetterVector(referenceWord);
-        for (int i = 0; i < NUMBER_OF_LETTERS; i++) {
-            if (letterVectorOfWord[i] != letterVectorOfReferenceWord[i]) {
-                return false;
-            }
-        }
-
-        return true;
+        return Arrays.equals(letterVectorOfWord, letterVectorOfReferenceWord);
     }
 
     private static int[] getLetterVector(String word) {
         int[] letterVector = new int[NUMBER_OF_LETTERS];
-        word.chars().forEach(letter -> letterVector[letter - ASCII_OF_LOWERCASE_A]++);
+        word.toLowerCase().chars().forEach(letter -> letterVector[letter - ASCII_OF_LOWERCASE_A]++);
         return letterVector;
     }
 }

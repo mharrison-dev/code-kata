@@ -80,4 +80,15 @@ class AnagramsTest {
         String actualAnagrams = anagrams.findAnagrams(words);
         assertEquals(expectedAnagrams, actualAnagrams);
     }
+
+    @Test
+    public void shouldReturnStringWithTwoWords_whenGivenWordListWithTwoAnagramsWithOneUppercasedWord() {
+        String words = """
+                Aab
+                baa""";
+
+        String expectedAnagrams = "Aab baa";
+        String actualAnagrams = anagrams.findAnagrams(words);
+        assertEquals(expectedAnagrams, actualAnagrams);
+    }
 }
