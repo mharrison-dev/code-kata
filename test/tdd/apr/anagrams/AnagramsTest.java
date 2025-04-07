@@ -1,16 +1,20 @@
 package tdd.apr.anagrams;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.util.Arrays;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class AnagramsTest {
+    private Anagrams anagrams = null;
+
+    @BeforeEach
+    public void setUp() {
+        anagrams = new Anagrams();
+    }
+
     @Test
     public void shouldReturnEmptyString_whenGivenEmptyWordList() {
-        Anagrams anagrams = new Anagrams();
         String words = "";
 
         String expectedAnagrams = "";
@@ -20,10 +24,21 @@ class AnagramsTest {
 
     @Test
     public void shouldReturnStringWithTwoWords_whenGivenWordListWithTwoAnagrams() {
-        Anagrams anagrams = new Anagrams();
         String words = """
                 ab
                 ba""";
+
+        String expectedAnagrams = "ab ba";
+        String actualAnagrams = anagrams.findAnagrams(words);
+        assertEquals(expectedAnagrams, actualAnagrams);
+    }
+
+    @Test
+    public void shouldReturnStringWithTwoWords_whenGivenWordListWithTwoAnagramsAndAnotherWord() {
+        String words = """
+                ab
+                ba
+                c""";
 
         String expectedAnagrams = "ab ba";
         String actualAnagrams = anagrams.findAnagrams(words);
