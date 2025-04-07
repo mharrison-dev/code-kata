@@ -21,6 +21,10 @@ public class Anagrams {
     }
 
     private static boolean areAnagrams(String word, String referenceWord) {
+        if (word.length() != referenceWord.length()) {
+            return false;
+        }
+
         HashSet<String> lettersOfReferenceWord = new HashSet<>(Arrays.stream(referenceWord.split("")).toList());
         List<String> lettersOfWord = Arrays.stream(word.split("")).toList();
         return lettersOfReferenceWord.containsAll(lettersOfWord);
