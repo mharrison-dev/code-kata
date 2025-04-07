@@ -2,10 +2,12 @@ package tdd.apr.anagrams;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
 
 public class Anagrams {
+    private static final int NUMBER_OF_LETTERS = 26;
+    private static final int ASCII_OF_LOWERCASE_A = 97;
+
     public String findAnagrams(String words) {
         List<String> anagramList = new ArrayList<>();
 
@@ -21,12 +23,20 @@ public class Anagrams {
     }
 
     private static boolean areAnagrams(String word, String referenceWord) {
-        if (word.length() != referenceWord.length()) {
-            return false;
+        int[] letterVectorOfWord = getLetterVector(word);
+        int[] letterVectorOfReferenceWord = getLetterVector(referenceWord);
+        for (int i = 0; i < NUMBER_OF_LETTERS; i++) {
+            if (letterVectorOfWord[i] != letterVectorOfReferenceWord[i]) {
+                return false;
+            }
         }
 
-        HashSet<String> lettersOfReferenceWord = new HashSet<>(Arrays.stream(referenceWord.split("")).toList());
-        List<String> lettersOfWord = Arrays.stream(word.split("")).toList();
-        return lettersOfReferenceWord.containsAll(lettersOfWord);
+        return true;
+    }
+
+    private static int[] getLetterVector(String word) {
+        int[] letterVector = new int[NUMBER_OF_LETTERS];
+        word.chars().forEach(letter -> letterVector[letter - ASCII_OF_LOWERCASE_A]++);
+        return letterVector;
     }
 }

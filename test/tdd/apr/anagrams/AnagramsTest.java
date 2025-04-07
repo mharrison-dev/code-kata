@@ -68,4 +68,16 @@ class AnagramsTest {
         String actualAnagrams = anagrams.findAnagrams(words);
         assertEquals(expectedAnagrams, actualAnagrams);
     }
+
+    @Test
+    public void shouldReturnStringWithTwoWords_whenGivenWordListWithTwoAnagramsAndAnotherWordThatHasSameLengthButDifferentConcentrationOfLetters() {
+        String words = """
+                aab
+                baa
+                bba""";
+
+        String expectedAnagrams = "aab baa";
+        String actualAnagrams = anagrams.findAnagrams(words);
+        assertEquals(expectedAnagrams, actualAnagrams);
+    }
 }
