@@ -91,4 +91,17 @@ class AnagramsTest {
         String actualAnagrams = anagrams.findAnagrams(words);
         assertEquals(expectedAnagrams, actualAnagrams);
     }
+
+    @Test
+    public void shouldReturnStringWithTwoSetsOfAnagrams_whenGivenWordListWithTwoSetsOfAnagrams() {
+        String words = """
+                Ab
+                ba
+                ca
+                ac""";
+
+        String expectedAnagrams = "Ab ba\nca ac";
+        String actualAnagrams = anagrams.findAnagrams(words);
+        assertEquals(expectedAnagrams, actualAnagrams);
+    }
 }

@@ -9,17 +9,39 @@ public class Anagrams {
     private static final int ASCII_OF_LOWERCASE_A = 97;
 
     public String findAnagrams(String words) {
-        List<String> anagramList = new ArrayList<>();
+        StringBuilder anagrams = new StringBuilder();
 
         List<String> wordList = Arrays.stream(words.split("\n")).toList();
+        while (!wordList.isEmpty()) {
+            List<String> anagramList = new ArrayList<>();
+            List<String> unusedWordList = new ArrayList<>();
+            divideWordListIntoAnagramsAndNonAnagrams(wordList, anagramList, unusedWordList);
+
+            if (anagramList.size() > 1) {
+                appendToAnagrams(anagrams, anagramList);
+            }
+
+            wordList = unusedWordList;
+        }
+
+        return anagrams.toString();
+    }
+
+    private static void appendToAnagrams(StringBuilder anagrams, List<String> anagramList) {
+        anagrams.append((anagrams.isEmpty())
+                ? String.join(" ", anagramList)
+                : "\n" + String.join(" ", anagramList));
+    }
+
+    private static void divideWordListIntoAnagramsAndNonAnagrams(List<String> wordList, List<String> anagramList, List<String> unusedWordList) {
         String referenceWord = wordList.getFirst();
         for (String word : wordList) {
             if (areAnagrams(word, referenceWord)) {
                 anagramList.add(word);
+            } else {
+                unusedWordList.add(word);
             }
         }
-
-        return String.join(" ", anagramList);
     }
 
     private static boolean areAnagrams(String word, String referenceWord) {
