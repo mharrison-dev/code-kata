@@ -1,24 +1,42 @@
 package tdd.apr.wordchain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class WordChain {
     private String[] dictionary;
 
     public String getChain(String firstWord, String lastWord) {
-        if (missingFromDictionary(firstWord) || missingFromDictionary(lastWord)) {
-            return "";
+        List<String> wordChain = getStartOfWordChain(firstWord);
+        List<String> eligibleWords = getInitialEligibleWords(firstWord);
+        while (!wordChain.isEmpty() && !wordChain.getLast().equals(lastWord)) {
+            String nextWord = getNextWord(wordChain.getLast(), eligibleWords);
+            if (nextWord == null) {
+                break;
+            } else {
+                wordChain.add(nextWord);
+                eligibleWords.remove(nextWord);
+            }
         }
 
-        String middleWord = getMiddleWord(firstWord);
-        if (middleWord == null) {
-            return "";
-        } else if (getHammingDistance(middleWord, lastWord) != 1) {
-            return "";
-        } else {
-            return firstWord + " > " + middleWord + " > " + lastWord;
-        }
+        return (wordChain.isEmpty() || wordChain.getLast().equals(lastWord))
+                ? String.join(" > ", wordChain)
+                : "";
     }
 
-    private boolean missingFromDictionary(String targetWord) {
+    private List<String> getStartOfWordChain(String firstWord) {
+        return (isMissingFromDictionary(firstWord))
+                ? new ArrayList<>()
+                : new ArrayList<>(List.of(firstWord));
+    }
+
+    private List<String> getInitialEligibleWords(String firstWord) {
+        List<String> eligibleLinks = new ArrayList<>(List.of(dictionary));
+        eligibleLinks.remove(firstWord);
+        return eligibleLinks;
+    }
+
+    private boolean isMissingFromDictionary(String targetWord) {
         for (String word : dictionary) {
             if (word.equals(targetWord)) {
                 return false;
@@ -28,17 +46,17 @@ public class WordChain {
         return true;
     }
 
-    private String getMiddleWord(String firstWord) {
-        String middleWord = null;
-        for (String word : dictionary) {
-            int hammingDistance = getHammingDistance(firstWord, word);
+    private String getNextWord(String previousWord, List<String> eligibleLinks) {
+        String nextWord = null;
+        for (String word : eligibleLinks) {
+            int hammingDistance = getHammingDistance(previousWord, word);
             if (hammingDistance == 1) {
-                middleWord = word;
+                nextWord = word;
                 break;
             }
         }
 
-        return middleWord;
+        return nextWord;
     }
 
     private static int getHammingDistance(String word, String otherWord) {

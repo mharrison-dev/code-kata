@@ -77,4 +77,17 @@ class WordChainTest {
         String actualWordChain = wordChain.getChain(firstWord, lastWord);
         assertEquals(expectedWordChain, actualWordChain);
     }
+
+    @Test
+    void shouldReturnStringWithFourWords_whenFirstWordAndLastWordArConnectedByTwoWords() {
+        String firstWord = "tip";
+        String lastWord = "cup";
+        String dictionary = "tip, tap, cap, cup";
+
+        wordChain.setDictionary(dictionary);
+
+        String expectedWordChain = "tip > tap > cap > cup";
+        String actualWordChain = wordChain.getChain(firstWord, lastWord);
+        assertEquals(expectedWordChain, actualWordChain);
+    }
 }
