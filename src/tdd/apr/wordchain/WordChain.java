@@ -4,7 +4,7 @@ public class WordChain {
     private String[] dictionary;
 
     public String getChain(String firstWord, String lastWord) {
-        if (!foundInDictionary(lastWord)) {
+        if (!foundInDictionary(firstWord) || !foundInDictionary(lastWord)) {
             return "";
         }
 

@@ -51,4 +51,17 @@ class WordChainTest {
         String actualWordChain = wordChain.getChain(firstWord, lastWord);
         assertEquals(expectedWordChain, actualWordChain);
     }
+
+    @Test
+    void shouldReturnEmptyString_whenFirstWordIsNotInDictionary() {
+        String firstWord = "tap";
+        String lastWord = "cup";
+        String dictionary = "cap, cup";
+
+        wordChain.setDictionary(dictionary);
+
+        String expectedWordChain = "";
+        String actualWordChain = wordChain.getChain(firstWord, lastWord);
+        assertEquals(expectedWordChain, actualWordChain);
+    }
 }
