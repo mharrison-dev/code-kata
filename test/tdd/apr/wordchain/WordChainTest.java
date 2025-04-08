@@ -64,4 +64,17 @@ class WordChainTest {
         String actualWordChain = wordChain.getChain(firstWord, lastWord);
         assertEquals(expectedWordChain, actualWordChain);
     }
+
+    @Test
+    void shouldReturnEmptyString_whenEachWordInChainIsNotOneHammingDistanceFromItsNeighbours() {
+        String firstWord = "tap";
+        String lastWord = "dog";
+        String dictionary = "tap, cap, dog";
+
+        wordChain.setDictionary(dictionary);
+
+        String expectedWordChain = "";
+        String actualWordChain = wordChain.getChain(firstWord, lastWord);
+        assertEquals(expectedWordChain, actualWordChain);
+    }
 }

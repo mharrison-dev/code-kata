@@ -4,26 +4,28 @@ public class WordChain {
     private String[] dictionary;
 
     public String getChain(String firstWord, String lastWord) {
-        if (!foundInDictionary(firstWord) || !foundInDictionary(lastWord)) {
+        if (missingFromDictionary(firstWord) || missingFromDictionary(lastWord)) {
             return "";
         }
 
         String middleWord = getMiddleWord(firstWord);
         if (middleWord == null) {
             return "";
+        } else if (getHammingDistance(middleWord, lastWord) != 1) {
+            return "";
         } else {
             return firstWord + " > " + middleWord + " > " + lastWord;
         }
     }
 
-    private boolean foundInDictionary(String targetWord) {
+    private boolean missingFromDictionary(String targetWord) {
         for (String word : dictionary) {
             if (word.equals(targetWord)) {
-                return true;
+                return false;
             }
         }
 
-        return false;
+        return true;
     }
 
     private String getMiddleWord(String firstWord) {
