@@ -24,4 +24,13 @@ class CamelCaseDeconstructionTest {
         String actualString = camelCaseDeconstruction.deconstruct(lowercasedString);
         assertEquals(expectedString, actualString);
     }
+
+    @Test
+    void shouldReturnStringWithTwoWordsThatAreSeparatedByOneSpace_whenGivenCamelCasedString() {
+        String camelCasedString = "saltedButter";
+        CamelCaseDeconstruction camelCaseDeconstruction = new CamelCaseDeconstruction();
+
+        String actualString = camelCaseDeconstruction.deconstruct(camelCasedString);
+        assertTrue(actualString.matches("^\\w+ \\w+$"), "Expected '" + actualString + "' to have a space between each word");
+    }
 }
