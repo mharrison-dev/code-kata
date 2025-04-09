@@ -16,7 +16,7 @@ public class CamelCaseDeconstruction {
             int[] subStringIndices = subStringIndicesList.get(i);
             int beginIndex = subStringIndices[0];
             int endIndex = subStringIndices[1];
-            subStrings[i] = string.substring(beginIndex, endIndex);
+            subStrings[i] = string.substring(beginIndex, endIndex).toLowerCase();
         }
         return subStrings;
     }
