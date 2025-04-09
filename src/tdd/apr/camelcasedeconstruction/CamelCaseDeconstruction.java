@@ -5,22 +5,44 @@ import java.util.List;
 
 public class CamelCaseDeconstruction {
     public String deconstruct(String string) {
-        int indexOfUppercaseLetter = getIndexOfUppercaseLetter(string);
-        return (indexOfUppercaseLetter > -1)
-                ? String.join(" ", string.substring(0, indexOfUppercaseLetter), string.substring(indexOfUppercaseLetter))
-                : string;
+        List<int[]> subStringIndicesList = getSubstringIndicesList(string);
+        String[] subStrings = getSubStrings(string, subStringIndicesList);
+        return String.join(" ", subStrings);
     }
 
-    private static int getIndexOfUppercaseLetter(String string) {
-        int indexOfUppercaseLetter = -1;
+    private static String[] getSubStrings(String string, List<int[]> subStringIndicesList) {
+        String[] subStrings = new String[subStringIndicesList.size()];
+        for (int i = i = 0; i < subStrings.length; i++) {
+            int[] subStringIndices = subStringIndicesList.get(i);
+            int beginIndex = subStringIndices[0];
+            int endIndex = subStringIndices[1];
+            subStrings[i] = string.substring(beginIndex, endIndex);
+        }
+        return subStrings;
+    }
+
+    private static List<int[]> getSubstringIndicesList(String string) {
+        List<int[]> subStringIndicesList = new ArrayList<>();
+        int beginIndex = 0;
+        List<Integer> upperCaseLetterIndexList = getUppercaseLetterIndexList(string);
+        for (int endIndex : upperCaseLetterIndexList) {
+            int[] subStringIndices = {beginIndex, endIndex};
+            subStringIndicesList.add(subStringIndices);
+            beginIndex = endIndex;
+        }
+        int[] lastSubStringIndices = {beginIndex, string.length()};
+        subStringIndicesList.add(lastSubStringIndices);
+        return subStringIndicesList;
+    }
+
+    private static List<Integer> getUppercaseLetterIndexList(String string) {
+        List<Integer> upperCaseLetterIndexList = new ArrayList<>();
         for (int i = 0; i < string.length(); i++) {
             char ithCharacter = string.charAt(i);
             if (Character.isUpperCase(ithCharacter)) {
-                indexOfUppercaseLetter = i;
-                break;
+                upperCaseLetterIndexList.add(i);
             }
         }
-
-        return indexOfUppercaseLetter;
+        return upperCaseLetterIndexList;
     }
 }
