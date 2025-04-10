@@ -48,4 +48,16 @@ class StackTest {
         Optional<String> actualOptional = stack.pop();
         assertEquals(expectedOptional, actualOptional);
     }
+
+    @Test
+    void shouldReturnItem_afterPopIsCalled_afterItemHasBeenPushed() {
+        String item = "";
+        Stack<String> stack = new Stack<>();
+
+        stack.push(item);
+
+        Optional<String> expectedOptional = Optional.of(item);
+        Optional<String> actualOptional = stack.pop();
+        assertEquals(expectedOptional, actualOptional);
+    }
 }

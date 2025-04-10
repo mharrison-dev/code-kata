@@ -3,6 +3,7 @@ package tdd.apr.stack;
 import java.util.Optional;
 
 public class Stack<T> {
+    private T item = null;
     private int size = 0;
 
     public int size() {
@@ -10,10 +11,13 @@ public class Stack<T> {
     }
 
     public void push(T item) {
+        this.item = item;
         size++;
     }
 
     public Optional<T> pop() {
-        return Optional.empty();
+        return (item == null)
+                ? Optional.empty()
+                : Optional.of(item);
     }
 }
