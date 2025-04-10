@@ -1,23 +1,25 @@
 package tdd.apr.stack;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class Stack<T> {
-    private T item = null;
     private int size = 0;
+    private List<T> items = new ArrayList<>();
 
     public int size() {
         return size;
     }
 
     public void push(T item) {
-        this.item = item;
+        items.add(item);
         size++;
     }
 
     public Optional<T> pop() {
-        return (item == null)
+        return (items.isEmpty())
                 ? Optional.empty()
-                : Optional.of(item);
+                : Optional.of(items.removeLast());
     }
 }
