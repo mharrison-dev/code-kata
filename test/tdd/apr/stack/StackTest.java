@@ -13,4 +13,16 @@ class StackTest {
         int actualSize = stack.size();
         assertEquals(expectedSize, actualSize);
     }
+
+    @Test
+    void shouldReturnOne_whenSizeIsCalled_afterItemHasBeenPushed() {
+        Integer item = 1;
+        Stack stack = new Stack();
+
+        stack.push(item);
+
+        int expectedSize = 1;
+        int actualSize = stack.size();
+        assertEquals(expectedSize, actualSize);
+    }
 }
