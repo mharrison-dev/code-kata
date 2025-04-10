@@ -75,4 +75,17 @@ class StackTest {
         Optional<String> actualOptional = stack.pop();
         assertEquals(expectedOptional, actualOptional);
     }
+
+    @Test
+    void shouldReturnZero_afterSizeIsCalled_whenStackIsEmptyAfterPop() {
+        String firstItem = "f";
+        Stack<String> stack = new Stack<>();
+
+        stack.push(firstItem);
+        stack.pop();
+
+        int expectedSize = 0;
+        int actualSize = stack.size();
+        assertEquals(expectedSize, actualSize);
+    }
 }
