@@ -31,4 +31,13 @@ class TreeTest {
         int actualDepth = tree.depth();
         assertEquals(expectedDepth, actualDepth);
     }
+
+    @Test
+    void shouldGetZero_forHeightOfRoot_whenTreeIsEmpty() {
+        Tree tree = new Tree();
+
+        int expectedHeight = 0;
+        int actualHeight = tree.height();
+        assertEquals(expectedHeight, actualHeight);
+    }
 }

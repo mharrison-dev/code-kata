@@ -14,4 +14,8 @@ public class Tree {
     public int depth() {
         return 0;
     }
+
+    public int height() {
+        return 0;
+    }
 }
