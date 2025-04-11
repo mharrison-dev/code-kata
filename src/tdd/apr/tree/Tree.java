@@ -3,6 +3,8 @@ package tdd.apr.tree;
 import java.util.Optional;
 
 public class Tree<T> {
+    private T value = null;
+
     public Tree() {
 
     }
@@ -20,6 +22,12 @@ public class Tree<T> {
     }
 
     public Optional<T> getValue() {
-        return Optional.empty();
+        return (value == null)
+                ? Optional.empty()
+                : Optional.of(value);
+    }
+
+    public void setValue(T value) {
+        this.value = value;
     }
 }

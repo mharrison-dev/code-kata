@@ -56,4 +56,15 @@ class TreeTest {
         Optional<String> actualValue = tree.getValue();
         assertEquals(expectedValue, actualValue);
     }
+
+    @Test
+    void shouldGetValue_whenValueHasBeenSet() {
+        String value = "foo";
+
+        tree.setValue(value);
+
+        Optional<String> expectedValue = Optional.of(value);
+        Optional<String> actualValue = tree.getValue();
+        assertEquals(expectedValue, actualValue);
+    }
 }
