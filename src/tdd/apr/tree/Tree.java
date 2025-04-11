@@ -20,14 +20,18 @@ public class Tree<T> {
     }
 
     public int height() {
-        int height = 0;
-        Tree<T> currentNode = this;
-        while (!currentNode.children.isEmpty()) {
-            height++;
-            currentNode = currentNode.children.getFirst();
+        if (children.isEmpty()) {
+            return 0;
         }
 
-        return height;
+        int largestChildHeight = 0;
+        for (Tree<T> child : children) {
+            if (child.height() > largestChildHeight) {
+                largestChildHeight = child.height();
+            }
+        }
+
+        return largestChildHeight + 1;
     }
 
     public Optional<T> getValue() {
