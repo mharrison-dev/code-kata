@@ -116,4 +116,13 @@ class TreeTest {
 
         return children.toArray(new Tree[0]);
     }
+
+    @Test
+    void shouldGetOne_forHeightOfRoot_whenRootOnlyHasLeafNodes() {
+        tree.addChild();
+
+        int expectedHeight = 1;
+        int actualHeight = tree.height();
+        assertEquals(expectedHeight, actualHeight);
+    }
 }

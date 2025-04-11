@@ -9,10 +9,6 @@ public class Tree<T> {
     private T value = null;
     private final List<Tree<T>> children = new ArrayList<>();
 
-    public Tree() {
-
-    }
-
     public Optional<Tree<T>[]> children() {
         return (children.isEmpty())
                 ? Optional.empty()
@@ -24,7 +20,7 @@ public class Tree<T> {
     }
 
     public int height() {
-        return 0;
+        return children.size();
     }
 
     public Optional<T> getValue() {
