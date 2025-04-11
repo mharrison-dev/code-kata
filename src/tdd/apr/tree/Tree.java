@@ -18,4 +18,8 @@ public class Tree<T> {
     public int height() {
         return 0;
     }
+
+    public Optional<T> getValue() {
+        return Optional.empty();
+    }
 }

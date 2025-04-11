@@ -8,11 +8,11 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 
 class TreeTest {
-    private Tree tree = null;
+    private Tree<String> tree = null;
 
     @BeforeEach
     void setUp() {
-        tree = new Tree();
+        tree = new Tree<String>();
     }
 
     @Test
@@ -24,8 +24,8 @@ class TreeTest {
 
     @Test
     void shouldGetEmptyOptional_forChildren_whenTreeIsEmpty() {
-        Optional<Tree[]> expectedChildren = Optional.empty();
-        Optional<Tree[]> actualChildren = tree.children();
+        Optional<Tree<String>[]> expectedChildren = Optional.empty();
+        Optional<Tree<String>[]> actualChildren = tree.children();
         assertEquals(expectedChildren, actualChildren);
     }
 
@@ -48,5 +48,12 @@ class TreeTest {
         assertDoesNotThrow(() -> {
             tree = new Tree<String>();
         }, "Instantiation of a tree for strings should not throw an exception");
+    }
+
+    @Test
+    void shouldGetEmptyOptional_forValue_whenValueHasNotBeenSet() {
+        Optional<String> expectedValue = Optional.empty();
+        Optional<String> actualValue = tree.getValue();
+        assertEquals(expectedValue, actualValue);
     }
 }
