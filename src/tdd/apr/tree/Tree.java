@@ -7,7 +7,16 @@ import java.util.Optional;
 
 public class Tree<T> {
     private T value = null;
+    private final int depth;
     private final List<Tree<T>> children = new ArrayList<>();
+
+    public Tree() {
+        depth = 0;
+    }
+
+    private Tree(int depth) {
+        this.depth = depth;
+    }
 
     public Optional<Tree<T>[]> children() {
         return (children.isEmpty())
@@ -16,7 +25,7 @@ public class Tree<T> {
     }
 
     public int depth() {
-        return 0;
+        return depth;
     }
 
     public int height() {
@@ -45,12 +54,12 @@ public class Tree<T> {
     }
 
     public void addChild() {
-        Tree<T> child = new Tree<>();
+        Tree<T> child = new Tree<>(depth + 1);
         children.add(child);
     }
 
     public void addChild(T valueOfChild) {
-        Tree<T> child = new Tree<>();
+        Tree<T> child = new Tree<>(depth + 1);
         child.setValue(valueOfChild);
         children.add(child);
     }

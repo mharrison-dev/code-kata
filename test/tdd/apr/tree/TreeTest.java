@@ -150,4 +150,15 @@ class TreeTest {
         int actualHeight = tree.height();
         assertEquals(expectedHeight, actualHeight);
     }
+
+    @Test
+    void shouldGetOne_forDepthOfNode_whenItIsChildOfRoot() {
+        tree.addChild();
+        Tree<String>[] children = tree.children().get();
+        Tree<String> child = children[0];
+
+        int expectedDepth = 1;
+        int actualDepth = child.depth();
+        assertEquals(expectedDepth, actualDepth);
+    }
 }
