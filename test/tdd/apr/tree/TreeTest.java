@@ -125,4 +125,16 @@ class TreeTest {
         int actualHeight = tree.height();
         assertEquals(expectedHeight, actualHeight);
     }
+
+    @Test
+    void shouldGetTwo_forHeightOfRoot_whenRootHasAtLeastOneChildWithLeafNode() {
+        tree.addChild();
+        Tree<String>[] children = tree.children().get();
+        Tree<String> child = children[0];
+        child.addChild();
+
+        int expectedHeight = 2;
+        int actualHeight = tree.height();
+        assertEquals(expectedHeight, actualHeight);
+    }
 }
