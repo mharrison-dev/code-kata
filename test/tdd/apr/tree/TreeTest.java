@@ -3,6 +3,8 @@ package tdd.apr.tree;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -83,17 +85,35 @@ class TreeTest {
     void shouldAddChild_withoutItsValue() {
         tree.addChild();
 
-        Tree<String>[] expectedChildren = getOptionalOfChild(null);
+        Tree<String>[] expectedChildren = getOptionalOfChild(new String[]{null});
         Tree<String>[] actualChildren = tree.children().get();
         assertArrayEquals(expectedChildren, actualChildren);
     }
 
-    private Tree<String>[] getOptionalOfChild(String valueOfChild) {
-        Tree<String> child = new Tree<>();
-        if (valueOfChild != null) {
-            child.setValue(valueOfChild);
+    @Test
+    void shouldAddTwoChildren() {
+        String valueOfChild = "foo1";
+        String otherValueOfChild = "foo2";
+
+        tree.addChild(valueOfChild);
+        tree.addChild(otherValueOfChild);
+
+        Tree<String>[] expectedChildren = getOptionalOfChild(valueOfChild, otherValueOfChild);
+        Tree<String>[] actualChildren = tree.children().get();
+        assertArrayEquals(expectedChildren, actualChildren);
+    }
+
+    private Tree<String>[] getOptionalOfChild(String... valuesOfChildren) {
+        List<Tree<String>> children = new ArrayList<>();
+        for (String valueOfChild : valuesOfChildren) {
+            Tree<String> child = new Tree<>();
+            if (valueOfChild != null) {
+                child.setValue(valueOfChild);
+            }
+
+            children.add(child);
         }
 
-        return new Tree[]{child};
+        return children.toArray(new Tree[0]);
     }
 }

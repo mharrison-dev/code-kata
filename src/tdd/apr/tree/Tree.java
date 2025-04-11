@@ -1,20 +1,22 @@
 package tdd.apr.tree;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
 public class Tree<T> {
     private T value = null;
-    private Tree<T> child = null;
+    private final List<Tree<T>> children = new ArrayList<>();
 
     public Tree() {
 
     }
 
     public Optional<Tree<T>[]> children() {
-        return (child == null)
+        return (children.isEmpty())
                 ? Optional.empty()
-                : Optional.of(new Tree[]{child});
+                : Optional.of(children.toArray(new Tree[0]));
     }
 
     public int depth() {
@@ -36,23 +38,25 @@ public class Tree<T> {
     }
 
     public void addChild() {
-        child = new Tree<>();
+        Tree<T> child = new Tree<>();
+        children.add(child);
     }
 
     public void addChild(T valueOfChild) {
-        child = new Tree<>();
+        Tree<T> child = new Tree<>();
         child.setValue(valueOfChild);
+        children.add(child);
     }
 
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Tree<?> tree = (Tree<?>) o;
-        return Objects.equals(value, tree.value) && Objects.equals(child, tree.child);
+        return Objects.equals(value, tree.value) && Objects.equals(children, tree.children);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(value, child);
+        return Objects.hash(value, children);
     }
 }
