@@ -2,12 +2,12 @@ package tdd.apr.tree;
 
 import java.util.Optional;
 
-public class Tree {
+public class Tree<T> {
     public Tree() {
 
     }
 
-    public Optional<Tree[]> children() {
+    public Optional<Tree<T>[]> children() {
         return Optional.empty();
     }
 
