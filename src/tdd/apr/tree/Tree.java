@@ -35,6 +35,10 @@ public class Tree<T> {
         this.value = value;
     }
 
+    public void addChild() {
+        child = new Tree<>();
+    }
+
     public void addChild(T valueOfChild) {
         child = new Tree<>();
         child.setValue(valueOfChild);

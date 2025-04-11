@@ -79,9 +79,20 @@ class TreeTest {
         assertArrayEquals(expectedChildren, actualChildren);
     }
 
+    @Test
+    void shouldAddChild_withoutItsValue() {
+        tree.addChild();
+
+        Tree<String>[] expectedChildren = getOptionalOfChild(null);
+        Tree<String>[] actualChildren = tree.children().get();
+        assertArrayEquals(expectedChildren, actualChildren);
+    }
+
     private Tree<String>[] getOptionalOfChild(String valueOfChild) {
         Tree<String> child = new Tree<>();
-        child.setValue(valueOfChild);
+        if (valueOfChild != null) {
+            child.setValue(valueOfChild);
+        }
 
         return new Tree[]{child};
     }
