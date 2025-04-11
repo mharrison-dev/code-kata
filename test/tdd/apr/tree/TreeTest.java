@@ -22,4 +22,13 @@ class TreeTest {
         Optional<Tree[]> actualChildren = tree.children();
         assertEquals(expectedChildren, actualChildren);
     }
+
+    @Test
+    void shouldGetZero_forDepthOfRoot_whenTreeIsEmpty() {
+        Tree tree = new Tree();
+
+        int expectedDepth = 0;
+        int actualDepth = tree.depth();
+        assertEquals(expectedDepth, actualDepth);
+    }
 }

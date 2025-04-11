@@ -10,4 +10,8 @@ public class Tree {
     public Optional<Tree[]> children() {
         return Optional.empty();
     }
+
+    public int depth() {
+        return 0;
+    }
 }
