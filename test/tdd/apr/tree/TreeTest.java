@@ -14,7 +14,7 @@ class TreeTest {
 
     @BeforeEach
     void setUp() {
-        tree = new Tree<String>();
+        tree = new Tree<>();
     }
 
     @Test
@@ -26,8 +26,8 @@ class TreeTest {
 
     @Test
     void shouldGetEmptyOptional_forChildren_whenTreeIsEmpty() {
-        Optional<Tree<String>[]> expectedChildren = Optional.empty();
-        Optional<Tree<String>[]> actualChildren = tree.children();
+        Optional<List<Tree<String>>> expectedChildren = Optional.empty();
+        Optional<List<Tree<String>>> actualChildren = tree.children();
         assertEquals(expectedChildren, actualChildren);
     }
 
@@ -76,18 +76,18 @@ class TreeTest {
 
         tree.addChild(valueOfChild);
 
-        Tree<String>[] expectedChildren = getOptionalOfChild(valueOfChild);
-        Tree<String>[] actualChildren = tree.children().get();
-        assertArrayEquals(expectedChildren, actualChildren);
+        List<Tree<String>> expectedChildren = getOptionalOfChild(valueOfChild);
+        List<Tree<String>> actualChildren = tree.children().get();
+        assertEquals(expectedChildren, actualChildren);
     }
 
     @Test
     void shouldAddChild_withoutItsValue() {
         tree.addChild();
 
-        Tree<String>[] expectedChildren = getOptionalOfChild(new String[]{null});
-        Tree<String>[] actualChildren = tree.children().get();
-        assertArrayEquals(expectedChildren, actualChildren);
+        List<Tree<String>> expectedChildren = getOptionalOfChild(new String[]{null});
+        List<Tree<String>> actualChildren = tree.children().get();
+        assertEquals(expectedChildren, actualChildren);
     }
 
     @Test
@@ -98,12 +98,12 @@ class TreeTest {
         tree.addChild(valueOfChild);
         tree.addChild(otherValueOfChild);
 
-        Tree<String>[] expectedChildren = getOptionalOfChild(valueOfChild, otherValueOfChild);
-        Tree<String>[] actualChildren = tree.children().get();
-        assertArrayEquals(expectedChildren, actualChildren);
+        List<Tree<String>> expectedChildren = getOptionalOfChild(valueOfChild, otherValueOfChild);
+        List<Tree<String>> actualChildren = tree.children().get();
+        assertEquals(expectedChildren, actualChildren);
     }
 
-    private Tree<String>[] getOptionalOfChild(String... valuesOfChildren) {
+    private List<Tree<String>> getOptionalOfChild(String... valuesOfChildren) {
         List<Tree<String>> children = new ArrayList<>();
         for (String valueOfChild : valuesOfChildren) {
             Tree<String> child = new Tree<>();
@@ -114,7 +114,7 @@ class TreeTest {
             children.add(child);
         }
 
-        return children.toArray(new Tree[0]);
+        return children;
     }
 
     @Test
@@ -129,8 +129,8 @@ class TreeTest {
     @Test
     void shouldGetTwo_forHeightOfRoot_whenRootHasAtLeastOneChildWithLeafNode() {
         tree.addChild();
-        Tree<String>[] children = tree.children().get();
-        Tree<String> child = children[0];
+        List<Tree<String>> children = tree.children().get();
+        Tree<String> child = children.getFirst();
         child.addChild();
 
         int expectedHeight = 2;
@@ -142,8 +142,8 @@ class TreeTest {
     void shouldGetTwo_forHeightOfRoot_whenRootHasAtLeastOneChildOnOffBranchWithLeafNodes() {
         tree.addChild();
         tree.addChild();
-        Tree<String>[] children = tree.children().get();
-        Tree<String> child = children[1];
+        List<Tree<String>> children = tree.children().get();
+        Tree<String> child = children.getLast();
         child.addChild();
 
         int expectedHeight = 2;
@@ -154,8 +154,8 @@ class TreeTest {
     @Test
     void shouldGetOne_forDepthOfNode_whenItIsChildOfRoot() {
         tree.addChild();
-        Tree<String>[] children = tree.children().get();
-        Tree<String> child = children[0];
+        List<Tree<String>> children = tree.children().get();
+        Tree<String> child = children.getFirst();
 
         int expectedDepth = 1;
         int actualDepth = child.depth();

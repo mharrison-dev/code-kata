@@ -18,10 +18,10 @@ public class Tree<T> {
         this.depth = depth;
     }
 
-    public Optional<Tree<T>[]> children() {
+    public Optional<List<Tree<T>>> children() {
         return (children.isEmpty())
                 ? Optional.empty()
-                : Optional.of(children.toArray(new Tree[0]));
+                : Optional.of(new ArrayList<>(children));
     }
 
     public int depth() {
