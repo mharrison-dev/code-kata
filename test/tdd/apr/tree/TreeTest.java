@@ -129,9 +129,9 @@ class TreeTest {
     @Test
     void shouldGetTwo_forHeightOfRoot_whenRootHasAtLeastOneChildWithLeafNode() {
         tree.addChild();
-        List<Tree<String>> children = tree.children().get();
-        Tree<String> child = children.getFirst();
-        child.addChild();
+        tree.children().get()
+                .getFirst()
+                .addChild();
 
         int expectedHeight = 2;
         int actualHeight = tree.height();
@@ -142,9 +142,9 @@ class TreeTest {
     void shouldGetTwo_forHeightOfRoot_whenRootHasAtLeastOneChildOnOffBranchWithLeafNodes() {
         tree.addChild();
         tree.addChild();
-        List<Tree<String>> children = tree.children().get();
-        Tree<String> child = children.getLast();
-        child.addChild();
+        tree.children().get()
+                .getLast()
+                .addChild();
 
         int expectedHeight = 2;
         int actualHeight = tree.height();
@@ -154,8 +154,7 @@ class TreeTest {
     @Test
     void shouldGetOne_forDepthOfNode_whenItIsChildOfRoot() {
         tree.addChild();
-        List<Tree<String>> children = tree.children().get();
-        Tree<String> child = children.getFirst();
+        Tree<String> child = tree.children().get().getFirst();
 
         int expectedDepth = 1;
         int actualDepth = child.depth();
