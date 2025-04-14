@@ -1,4 +1,9 @@
 package tdd.apr.linkedlist;
 
-public class LinkedList {
+import java.util.Optional;
+
+public class LinkedList<T> {
+    public Optional<T> value() {
+        return Optional.empty();
+    }
 }

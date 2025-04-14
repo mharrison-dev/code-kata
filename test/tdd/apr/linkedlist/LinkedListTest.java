@@ -2,6 +2,8 @@ package tdd.apr.linkedlist;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class LinkedListTest {
@@ -10,5 +12,14 @@ class LinkedListTest {
         assertDoesNotThrow(() -> {
             LinkedList linkedList = new LinkedList();
         }, "Should not throw an exception when initializing a linked list");
+    }
+
+    @Test
+    void shouldReturnEmptyOptional_forValue_whenValueHasNotBeenSet(){
+        LinkedList<String> linkedList = new LinkedList<>();
+
+        Optional<String> expectedValue = Optional.empty();
+        Optional<String> actualValue = linkedList.value();
+        assertEquals(expectedValue,actualValue);
     }
 }
