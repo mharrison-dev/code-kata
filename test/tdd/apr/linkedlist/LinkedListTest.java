@@ -15,11 +15,20 @@ class LinkedListTest {
     }
 
     @Test
-    void shouldReturnEmptyOptional_forValue_whenValueHasNotBeenSet(){
+    void shouldReturnEmptyOptional_forValue_whenValueHasNotBeenSet() {
         LinkedList<String> linkedList = new LinkedList<>();
 
         Optional<String> expectedValue = Optional.empty();
         Optional<String> actualValue = linkedList.value();
-        assertEquals(expectedValue,actualValue);
+        assertEquals(expectedValue, actualValue);
+    }
+
+    @Test
+    void shouldReturnEmptyOptional_forNextNode_whenNextNodeHasNotBeenSet() {
+        LinkedList<String> linkedList = new LinkedList<>();
+
+        Optional<String> expectedValue = Optional.empty();
+        Optional<String> actualValue = linkedList.next();
+        assertEquals(expectedValue, actualValue);
     }
 }
