@@ -1,5 +1,6 @@
 package tdd.apr.queue;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
@@ -7,10 +8,15 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 
 class QueueTest {
+    private Queue<String> queue = null;
+
+    @BeforeEach
+    void setUp() {
+        queue = new Queue<>();
+    }
+
     @Test
     void shouldReturnZero_forSize_whenQueueIsEmpty() {
-        Queue<String> queue = new Queue<>();
-
         int expectedSize = 0;
         int actualSize = queue.size();
         assertEquals(expectedSize, actualSize);
@@ -18,10 +24,19 @@ class QueueTest {
 
     @Test
     void shouldReturnEmptyOptional_forDequeue_whenQueueIsEmpty() {
-        Queue<String> queue = new Queue<>();
-
         Optional<String> expectedEntity = Optional.empty();
-        Optional<String>actualEntity = queue.dequeue();
+        Optional<String> actualEntity = queue.dequeue();
+        assertEquals(expectedEntity, actualEntity);
+    }
+
+    @Test
+    void shouldAddEntity_withEnqueue_whenQueueIsEmpty() {
+        String entity = "foo";
+
+        queue.enqueue(entity);
+
+        Optional<String> expectedEntity = Optional.of(entity);
+        Optional<String> actualEntity = queue.dequeue();
         assertEquals(expectedEntity, actualEntity);
     }
 }
