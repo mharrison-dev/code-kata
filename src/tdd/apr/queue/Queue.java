@@ -1,24 +1,23 @@
 package tdd.apr.queue;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class Queue<T> {
-    private T entity = null;
-    private int size = 0;
+    private final List<T> entityList = new ArrayList<>();
 
     public int size() {
-        return size;
+        return entityList.size();
     }
 
     public Optional<T> dequeue() {
-        size = Math.max(0, size - 1);
-        return (entity == null)
+        return (entityList.isEmpty())
                 ? Optional.empty()
-                : Optional.of(entity);
+                : Optional.of(entityList.removeFirst());
     }
 
     public void enqueue(T entity) {
-        this.entity = entity;
-        size++;
+        entityList.add(entity);
     }
 }

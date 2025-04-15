@@ -71,4 +71,17 @@ class QueueTest {
         int actualSize = queue.size();
         assertEquals(expectedSize, actualSize);
     }
+
+    @Test
+    void shouldReturnFirstEnqueuedEntity_withDequeue_afterTwoEntitiesHaveBeenEnqueued() {
+        String entity = "foo";
+        String otherEntity = "goo";
+
+        queue.enqueue(entity);
+        queue.enqueue(otherEntity);
+
+        Optional<String> expectedEntity = Optional.of(entity);
+        Optional<String> actualEntity = queue.dequeue();
+        assertEquals(expectedEntity, actualEntity);
+    }
 }
