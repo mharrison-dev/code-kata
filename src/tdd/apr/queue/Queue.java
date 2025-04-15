@@ -1,7 +1,13 @@
 package tdd.apr.queue;
 
-public class Queue {
+import java.util.Optional;
+
+public class Queue<T> {
     public int size() {
         return 0;
+    }
+
+    public Optional<T> dequeue() {
+        return Optional.empty();
     }
 }
