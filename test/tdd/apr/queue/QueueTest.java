@@ -50,4 +50,16 @@ class QueueTest {
         int actualSize = queue.size();
         assertEquals(expectedSize, actualSize);
     }
+
+    @Test
+    void shouldReturnZero_forSize_afterEntityIsEnqueuedAndDequeued() {
+        String entity = "foo";
+
+        queue.enqueue(entity);
+        queue.dequeue();
+
+        int expectedSize = 0;
+        int actualSize = queue.size();
+        assertEquals(expectedSize, actualSize);
+    }
 }
