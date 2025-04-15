@@ -39,4 +39,15 @@ class QueueTest {
         Optional<String> actualEntity = queue.dequeue();
         assertEquals(expectedEntity, actualEntity);
     }
+
+    @Test
+    void shouldReturnOne_forSize_afterEntityIsEnqueued() {
+        String entity = "foo";
+
+        queue.enqueue(entity);
+
+        int expectedSize = 1;
+        int actualSize = queue.size();
+        assertEquals(expectedSize, actualSize);
+    }
 }

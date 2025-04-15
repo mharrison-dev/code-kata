@@ -4,9 +4,10 @@ import java.util.Optional;
 
 public class Queue<T> {
     private T entity = null;
+    private int size = 0;
 
     public int size() {
-        return 0;
+        return size;
     }
 
     public Optional<T> dequeue() {
@@ -17,5 +18,6 @@ public class Queue<T> {
 
     public void enqueue(T entity) {
         this.entity = entity;
+        size++;
     }
 }
