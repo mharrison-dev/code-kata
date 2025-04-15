@@ -62,4 +62,13 @@ class QueueTest {
         int actualSize = queue.size();
         assertEquals(expectedSize, actualSize);
     }
+
+    @Test
+    void shouldReturnZero_forSize_afterDequeueIsCalledOnEmptyQueue() {
+        queue.dequeue();
+
+        int expectedSize = 0;
+        int actualSize = queue.size();
+        assertEquals(expectedSize, actualSize);
+    }
 }

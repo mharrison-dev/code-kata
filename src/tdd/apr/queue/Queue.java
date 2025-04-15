@@ -11,7 +11,7 @@ public class Queue<T> {
     }
 
     public Optional<T> dequeue() {
-        size--;
+        size = Math.max(0, size - 1);
         return (entity == null)
                 ? Optional.empty()
                 : Optional.of(entity);
