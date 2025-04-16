@@ -15,4 +15,15 @@ class BinaryTreeTest {
         Optional<String> actualValue = binaryTree.value();
         assertEquals(expectedValue, actualValue);
     }
+
+    @Test
+    void shouldReturnFoo_forValue_whenValueHasBeenSetToFoo() {
+        BinaryTree<String> binaryTree = new BinaryTree<>();
+
+        binaryTree.setValue("foo");
+
+        Optional<String> expectedValue = Optional.of("foo");
+        Optional<String> actualValue = binaryTree.value();
+        assertEquals(expectedValue, actualValue);
+    }
 }
