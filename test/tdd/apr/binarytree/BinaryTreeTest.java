@@ -37,4 +37,15 @@ class BinaryTreeTest {
         Optional<BinaryTree<String>> actualLeftChild = binaryTree.leftChild();
         assertEquals(expectedLeftChild, actualLeftChild);
     }
+
+    @Test
+    void shouldReturnBinaryTree_forLeftChild_whenLeftChildHasBeenSet() {
+        BinaryTree<String> leftChild = new BinaryTree<>();
+
+        binaryTree.setLeftChild(leftChild);
+
+        Optional<BinaryTree<String>> expectedLeftChild = Optional.of(leftChild);
+        Optional<BinaryTree<String>> actualLeftChild = binaryTree.leftChild();
+        assertEquals(expectedLeftChild, actualLeftChild);
+    }
 }

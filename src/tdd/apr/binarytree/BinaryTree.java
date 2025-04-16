@@ -4,6 +4,7 @@ import java.util.Optional;
 
 public class BinaryTree<T> {
     private T value = null;
+    private BinaryTree<T> leftChild = null;
 
     public Optional<T> value() {
         return (value == null)
@@ -16,6 +17,12 @@ public class BinaryTree<T> {
     }
 
     public Optional<BinaryTree<T>> leftChild() {
-        return Optional.empty();
+        return (leftChild == null)
+                ? Optional.empty()
+                : Optional.of(leftChild);
+    }
+
+    public void setLeftChild(BinaryTree<T> leftChild) {
+        this.leftChild = leftChild;
     }
 }
