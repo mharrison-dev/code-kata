@@ -25,4 +25,8 @@ public class BinaryTree<T> {
     public void setLeftChild(BinaryTree<T> leftChild) {
         this.leftChild = leftChild;
     }
+
+    public Optional<BinaryTree<T>> rightChild() {
+        return Optional.empty();
+    }
 }
