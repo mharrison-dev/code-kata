@@ -14,4 +14,8 @@ public class BinaryTree<T> {
     public void setValue(T value) {
         this.value = value;
     }
+
+    public Optional<BinaryTree<T>> leftChild() {
+        return Optional.empty();
+    }
 }
