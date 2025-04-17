@@ -3,15 +3,17 @@ package tdd.apr.hashtable;
 import java.util.Optional;
 
 public class HashTable<K, V> {
-    private V value = null;
+    private Object[] values = new Object[10];
 
     public Optional<V> valueOf(String key) {
-        return (value == null)
+        int valueIndex = key.hashCode() % values.length;
+        return (values[valueIndex] == null)
                 ? Optional.empty()
-                : Optional.of(value);
+                : Optional.of((V) values[valueIndex]);
     }
 
     public void add(K key, V value) {
-        this.value = value;
+        int valueIndex = key.hashCode() % values.length;
+        values[valueIndex] = value;
     }
 }
