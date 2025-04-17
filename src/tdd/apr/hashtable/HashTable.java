@@ -5,15 +5,21 @@ import java.util.Optional;
 public class HashTable<K, V> {
     private Object[] values = new Object[10];
 
-    public Optional<V> valueOf(String key) {
-        int valueIndex = key.hashCode() % values.length;
-        return (values[valueIndex] == null)
+    public Optional<V> valueOf(K key) {
+        return (values[indexOf(key)] == null)
                 ? Optional.empty()
-                : Optional.of((V) values[valueIndex]);
+                : Optional.of((V) values[indexOf(key)]);
     }
 
     public void add(K key, V value) {
-        int valueIndex = key.hashCode() % values.length;
-        values[valueIndex] = value;
+        values[indexOf(key)] = value;
+    }
+
+    public void delete(K key) {
+        values[indexOf(key)] = null;
+    }
+
+    private int indexOf(K key) {
+        return key.hashCode() % values.length;
     }
 }
