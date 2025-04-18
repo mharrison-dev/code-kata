@@ -110,6 +110,23 @@ class SortedBinaryTreeTest {
         assertEquals(expectedPrintOut, actualPrintOut);
     }
 
+    @Test
+    void shouldPrintValuesOfTreeInPostOrder_forPostOrderTraversal_forTreeOfDepthTwo() {
+        SortedBinaryTree<Integer> rootNode = new SortedBinaryTree<>(5, new IntegerComparator());
+
+        rootNode.insert(2);
+        rootNode.insert(7);
+        rootNode.insert(-1);
+        rootNode.insert(3);
+        rootNode.insert(6);
+        rootNode.insert(8);
+        rootNode.printValuesDuringPostOrderTraversal();
+
+        String expectedPrintOut = "-1, 3, 2, 6, 8, 7, 5";
+        String actualPrintOut = testByteArrayOutputStream.toString();
+        assertEquals(expectedPrintOut, actualPrintOut);
+    }
+
     private static class IntegerComparator implements Comparator<Integer> {
         @Override
         public int compare(Integer o1, Integer o2) {

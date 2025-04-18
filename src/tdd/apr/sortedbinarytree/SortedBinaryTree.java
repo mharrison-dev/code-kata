@@ -41,6 +41,20 @@ public class SortedBinaryTree<T> {
         }
     }
 
+    public void printValuesDuringPostOrderTraversal() {
+        if (leftChild != null) {
+            leftChild.printValuesDuringPostOrderTraversal();
+        }
+
+        if (rightChild != null) {
+            System.out.print(", ");
+            rightChild.printValuesDuringPostOrderTraversal();
+            System.out.print(", ");
+        }
+
+        System.out.print(value);
+    }
+
     public void insert(T value) {
         switch (comparator.compare(value, this.value)) {
             case -1:
