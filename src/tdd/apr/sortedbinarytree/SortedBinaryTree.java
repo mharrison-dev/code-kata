@@ -7,37 +7,41 @@ public class SortedBinaryTree<T> {
     private final Comparator<T> comparator;
     private SortedBinaryTree<T> leftChild = null;
     private SortedBinaryTree<T> rightChild = null;
-    
+
     public SortedBinaryTree(T value, Comparator<T> comparator) {
         this.value = value;
         this.comparator = comparator;
     }
 
     public void printValuesDuringPreOrderTraversal() {
-        StringBuilder printStringBuilder = new StringBuilder();
-
-        printStringBuilder.append(value);
+        System.out.print(value);
 
         if (leftChild != null) {
-            printStringBuilder.append(", ");
-            printStringBuilder.append(leftChild.value);
+            System.out.print(", ");
+            leftChild.printValuesDuringPreOrderTraversal();
         }
 
         if (rightChild != null) {
-            printStringBuilder.append(", ");
-            printStringBuilder.append(rightChild.value);
+            System.out.print(", ");
+            rightChild.printValuesDuringPreOrderTraversal();
         }
-
-        System.out.print(printStringBuilder);
     }
 
     public void insert(T value) {
         switch (comparator.compare(value, this.value)) {
             case -1:
-                leftChild = new SortedBinaryTree<>(value, comparator);
+                if (leftChild == null) {
+                    leftChild = new SortedBinaryTree<>(value, comparator);
+                } else {
+                    leftChild.insert(value);
+                }
                 break;
             case 1:
-                rightChild = new SortedBinaryTree<>(value, comparator);
+                if (rightChild == null) {
+                    rightChild = new SortedBinaryTree<>(value, comparator);
+                } else {
+                    rightChild.insert(value);
+                }
                 break;
         }
     }
