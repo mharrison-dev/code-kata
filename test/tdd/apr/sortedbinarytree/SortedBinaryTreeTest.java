@@ -1,6 +1,10 @@
 package tdd.apr.sortedbinarytree;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -8,16 +12,26 @@ import java.io.PrintStream;
 import static org.junit.jupiter.api.Assertions.*;
 
 class SortedBinaryTreeTest {
+    private ByteArrayOutputStream testByteArrayOutputStream = null;
+    private final PrintStream productionOut = System.out;
+
+    @BeforeEach
+    void setUp() {
+        testByteArrayOutputStream = new ByteArrayOutputStream();
+        PrintStream testOut = new PrintStream(testByteArrayOutputStream);
+        System.setOut(testOut);
+    }
+
+    @AfterEach
+    void tearDown(){
+        System.setOut(productionOut);
+    }
+
     @Test
     void shouldPrintValueOfRootNode_forPreOrderTraversal_forIntValue() {
-        ByteArrayOutputStream testByteArrayOutputStream = new ByteArrayOutputStream();
-        PrintStream testOut = new PrintStream(testByteArrayOutputStream);
-        PrintStream productionOut = System.out;
         SortedBinaryTree<Integer> rootNode = new SortedBinaryTree<>(1);
 
-        System.setOut(testOut);
         rootNode.printValuesDuringPreOrderTraversal();
-        System.setOut(productionOut);
 
         String expectedPrintOut = "1";
         String actualPrintOut = testByteArrayOutputStream.toString();
@@ -26,16 +40,24 @@ class SortedBinaryTreeTest {
 
     @Test
     void shouldPrintValueOfRootNode_forPreOrderTraversal_forStringValue() {
-        ByteArrayOutputStream testByteArrayOutputStream = new ByteArrayOutputStream();
-        PrintStream testOut = new PrintStream(testByteArrayOutputStream);
-        PrintStream productionOut = System.out;
         SortedBinaryTree<String> rootNode = new SortedBinaryTree<>("foo");
 
-        System.setOut(testOut);
         rootNode.printValuesDuringPreOrderTraversal();
-        System.setOut(productionOut);
 
         String expectedPrintOut = "foo";
+        String actualPrintOut = testByteArrayOutputStream.toString();
+        assertEquals(expectedPrintOut, actualPrintOut);
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {0, 2})
+    void shouldPrintValueOfRootNodeAndThenValueOfChildNode_forPreOrderTraversal_forIntValue(int valueOfChild) {
+        SortedBinaryTree<Integer> rootNode = new SortedBinaryTree<>(1);
+
+        rootNode.insert(valueOfChild);
+        rootNode.printValuesDuringPreOrderTraversal();
+
+        String expectedPrintOut = String.join(", ", "1", String.valueOf(valueOfChild));
         String actualPrintOut = testByteArrayOutputStream.toString();
         assertEquals(expectedPrintOut, actualPrintOut);
     }
