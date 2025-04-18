@@ -27,6 +27,20 @@ public class SortedBinaryTree<T> {
         }
     }
 
+    public void printValuesDuringInOrderTraversal() {
+        if (leftChild != null) {
+            leftChild.printValuesDuringInOrderTraversal();
+            System.out.print(", ");
+        }
+
+        System.out.print(value);
+
+        if (rightChild != null) {
+            System.out.print(", ");
+            rightChild.printValuesDuringInOrderTraversal();
+        }
+    }
+
     public void insert(T value) {
         switch (comparator.compare(value, this.value)) {
             case -1:
