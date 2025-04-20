@@ -44,10 +44,10 @@ public class SortedBinaryTree<T> {
     public void printValuesDuringPostOrderTraversal() {
         if (leftChild != null) {
             leftChild.printValuesDuringPostOrderTraversal();
+            System.out.print(", ");
         }
 
         if (rightChild != null) {
-            System.out.print(", ");
             rightChild.printValuesDuringPostOrderTraversal();
             System.out.print(", ");
         }
