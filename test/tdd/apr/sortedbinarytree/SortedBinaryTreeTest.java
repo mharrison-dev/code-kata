@@ -143,6 +143,19 @@ class SortedBinaryTreeTest {
         assertEquals(expectedPrintOut, actualPrintOut);
     }
 
+    @Test
+    void shouldPrintValuesOfTree_forPreOrderTraversal_withNewLineCharacter(){
+        SortedBinaryTree<Integer> rootNode = new SortedBinaryTree<>(1, new IntegerComparator());
+
+        rootNode.insert(2);
+        rootNode.insert(0);
+        rootNode.printlnValuesDuringPreOrderTraversal();
+
+        String expectedPrintOut = "1, 0, 2\n";
+        String actualPrintOut = testByteArrayOutputStream.toString();
+        assertEquals(expectedPrintOut, actualPrintOut);
+    }
+
     private static class IntegerComparator implements Comparator<Integer> {
         @Override
         public int compare(Integer o1, Integer o2) {

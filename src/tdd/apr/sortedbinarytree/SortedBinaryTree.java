@@ -55,6 +55,11 @@ public class SortedBinaryTree<T> {
         System.out.print(value);
     }
 
+    public void printlnValuesDuringPreOrderTraversal() {
+        printValuesDuringPreOrderTraversal();
+        System.out.print("\n");
+    }
+
     public void insert(T value) {
         switch (comparator.compare(value, this.value)) {
             case -1:
