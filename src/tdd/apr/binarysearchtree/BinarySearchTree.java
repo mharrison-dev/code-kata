@@ -4,9 +4,12 @@ import java.util.Optional;
 
 public class BinarySearchTree<K, V> {
     private K key = null;
+    private V value = null;
 
     public Optional<V> getAllValues() {
-        return Optional.empty();
+        return (value == null)
+                ? Optional.empty()
+                : Optional.of(value);
     }
 
     public Optional<K> getAllKeys() {
@@ -17,5 +20,6 @@ public class BinarySearchTree<K, V> {
 
     public void insert(K key, V value) {
         this.key = key;
+        this.value = value;
     }
 }

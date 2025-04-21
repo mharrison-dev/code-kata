@@ -55,4 +55,17 @@ class BinarySearchTreeTest {
         Optional<Integer> actualKeyList = binarySearchTree.getAllKeys();
         assertEquals(expectedKeyList, actualKeyList);
     }
+
+    @Test
+    void getAllValues_afterOneInsertion_returnsValueOfInsertedEntry() {
+        int key = 0;
+        String value = "foo";
+        BinarySearchTree<Integer, String> binarySearchTree = new BinarySearchTree<>();
+
+        binarySearchTree.insert(key, value);
+
+        Optional<String> expectedValueList = Optional.of(value);
+        Optional<String> actualValueList = binarySearchTree.getAllValues();
+        assertEquals(expectedValueList, actualValueList);
+    }
 }
