@@ -2,6 +2,7 @@ package tdd.apr.binarysearchtree;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -29,8 +30,8 @@ class BinarySearchTreeTest {
     void getAllStringKeys_emptyTree_returnsEmptyOptional() {
         BinarySearchTree<String, String> binarySearchTree = new BinarySearchTree<>();
 
-        Optional<String> expectedKeyList = Optional.empty();
-        Optional<String> actualKeyList = binarySearchTree.getAllKeys();
+        Optional<List<String>> expectedKeyList = Optional.empty();
+        Optional<List<String>> actualKeyList = binarySearchTree.getAllKeys();
         assertEquals(expectedKeyList, actualKeyList);
     }
 
@@ -38,8 +39,8 @@ class BinarySearchTreeTest {
     void getAllIntegerKeys_emptyTree_returnsEmptyOptional() {
         BinarySearchTree<Integer, String> binarySearchTree = new BinarySearchTree<>();
 
-        Optional<Integer> expectedKeyList = Optional.empty();
-        Optional<Integer> actualKeyList = binarySearchTree.getAllKeys();
+        Optional<List<Integer>> expectedKeyList = Optional.empty();
+        Optional<List<Integer>> actualKeyList = binarySearchTree.getAllKeys();
         assertEquals(expectedKeyList, actualKeyList);
     }
 
@@ -51,8 +52,8 @@ class BinarySearchTreeTest {
 
         binarySearchTree.insert(key, value);
 
-        Optional<Integer> expectedKeyList = Optional.of(key);
-        Optional<Integer> actualKeyList = binarySearchTree.getAllKeys();
+        Optional<List<Integer>> expectedKeyList = Optional.of(List.of(key));
+        Optional<List<Integer>> actualKeyList = binarySearchTree.getAllKeys();
         assertEquals(expectedKeyList, actualKeyList);
     }
 
@@ -67,5 +68,21 @@ class BinarySearchTreeTest {
         Optional<String> expectedValueList = Optional.of(value);
         Optional<String> actualValueList = binarySearchTree.getAllValues();
         assertEquals(expectedValueList, actualValueList);
+    }
+
+    @Test
+    void getAllKeys_afterTwoInsertion_returnsKeysOfInsertedEntriesInPreOrder() {
+        int key = 0;
+        String value = "foo";
+        int otherKey = 1;
+        String otherValue = "goo";
+        BinarySearchTree<Integer, String> binarySearchTree = new BinarySearchTree<>();
+
+        binarySearchTree.insert(key, value);
+        binarySearchTree.insert(otherKey, otherValue);
+
+        Optional<List<Integer>> expectedKeyList = Optional.of(List.of(key, otherKey));
+        Optional<List<Integer>> actualKeyList = binarySearchTree.getAllKeys();
+        assertEquals(expectedKeyList, actualKeyList);
     }
 }
