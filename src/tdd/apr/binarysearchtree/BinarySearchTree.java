@@ -8,7 +8,7 @@ import java.util.Optional;
 public class BinarySearchTree<K, V> {
     private Node root = null;
     private final Comparator<K> keyComparator;
-    
+
     public BinarySearchTree(Comparator<K> keyComparator) {
         this.keyComparator = keyComparator;
     }
@@ -47,10 +47,18 @@ public class BinarySearchTree<K, V> {
         public void insert(K key, V value) {
             switch (keyComparator.compare(key, this.key)) {
                 case -1:
-                    leftChild = new Node(key, value);
+                    if (leftChild == null) {
+                        leftChild = new Node(key, value);
+                    } else {
+                        leftChild.insert(key, value);
+                    }
                     break;
                 case 1:
-                    rightChild = new Node(key, value);
+                    if (rightChild == null) {
+                        rightChild = new Node(key, value);
+                    } else {
+                        rightChild.insert(key, value);
+                    }
                     break;
             }
         }

@@ -120,6 +120,23 @@ class BinarySearchTreeTest {
         assertEquals(expectedKeyList, actualKeyList);
     }
 
+    @Test
+    void getAllKeys_degenerateTree_returnsKeysOfInsertedEntriesInPreOrder() {
+        int rootKey = 0;
+        String rootValue = "foo";
+        BinarySearchTree<Integer, String> binarySearchTree = new BinarySearchTree<>(getIntegerComparator());
+
+        binarySearchTree.insert(rootKey, rootValue);
+        binarySearchTree.insert(-1, "goo");
+        binarySearchTree.insert(-2, "boo");
+        binarySearchTree.insert(1, "goo");
+        binarySearchTree.insert(2, "boo");
+
+        Optional<List<Integer>> expectedKeyList = Optional.of(List.of(rootKey, -1, -2, 1, 2));
+        Optional<List<Integer>> actualKeyList = binarySearchTree.getAllKeys();
+        assertEquals(expectedKeyList, actualKeyList);
+    }
+
     private Comparator<Integer> getIntegerComparator() {
         return new Comparator<Integer>() {
             @Override
