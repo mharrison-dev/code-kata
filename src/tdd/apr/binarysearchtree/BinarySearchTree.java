@@ -2,8 +2,8 @@ package tdd.apr.binarysearchtree;
 
 import java.util.Optional;
 
-public class BinarySearchTree {
-    public Optional<String> getAllValues() {
+public class BinarySearchTree<V> {
+    public Optional<V> getAllValues() {
         return Optional.empty();
     }
 }
