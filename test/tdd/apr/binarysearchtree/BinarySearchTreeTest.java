@@ -137,6 +137,19 @@ class BinarySearchTreeTest {
         assertEquals(expectedKeyList, actualKeyList);
     }
 
+    @Test
+    void find_treeWithoutKeyValue_returnsEmptyOptional() {
+        BinarySearchTree<Integer, String> binarySearchTree = new BinarySearchTree<>(getIntegerComparator());
+
+        binarySearchTree.insert(0, "foo");
+        binarySearchTree.insert(-1, "boo");
+        binarySearchTree.insert(1, "goo");
+
+        Optional<String> expectedKeyList = Optional.empty();
+        Optional<String> actualKeyList = binarySearchTree.find(2);
+        assertEquals(expectedKeyList, actualKeyList);
+    }
+
     private Comparator<Integer> getIntegerComparator() {
         return new Comparator<Integer>() {
             @Override

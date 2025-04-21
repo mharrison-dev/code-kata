@@ -33,6 +33,10 @@ public class BinarySearchTree<K, V> {
         }
     }
 
+    public Optional<V> find(K key) {
+        return Optional.empty();
+    }
+
     private class Node {
         private final K key;
         private final V value;
