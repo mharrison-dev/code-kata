@@ -34,7 +34,9 @@ public class BinarySearchTree<K, V> {
     }
 
     public Optional<V> find(K key) {
-        return Optional.empty();
+        return (root == null)
+                ? Optional.empty()
+                : root.find(key);
     }
 
     private class Node {
@@ -95,6 +97,28 @@ public class BinarySearchTree<K, V> {
             }
 
             return allKeys;
+        }
+
+        public Optional<V> find(K key) {
+            if (this.key == key) {
+                return Optional.of(value);
+            }
+
+            if (leftChild != null) {
+                Optional<V> value = leftChild.find(key);
+                if (value.isPresent()) {
+                    return value;
+                }
+            }
+
+            if (rightChild != null) {
+                Optional<V> value = rightChild.find(key);
+                if (value.isPresent()) {
+                    return value;
+                }
+            }
+
+            return Optional.empty();
         }
     }
 }
