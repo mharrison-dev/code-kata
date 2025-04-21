@@ -24,4 +24,13 @@ class BinarySearchTreeTest {
         Optional<Integer> actualValueList = binarySearchTree.getAllValues();
         assertEquals(expectedValueList, actualValueList);
     }
+
+    @Test
+    void getAllKeys_emptyTree_returnsEmptyOptional() {
+        BinarySearchTree<String> binarySearchTree = new BinarySearchTree<>();
+
+        Optional<String> expectedKeyList = Optional.empty();
+        Optional<String> actualKeyList = binarySearchTree.getAllKeys();
+        assertEquals(expectedKeyList, actualKeyList);
+    }
 }
