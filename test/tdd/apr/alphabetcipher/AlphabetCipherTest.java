@@ -60,4 +60,14 @@ class AlphabetCipherTest {
         String actualEncodedMessage = alphabetCipher.encode(message, keyword);
         assertEquals(expectedEncodedMessage, actualEncodedMessage);
     }
+
+    @Test
+    void encode_messageWithUppercaseLetters_returnsLowercasedEncodedMessage() {
+        String message = "TAR";
+        String keyword = "az";
+
+        String expectedEncodedMessage = "tzr";
+        String actualEncodedMessage = alphabetCipher.encode(message, keyword);
+        assertEquals(expectedEncodedMessage, actualEncodedMessage);
+    }
 }
