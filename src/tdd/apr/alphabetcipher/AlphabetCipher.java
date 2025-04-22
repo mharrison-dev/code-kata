@@ -2,7 +2,7 @@ package tdd.apr.alphabetcipher;
 
 public class AlphabetCipher {
     public String encode(String message, String keyword) {
-        if (message.isEmpty()) {
+        if (message.isEmpty() || keyword.isEmpty()) {
             return "";
         }
 

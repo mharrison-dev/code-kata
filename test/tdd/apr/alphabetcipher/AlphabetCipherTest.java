@@ -7,11 +7,22 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.junit.jupiter.api.Assertions.*;
 
 class AlphabetCipherTest {
+    private final AlphabetCipher alphabetCipher = new AlphabetCipher();
+
     @Test
-    void encode_emptyString_returnsEmptyString() {
+    void encode_emptyMessage_returnsEmptyString() {
         String message = "";
         String keyword = "a";
-        AlphabetCipher alphabetCipher = new AlphabetCipher();
+
+        String expectedString = "";
+        String actualString = alphabetCipher.encode(message, keyword);
+        assertEquals(expectedString, actualString);
+    }
+
+    @Test
+    void encode_emptyKeyword_returnsEmptyString() {
+        String message = "a";
+        String keyword = "";
 
         String expectedString = "";
         String actualString = alphabetCipher.encode(message, keyword);
@@ -25,7 +36,6 @@ class AlphabetCipherTest {
         String message = messageAndEncodedMessageArray[0];
         String encodedMessage = messageAndEncodedMessageArray[1];
         String keyword = "b";
-        AlphabetCipher alphabetCipher = new AlphabetCipher();
 
         String expectedString = encodedMessage;
         String actualString = alphabetCipher.encode(message, keyword);
