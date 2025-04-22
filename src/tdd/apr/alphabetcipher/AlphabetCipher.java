@@ -6,13 +6,27 @@ public class AlphabetCipher {
             return "";
         }
 
-        int startingAsciiCodeOfLowercaseLetters = 97;
-        int sizeOfAlphabet = 26;
+        StringBuilder encodedMessageBuilder = new StringBuilder();
+        for (int i = 0; i < message.length(); i++) {
+            int alphabetIndexOfMessageLetter = getAlphabetIndexOfChar(message.charAt(i));
+            int alphabetIndexOfKeywordLetter = getAlphabetIndexOfChar(keyword.charAt(i));
+            char substitutionLetter = getSubstitutionLetter(alphabetIndexOfMessageLetter, alphabetIndexOfKeywordLetter);
+            encodedMessageBuilder.append(substitutionLetter);
+        }
 
-        int alphabetIndexOfMessageLetter = message.charAt(0) - startingAsciiCodeOfLowercaseLetters;
-        int alphabetIndexOfKeywordLetter = keyword.charAt(0) - startingAsciiCodeOfLowercaseLetters;
-        int alphabetIndexOfEncodedMessageLetter = (alphabetIndexOfMessageLetter + alphabetIndexOfKeywordLetter) % sizeOfAlphabet;
-        char encodedMessageLetter = (char) (alphabetIndexOfEncodedMessageLetter + startingAsciiCodeOfLowercaseLetters);
-        return String.valueOf(encodedMessageLetter);
+        return encodedMessageBuilder.toString();
+    }
+
+    private int getAlphabetIndexOfChar(char c) {
+        int startingAsciiCodeOfLowercaseLetters = 97;
+        return c - startingAsciiCodeOfLowercaseLetters;
+    }
+
+    private char getSubstitutionLetter(int index, int otherIndex) {
+        int sizeOfAlphabet = 26;
+        int alphabetIndexOfEncodedMessageLetter = (index + otherIndex) % sizeOfAlphabet;
+
+        int startingAsciiCodeOfLowercaseLetters = 97;
+        return (char) (alphabetIndexOfEncodedMessageLetter + startingAsciiCodeOfLowercaseLetters);
     }
 }
