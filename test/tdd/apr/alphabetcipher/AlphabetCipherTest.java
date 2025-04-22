@@ -14,9 +14,9 @@ class AlphabetCipherTest {
         String message = "";
         String keyword = "a";
 
-        String expectedString = "";
-        String actualString = alphabetCipher.encode(message, keyword);
-        assertEquals(expectedString, actualString);
+        String expectedEncodedMessage = "";
+        String actualEncodedMessage = alphabetCipher.encode(message, keyword);
+        assertEquals(expectedEncodedMessage, actualEncodedMessage);
     }
 
     @Test
@@ -24,9 +24,9 @@ class AlphabetCipherTest {
         String message = "a";
         String keyword = "";
 
-        String expectedString = "";
-        String actualString = alphabetCipher.encode(message, keyword);
-        assertEquals(expectedString, actualString);
+        String expectedEncodedMessage = "";
+        String actualEncodedMessage = alphabetCipher.encode(message, keyword);
+        assertEquals(expectedEncodedMessage, actualEncodedMessage);
     }
 
     @ParameterizedTest
@@ -34,12 +34,11 @@ class AlphabetCipherTest {
     void encode_singleLetterMessageWithSingleLetterKeyword_returnsCorrespondingLetter(String messageAndEncodedMessage) {
         String[] messageAndEncodedMessageArray = messageAndEncodedMessage.split(",");
         String message = messageAndEncodedMessageArray[0];
-        String encodedMessage = messageAndEncodedMessageArray[1];
         String keyword = "b";
 
-        String expectedString = encodedMessage;
-        String actualString = alphabetCipher.encode(message, keyword);
-        assertEquals(expectedString, actualString);
+        String expectedEncodedMessage = messageAndEncodedMessageArray[1];
+        String actualEncodedMessage = alphabetCipher.encode(message, keyword);
+        assertEquals(expectedEncodedMessage, actualEncodedMessage);
     }
 
     @Test
@@ -47,8 +46,18 @@ class AlphabetCipherTest {
         String message = "to";
         String keyword = "az";
 
-        String expectedString = "tn";
-        String actualString = alphabetCipher.encode(message, keyword);
-        assertEquals(expectedString, actualString);
+        String expectedEncodedMessage = "tn";
+        String actualEncodedMessage = alphabetCipher.encode(message, keyword);
+        assertEquals(expectedEncodedMessage, actualEncodedMessage);
+    }
+
+    @Test
+    void encode_threeLetterMessageWithTwoLetterKeyword_returnsEncodedMessage() {
+        String message = "tar";
+        String keyword = "az";
+
+        String expectedEncodedMessage = "tzr";
+        String actualEncodedMessage = alphabetCipher.encode(message, keyword);
+        assertEquals(expectedEncodedMessage, actualEncodedMessage);
     }
 }
