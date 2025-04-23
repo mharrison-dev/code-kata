@@ -10,7 +10,7 @@ class AlphabetCipherTest {
     private final AlphabetCipher alphabetCipher = new AlphabetCipher();
 
     @Test
-    void encode_emptyMessageWithKeyword_returnsEmptyString() {
+    void encode_emptyMessage_returnsEmptyString() {
         String message = "";
         String keyword = "a";
 
@@ -69,5 +69,15 @@ class AlphabetCipherTest {
         String expectedEncodedMessage = "tzr";
         String actualEncodedMessage = alphabetCipher.encode(message, keyword);
         assertEquals(expectedEncodedMessage, actualEncodedMessage);
+    }
+
+    @Test
+    void decode_emptyMessage_returnsEmptyString() {
+        String message = "";
+        String keyword = "a";
+
+        String expectedDecodedMessage = "";
+        String actualDecodedMessage = alphabetCipher.decode(message, keyword);
+        assertEquals(expectedDecodedMessage, actualDecodedMessage);
     }
 }

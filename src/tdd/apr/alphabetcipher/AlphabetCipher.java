@@ -37,4 +37,8 @@ public class AlphabetCipher {
         int startingAsciiCodeOfLowercaseLetters = 97;
         return alphabetIndex + startingAsciiCodeOfLowercaseLetters;
     }
+
+    public String decode(String message, String keyword) {
+        return "";
+    }
 }
