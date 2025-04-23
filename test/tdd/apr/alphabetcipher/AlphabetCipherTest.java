@@ -20,7 +20,7 @@ class AlphabetCipherTest {
     }
 
     @Test
-    void encode_messageWithEmptyKeyword_returnsEmptyString() {
+    void encode_emptyKeyword_returnsEmptyString() {
         String message = "a";
         String keyword = "";
 
@@ -31,7 +31,7 @@ class AlphabetCipherTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"a,b", "l,m", "x,y", "z,a"})
-    void encode_singleLetterMessageWithSingleLetterKeyword_returnsCorrespondingLetter(String messageAndEncodedMessage) {
+    void encode_singleLetterMessage_returnsCorrespondingLetter(String messageAndEncodedMessage) {
         String[] messageAndEncodedMessageArray = messageAndEncodedMessage.split(",");
         String message = messageAndEncodedMessageArray[0];
         String keyword = "b";
@@ -77,6 +77,18 @@ class AlphabetCipherTest {
         String keyword = "a";
 
         String expectedDecodedMessage = "";
+        String actualDecodedMessage = alphabetCipher.decode(message, keyword);
+        assertEquals(expectedDecodedMessage, actualDecodedMessage);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"a,b", "l,m", "x,y", "z,a"})
+    void decode_singleLetterMessage_returnsCorrespondingLetter(String decodedMessageAndEncodedMessage) {
+        String[] messageAndEncodedMessageArray = decodedMessageAndEncodedMessage.split(",");
+        String message = messageAndEncodedMessageArray[1];
+        String keyword = "b";
+
+        String expectedDecodedMessage =  messageAndEncodedMessageArray[0];
         String actualDecodedMessage = alphabetCipher.decode(message, keyword);
         assertEquals(expectedDecodedMessage, actualDecodedMessage);
     }
