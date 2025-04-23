@@ -81,6 +81,16 @@ class AlphabetCipherTest {
         assertEquals(expectedDecodedMessage, actualDecodedMessage);
     }
 
+    @Test
+    void decode_emptyKeyword_returnsEmptyString() {
+        String message = "a";
+        String keyword = "";
+
+        String expectedDecodedMessage = "";
+        String actualDecodedMessage = alphabetCipher.decode(message, keyword);
+        assertEquals(expectedDecodedMessage, actualDecodedMessage);
+    }
+
     @ParameterizedTest
     @ValueSource(strings = {"a,b", "l,m", "x,y", "z,a"})
     void decode_singleLetterMessage_returnsCorrespondingLetter(String decodedMessageAndEncodedMessage) {
