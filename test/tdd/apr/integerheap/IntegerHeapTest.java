@@ -24,4 +24,15 @@ class IntegerHeapTest {
         Optional<Integer> actualInteger = integerHeap.extractRootNode();
         assertEquals(expectedInteger, actualInteger);
     }
+
+    @Test
+    void shouldSetIntegerAsRootNode_whenInsertingInteger_whenHeapIsEmpty() {
+        IntegerHeap integerHeap = new IntegerHeap();
+
+        integerHeap.insert(5);
+
+        Optional<Integer> expectedInteger = Optional.of(5);
+        Optional<Integer> actualInteger = integerHeap.extractRootNode();
+        assertEquals(expectedInteger, actualInteger);
+    }
 }
