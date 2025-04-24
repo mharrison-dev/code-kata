@@ -12,22 +12,37 @@ public class IntegerHeap {
     }
 
     public Optional<Integer> extractRootNode() {
-        Node extractedNode = rootNode;
-        rootNode = null;
-        return (extractedNode == null)
-                ? Optional.empty()
-                : Optional.of(extractedNode.value);
+        if (rootNode == null) {
+            return Optional.empty();
+        } else {
+            Node extractedNode = rootNode;
+            rootNode = rootNode.getNextRootNode();
+            return Optional.of(extractedNode.value);
+        }
     }
 
     public void insert(int value) {
-        rootNode = new Node(value);
+        if (rootNode == null) {
+            rootNode = new Node(value);
+        } else {
+            rootNode.insert(value);
+        }
     }
 
     private static class Node {
+        private Node leftChild = null;
         private final int value;
 
         private Node(int value) {
             this.value = value;
+        }
+
+        public void insert(int value) {
+            leftChild = new Node(value);
+        }
+
+        public Node getNextRootNode() {
+            return leftChild;
         }
 
         public int getNumberOfNodes() {
