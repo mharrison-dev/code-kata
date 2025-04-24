@@ -11,6 +11,7 @@ public class IntegerHeap {
     }
 
     public Optional<Integer> extractRootNode() {
+        size--;
         return (rootNode == null)
                 ? Optional.empty()
                 : Optional.of(rootNode.value);

@@ -1,5 +1,6 @@
 package tdd.apr.integerheap;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
@@ -7,9 +8,24 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 
 class IntegerHeapTest {
+    private IntegerHeap integerHeap = null;
+
+    @BeforeEach
+    void setUp() {
+        integerHeap = new IntegerHeap();
+    }
+
     @Test
     void shouldGetZero_forSizeOfHeap_whenHeapIsEmpty() {
-        IntegerHeap integerHeap = new IntegerHeap();
+        int expectedSize = 0;
+        int actualSize = integerHeap.size();
+        assertEquals(expectedSize, actualSize);
+    }
+
+    @Test
+    void shouldGetZero_forSizeOfHeap_whenLastIntegerHasBeenRemoved() {
+        integerHeap.insert(3);
+        integerHeap.extractRootNode();
 
         int expectedSize = 0;
         int actualSize = integerHeap.size();
@@ -18,8 +34,6 @@ class IntegerHeapTest {
 
     @Test
     void shouldGetOne_forSizeOfHeap_whenHeapHasOneInteger() {
-        IntegerHeap integerHeap = new IntegerHeap();
-
         integerHeap.insert(3);
 
         int expectedSize = 1;
@@ -29,8 +43,6 @@ class IntegerHeapTest {
 
     @Test
     void shouldGetEmptyOptional_whenExtractingRootNode_whenHeapIsEmpty() {
-        IntegerHeap integerHeap = new IntegerHeap();
-
         Optional<Integer> expectedInteger = Optional.empty();
         Optional<Integer> actualInteger = integerHeap.extractRootNode();
         assertEquals(expectedInteger, actualInteger);
@@ -38,8 +50,6 @@ class IntegerHeapTest {
 
     @Test
     void shouldSetIntegerAsRootNode_whenInsertingInteger_whenHeapIsEmpty() {
-        IntegerHeap integerHeap = new IntegerHeap();
-
         integerHeap.insert(5);
 
         Optional<Integer> expectedInteger = Optional.of(5);
