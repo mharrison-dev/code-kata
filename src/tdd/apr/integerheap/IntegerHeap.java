@@ -30,15 +30,38 @@ public class IntegerHeap {
     }
 
     private static class Node {
+        private int value;
+        private final Node parent;
         private Node leftChild = null;
-        private final int value;
 
         private Node(int value) {
             this.value = value;
+            parent = null;
+        }
+
+        private Node(int value, Node parent) {
+            this.value = value;
+            this.parent = parent;
+            siftUp();
         }
 
         public void insert(int value) {
-            leftChild = new Node(value);
+            leftChild = new Node(value, this);
+        }
+
+        private void siftUp() {
+            if (parent == null) {
+                return;
+            }
+
+            if (parent.value < this.value) {
+                return;
+            }
+
+            int temp = parent.value;
+            parent.value = this.value;
+            this.value = temp;
+            parent.siftUp();
         }
 
         public Node getNextRootNode() {

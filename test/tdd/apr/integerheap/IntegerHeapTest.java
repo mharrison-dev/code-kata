@@ -76,4 +76,15 @@ class IntegerHeapTest {
         Optional<Integer> actualInteger = integerHeap.extractRootNode();
         assertEquals(expectedInteger, actualInteger);
     }
+
+    @Test
+    void shouldGetFirstInsertedInteger_whenExtractingTwice_whenSecondIntegerIsLessThanFirstInteger() {
+        integerHeap.insert(5);
+        integerHeap.insert(2);
+        integerHeap.extractRootNode();
+
+        Optional<Integer> expectedInteger = Optional.of(5);
+        Optional<Integer> actualInteger = integerHeap.extractRootNode();
+        assertEquals(expectedInteger, actualInteger);
+    }
 }
