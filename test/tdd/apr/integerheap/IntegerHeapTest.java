@@ -33,6 +33,15 @@ class IntegerHeapTest {
     }
 
     @Test
+    void shouldGetZero_forSizeOfHeap_whenExtractionIsPerformedOnEmptyHeap() {
+        integerHeap.extractRootNode();
+
+        int expectedSize = 0;
+        int actualSize = integerHeap.size();
+        assertEquals(expectedSize, actualSize);
+    }
+
+    @Test
     void shouldGetOne_forSizeOfHeap_whenHeapHasOneInteger() {
         integerHeap.insert(3);
 

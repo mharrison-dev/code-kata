@@ -4,22 +4,23 @@ import java.util.Optional;
 
 public class IntegerHeap {
     private Node rootNode = null;
-    private int size = 0;
 
     public int size() {
-        return size;
+        return (rootNode == null)
+                ? 0
+                : rootNode.getNumberOfNodes();
     }
 
     public Optional<Integer> extractRootNode() {
-        size--;
-        return (rootNode == null)
+        Node extractedNode = rootNode;
+        rootNode = null;
+        return (extractedNode == null)
                 ? Optional.empty()
-                : Optional.of(rootNode.value);
+                : Optional.of(extractedNode.value);
     }
 
     public void insert(int value) {
         rootNode = new Node(value);
-        size++;
     }
 
     private static class Node {
@@ -27,6 +28,10 @@ public class IntegerHeap {
 
         private Node(int value) {
             this.value = value;
+        }
+
+        public int getNumberOfNodes() {
+            return 1;
         }
     }
 }
