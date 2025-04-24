@@ -4,9 +4,10 @@ import java.util.Optional;
 
 public class IntegerHeap {
     private Node rootNode = null;
+    private int size = 0;
 
     public int size() {
-        return 0;
+        return size;
     }
 
     public Optional<Integer> extractRootNode() {
@@ -17,6 +18,7 @@ public class IntegerHeap {
 
     public void insert(int value) {
         rootNode = new Node(value);
+        size++;
     }
 
     private static class Node {

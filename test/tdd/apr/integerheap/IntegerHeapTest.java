@@ -17,6 +17,17 @@ class IntegerHeapTest {
     }
 
     @Test
+    void shouldGetOne_forSizeOfHeap_whenHeapHasOneInteger() {
+        IntegerHeap integerHeap = new IntegerHeap();
+
+        integerHeap.insert(3);
+
+        int expectedSize = 1;
+        int actualSize = integerHeap.size();
+        assertEquals(expectedSize, actualSize);
+    }
+
+    @Test
     void shouldGetEmptyOptional_whenExtractingRootNode_whenHeapIsEmpty() {
         IntegerHeap integerHeap = new IntegerHeap();
 
