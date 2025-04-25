@@ -53,4 +53,23 @@ class IntegerHeapTest {
         Optional<Integer> actualInteger = integerHeap.extract();
         assertEquals(expectedInteger, actualInteger);
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2", "2,1"})
+    void extract_heapWithTwoIntegers_returnsLargestIntegerForSecondExtraction(String integers) {
+        int[] integerArray = Arrays.stream(integers.split(","))
+                .mapToInt(Integer::parseInt)
+                .toArray();
+        int firstInteger = integerArray[0];
+        int secondInteger = integerArray[1];
+        int largestInteger = Math.max(firstInteger, secondInteger);
+
+        integerHeap.insert(firstInteger);
+        integerHeap.insert(secondInteger);
+        integerHeap.extract();
+
+        Optional<Integer> expectedInteger = Optional.of(largestInteger);
+        Optional<Integer> actualInteger = integerHeap.extract();
+        assertEquals(expectedInteger, actualInteger);
+    }
 }

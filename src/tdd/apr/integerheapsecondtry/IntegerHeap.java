@@ -11,6 +11,13 @@ public class IntegerHeap {
         }
 
         int extractedInteger = root.integer;
+        if (!root.hasChildren()) {
+            root = null;
+        } else {
+            Node lastAddedNode = root.getLastAddedNode();
+            lastAddedNode.replace(root);
+        }
+
         return Optional.of(extractedInteger);
     }
 
@@ -51,6 +58,19 @@ public class IntegerHeap {
             if (!parent.isRoot()) {
                 parent.siftUp();
             }
+        }
+
+        public Node getLastAddedNode() {
+            return leftChild;
+        }
+
+        public boolean hasChildren() {
+            return leftChild != null;
+        }
+
+        public void replace(Node otherNode) {
+            parent.leftChild = null;
+            otherNode.integer = integer;
         }
 
         private boolean isRoot() {
