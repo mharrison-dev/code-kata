@@ -92,4 +92,20 @@ class IntegerHeapTest {
         Optional<Integer> actualInteger = integerHeap.extract();
         assertEquals(expectedInteger, actualInteger);
     }
+
+    @Test
+    void extract_heapWithThreeIntegers_returnsSecondSmallestIntegerForSecondExtraction() {
+        int firstInteger = 1;
+        int secondInteger = 3;
+        int thirdInteger = 2;
+
+        integerHeap.insert(firstInteger);
+        integerHeap.insert(secondInteger);
+        integerHeap.insert(thirdInteger);
+        integerHeap.extract();
+
+        Optional<Integer> expectedInteger = Optional.of(thirdInteger);
+        Optional<Integer> actualInteger = integerHeap.extract();
+        assertEquals(expectedInteger, actualInteger);
+    }
 }

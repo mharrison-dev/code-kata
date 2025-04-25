@@ -56,9 +56,7 @@ public class IntegerHeap {
 
         private void siftUp() {
             if (parent.integer > integer) {
-                int temp = integer;
-                integer = parent.integer;
-                parent.integer = temp;
+                swapIntegers(parent, this);
             }
 
             if (!parent.isRoot()) {
@@ -67,16 +65,56 @@ public class IntegerHeap {
         }
 
         public Node getLastAddedNode() {
-            return leftChild;
+            return (rightChild == null)
+                    ? leftChild
+                    : rightChild;
         }
 
         public boolean hasChildren() {
-            return leftChild != null;
+            return leftChild != null || rightChild != null;
         }
 
         public void replace(Node otherNode) {
-            parent.leftChild = null;
+            if (parent.leftChild.equals(this)) {
+                parent.leftChild = null;
+            } else {
+                parent.rightChild = null;
+            }
+
             otherNode.integer = integer;
+            otherNode.siftDown();
+        }
+
+        private void siftDown() {
+            if (!hasChildren()) {
+                return;
+            }
+
+            Node smallestChild = getSmallestChild();
+            if (smallestChild.integer < integer) {
+                swapIntegers(smallestChild, this);
+                smallestChild.siftDown();
+            }
+        }
+
+        private Node getSmallestChild() {
+            if (leftChild != null && rightChild != null) {
+                return (leftChild.integer < rightChild.integer)
+                        ? leftChild
+                        : rightChild;
+            }
+
+            if (leftChild != null) {
+                return leftChild;
+            }
+
+            return rightChild;
+        }
+
+        private void swapIntegers(Node node, Node otherNode) {
+            int temp = node.integer;
+            node.integer = otherNode.integer;
+            otherNode.integer = temp;
         }
 
         private boolean isRoot() {
