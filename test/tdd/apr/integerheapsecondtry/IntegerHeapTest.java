@@ -1,16 +1,25 @@
 package tdd.apr.integerheapsecondtry;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.Arrays;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class IntegerHeapTest {
+    private IntegerHeap integerHeap;
+
+    @BeforeEach
+    void setUp() {
+        integerHeap = new IntegerHeap();
+    }
+
     @Test
     void extract_emptyHeap_returnsEmptyOptional() {
-        IntegerHeap integerHeap = new IntegerHeap();
-
         Optional<Integer> expectedInteger = Optional.empty();
         Optional<Integer> actualInteger = integerHeap.extract();
         assertEquals(expectedInteger, actualInteger);
@@ -19,11 +28,28 @@ class IntegerHeapTest {
     @Test
     void insert_emptyHeap() {
         int firstInteger = 1;
-        IntegerHeap integerHeap = new IntegerHeap();
 
         integerHeap.insert(firstInteger);
 
         Optional<Integer> expectedInteger = Optional.of(firstInteger);
+        Optional<Integer> actualInteger = integerHeap.extract();
+        assertEquals(expectedInteger, actualInteger);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2", "2,1"})
+    void extract_heapWithTwoIntegers_returnsSmallestInteger(String integers) {
+        int[] integerArray = Arrays.stream(integers.split(","))
+                .mapToInt(Integer::parseInt)
+                .toArray();
+        int firstInteger = integerArray[0];
+        int secondInteger = integerArray[1];
+        int smallestInteger = Math.min(firstInteger, secondInteger);
+
+        integerHeap.insert(firstInteger);
+        integerHeap.insert(secondInteger);
+
+        Optional<Integer> expectedInteger = Optional.of(smallestInteger);
         Optional<Integer> actualInteger = integerHeap.extract();
         assertEquals(expectedInteger, actualInteger);
     }

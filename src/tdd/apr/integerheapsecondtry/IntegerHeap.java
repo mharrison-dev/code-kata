@@ -6,20 +6,55 @@ public class IntegerHeap {
     private Node root;
 
     public Optional<Integer> extract() {
-        return (root == null)
-                ? Optional.empty()
-                : Optional.of(root.integer);
+        if (root == null) {
+            return Optional.empty();
+        }
+
+        int extractedInteger = root.integer;
+        return Optional.of(extractedInteger);
     }
 
     public void insert(int integer) {
-        root = new Node(integer);
+        if (root == null) {
+            root = new Node(integer);
+        } else {
+            root.insert(integer);
+        }
     }
 
     private static class Node {
-        private final int integer;
+        private int integer;
+        private Node parent;
+        private Node leftChild;
 
         public Node(int integer) {
             this.integer = integer;
+        }
+
+        public Node(int integer, Node parent) {
+            this.integer = integer;
+            this.parent = parent;
+        }
+
+        public void insert(int integer) {
+            leftChild = new Node(integer, this);
+            leftChild.siftUp();
+        }
+
+        private void siftUp() {
+            if (parent.integer > integer) {
+                int temp = integer;
+                integer = parent.integer;
+                parent.integer = temp;
+            }
+
+            if (!parent.isRoot()) {
+                parent.siftUp();
+            }
+        }
+
+        private boolean isRoot() {
+            return parent == null;
         }
     }
 }
