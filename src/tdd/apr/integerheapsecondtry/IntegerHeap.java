@@ -33,6 +33,7 @@ public class IntegerHeap {
         private int integer;
         private Node parent;
         private Node leftChild;
+        private Node rightChild;
 
         public Node(int integer) {
             this.integer = integer;
@@ -44,8 +45,13 @@ public class IntegerHeap {
         }
 
         public void insert(int integer) {
-            leftChild = new Node(integer, this);
-            leftChild.siftUp();
+            if (leftChild == null) {
+                leftChild = new Node(integer, this);
+                leftChild.siftUp();
+            } else {
+                rightChild = new Node(integer, this);
+                rightChild.siftUp();
+            }
         }
 
         private void siftUp() {

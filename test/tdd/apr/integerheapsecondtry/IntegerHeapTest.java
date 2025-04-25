@@ -72,4 +72,24 @@ class IntegerHeapTest {
         Optional<Integer> actualInteger = integerHeap.extract();
         assertEquals(expectedInteger, actualInteger);
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"2,3,1", "3,2,1"})
+    void extract_heapWithThreeIntegers_returnsSmallestInteger(String integers) {
+        int[] integerArray = Arrays.stream(integers.split(","))
+                .mapToInt(Integer::parseInt)
+                .toArray();
+        int firstInteger = integerArray[0];
+        int secondInteger = integerArray[1];
+        int thirdInteger = integerArray[2];
+        int smallestInteger = Math.min(firstInteger, Math.min(secondInteger, thirdInteger));
+
+        integerHeap.insert(firstInteger);
+        integerHeap.insert(secondInteger);
+        integerHeap.insert(thirdInteger);
+
+        Optional<Integer> expectedInteger = Optional.of(smallestInteger);
+        Optional<Integer> actualInteger = integerHeap.extract();
+        assertEquals(expectedInteger, actualInteger);
+    }
 }
