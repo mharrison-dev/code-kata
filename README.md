@@ -1,1 +1,1 @@
-# code-kata
+# Code Kata
